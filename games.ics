@@ -1,0 +1,2240 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//tt-apps//game-calendar//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:ゲームイベント予定
+X-WR-TIMEZONE:Asia/Tokyo
+X-WR-CALDESC:鳴潮・スタレ・パズドラ・デナアビ・NTE（Asia/
+ 日本サーバー・JST）
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:ww-v37-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260930T120000
+DTEND;TZID=Asia/Tokyo:20260930T123000
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】Ver.3.7「鏡に鎖す妄世、心で照らす紅塵」
+  開始
+DESCRIPTION:バージョン｜確定｜Asiaサーバー（サーバー時
+ 間UTC+8・日次更新 JST5:00）\n期間: 2026-09-30 12:00 〜 2026-11-1
+ 2 (JST)\n9/30 5:00-12:00メンテ後に配信。期間は11/12のメンテ
+ ナンス前まで。新エリア「夢枢天羅」、第四章第四幕
+ 。\n出典: https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-v37-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261112
+DTEND;VALUE=DATE:20261113
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】Ver.3.7「鏡に鎖す妄世、心で照らす紅塵」
+  終了
+DESCRIPTION:バージョン｜確定｜Asiaサーバー（サーバー時
+ 間UTC+8・日次更新 JST5:00）\n期間: 2026-09-30 12:00 〜 2026-11-1
+ 2 (JST)\n9/30 5:00-12:00メンテ後に配信。期間は11/12のメンテ
+ ナンス前まで。新エリア「夢枢天羅」、第四章第四幕
+ 。\n出典: https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【鳴潮】Ver.3.7「鏡に鎖す妄世、心で照らす紅
+ 塵」 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-g37a-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260930T120000
+DTEND;TZID=Asia/Tokyo:20260930T123000
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】前半ガチャ：心（新★5）／千咲・ユーノ
+ 復刻 開始
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-09-30 12:00 〜 2026-10-22 10:59 
+ (JST)\n★5武器「玉殿に咲き満ちる玄華」。心=電導・増
+ 幅器（CV能登麻美子）。\n出典: https://game8.jp/meicho/816846
+URL:https://game8.jp/meicho/816846
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-g37a-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261022T105900
+DTEND;TZID=Asia/Tokyo:20261022T112900
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】前半ガチャ：心（新★5）／千咲・ユーノ
+ 復刻 終了
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-09-30 12:00 〜 2026-10-22 10:59 
+ (JST)\n★5武器「玉殿に咲き満ちる玄華」。心=電導・増
+ 幅器（CV能登麻美子）。\n出典: https://game8.jp/meicho/816846
+URL:https://game8.jp/meicho/816846
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【鳴潮】前半ガチャ：心（新★5）／千咲・ユ
+ ーノ復刻 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-g37b-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261022T110000
+DTEND;TZID=Asia/Tokyo:20261022T113000
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】後半ガチャ：鎖暝（新★5）／リンネー・
+ ルシラー復刻 開始
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-10-22 11:00 〜 2026-11-11 (JST)\
+ n★5武器「沈冥」。鎖暝=電導・迅刀（CV大久保瑠美）。
+ 終了時刻はゲーム内告知で確認。\n出典: https://game8.jp/me
+ icho/816846
+URL:https://game8.jp/meicho/816846
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-g37b-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】後半ガチャ：鎖暝（新★5）／リンネー・
+ ルシラー復刻 終了
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-10-22 11:00 〜 2026-11-11 (JST)\
+ n★5武器「沈冥」。鎖暝=電導・迅刀（CV大久保瑠美）。
+ 終了時刻はゲーム内告知で確認。\n出典: https://game8.jp/me
+ icho/816846
+URL:https://game8.jp/meicho/816846
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【鳴潮】後半ガチャ：鎖暝（新★5）／リンネ
+ ー・ルシラー復刻 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-e-dandan-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260930T120000
+DTEND;TZID=Asia/Tokyo:20260930T123000
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】ミニイベント「勇者ダンダン大乱闘」 開
+ 始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-09-30 12:00 〜 2026-11-11 (JS
+ T)\n出典: https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-e-dandan-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】ミニイベント「勇者ダンダン大乱闘」 終
+ 了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-09-30 12:00 〜 2026-11-11 (JS
+ T)\n出典: https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【鳴潮】ミニイベント「勇者ダンダン大乱闘」
+  終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-e-hako-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260930T120000
+DTEND;TZID=Asia/Tokyo:20260930T123000
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】エリア探索「匣の中の夢」 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-09-30 12:00 〜 2026-11-11 (JS
+ T)\n出典: https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-e-hako-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】エリア探索「匣の中の夢」 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-09-30 12:00 〜 2026-11-11 (JS
+ T)\n出典: https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【鳴潮】エリア探索「匣の中の夢」 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-login1-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260930T120000
+DTEND;TZID=Asia/Tokyo:20260930T123000
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】7日間ログインボーナス「朝月のプレゼン
+ ト」 開始
+DESCRIPTION:ログボ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-09-30 12:00 〜 2026-11-11 (JST)\
+ n出典: https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-login1-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】7日間ログインボーナス「朝月のプレゼン
+ ト」 終了
+DESCRIPTION:ログボ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-09-30 12:00 〜 2026-11-11 (JST)\
+ n出典: https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【鳴潮】7日間ログインボーナス「朝月のプレ
+ ゼント」 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-e-tenkou-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261008T050000
+DTEND;TZID=Asia/Tokyo:20261008T053000
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】期間限定戦闘「天工の探し物」 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-10-08 05:00 〜 2026-10-26 04:
+ 59 (JST)\n出典: https://x.com/WW_JP_Official/status/2107652130211549592
+URL:https://x.com/WW_JP_Official/status/2107652130211549592
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-e-tenkou-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261026T045900
+DTEND;TZID=Asia/Tokyo:20261026T052900
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】期間限定戦闘「天工の探し物」 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-10-08 05:00 〜 2026-10-26 04:
+ 59 (JST)\n出典: https://x.com/WW_JP_Official/status/2107652130211549592
+URL:https://x.com/WW_JP_Official/status/2107652130211549592
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【鳴潮】期間限定戦闘「天工の探し物」 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-e-gyogun-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261015
+DTEND;VALUE=DATE:20261016
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】WEBイベント「朝月の魚群」 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-10-15 〜 2026-11-01 (JST)\n
+ 出典: https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-e-gyogun-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261102
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】WEBイベント「朝月の魚群」 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-10-15 〜 2026-11-01 (JST)\n
+ 出典: https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【鳴潮】WEBイベント「朝月の魚群」 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-e-musou-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261022
+DTEND;VALUE=DATE:20261023
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】ミニイベント「無音イレイサー」 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-10-22 〜 2026-11-09 (JST)\n
+ 出典: https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-e-musou-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261110
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】ミニイベント「無音イレイサー」 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-10-22 〜 2026-11-09 (JST)\n
+ 出典: https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【鳴潮】ミニイベント「無音イレイサー」 終
+ 了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-login2-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261022
+DTEND;VALUE=DATE:20261023
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】ログボ「傍らに響く雨音のプレゼント」
+ （金髄の波模様×10） 開始
+DESCRIPTION:ログボ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-10-22 〜 2026-11-11 (JST)\n出
+ 典: https://www.oricon.co.jp/pressrelease/3000605/
+URL:https://www.oricon.co.jp/pressrelease/3000605/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-login2-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】ログボ「傍らに響く雨音のプレゼント」
+ （金髄の波模様×10） 終了
+DESCRIPTION:ログボ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-10-22 〜 2026-11-11 (JST)\n出
+ 典: https://www.oricon.co.jp/pressrelease/3000605/
+URL:https://www.oricon.co.jp/pressrelease/3000605/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【鳴潮】ログボ「傍らに響く雨音のプレゼント
+ 」（金髄の波模様×10） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-e-shiosai-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261029
+DTEND;VALUE=DATE:20261030
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】探索依頼「潮騒探検・玄方地界」 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-10-29 〜 2026-11-11 (JST)\n
+ 出典: https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-e-shiosai-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】探索依頼「潮騒探検・玄方地界」 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-10-29 〜 2026-11-11 (JST)\n
+ 出典: https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【鳴潮】探索依頼「潮騒探検・玄方地界」 終
+ 了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-live-stage@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261011T120000
+DTEND;TZID=Asia/Tokyo:20261011T123000
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】「ソラリス・スターリーステージ Season 2
+ 」配信（YouTube）
+DESCRIPTION:生放送｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-10-11 12:00 〜  (JST)\n二次創
+ 作特別番組。\n出典: https://x.com/WW_JP_Official/status/2106640463
+ 188967787
+URL:https://x.com/WW_JP_Official/status/2106640463188967787
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-off-hw-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】鳴潮 ハロウィン in 池袋 IKE・SUNPARK 開始
+DESCRIPTION:リアルイベント｜確定｜Asiaサーバー（サーバ
+ ー時間UTC+8・日次更新 JST5:00）\n期間: 2026-10-31 〜 2026-11-0
+ 1 (JST)\n企画詳細は後日公開予定。\n出典: https://x.com/WW_JP
+ _Official/status/2108512820731982168
+URL:https://x.com/WW_JP_Official/status/2108512820731982168
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-off-hw-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261102
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】鳴潮 ハロウィン in 池袋 IKE・SUNPARK 終了
+DESCRIPTION:リアルイベント｜確定｜Asiaサーバー（サーバ
+ ー時間UTC+8・日次更新 JST5:00）\n期間: 2026-10-31 〜 2026-11-0
+ 1 (JST)\n企画詳細は後日公開予定。\n出典: https://x.com/WW_JP
+ _Official/status/2108512820731982168
+URL:https://x.com/WW_JP_Official/status/2108512820731982168
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【鳴潮】鳴潮 ハロウィン in 池袋 IKE・SUNPARK 終
+ 了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-tower-1012@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261012T050000
+DTEND;TZID=Asia/Tokyo:20261012T053000
+TRANSP:TRANSPARENT
+SUMMARY:【鳴潮】逆境深塔 深層エリア シーズン更新
+DESCRIPTION:更新｜確定｜Asiaサーバー（サーバー時間UTC+8・
+ 日次更新 JST5:00）\n期間: 2026-10-12 05:00 〜  (JST)\n前シーズ
+ ン（9/14〜）は10/12 朝4:59まで。深層エリアの進捗・報酬
+ がリセット。\n出典: https://game8.jp/meicho/611841
+URL:https://game8.jp/meicho/611841
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-tower-1109@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261109T050000
+DTEND;TZID=Asia/Tokyo:20261109T053000
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【鳴潮】逆境深塔 深層エリア 次回更新
+DESCRIPTION:更新｜予想｜Asiaサーバー（サーバー時間UTC+8・
+ 日次更新 JST5:00）\n期間: 2026-11-09 05:00 〜  (JST)\n約4週間
+ 周期からの予想（9/14→10/12→11/9）。\n出典: https://game8.j
+ p/meicho/611841
+URL:https://game8.jp/meicho/611841
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-live38@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【鳴潮】Ver.3.8 予告特別通信
+DESCRIPTION:生放送｜予想｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-10-31 〜  (JST)\n日付未発表
+ 。Ver.3.7は配信11日前（9/19 20:00）に放送 → 10月末〜11月
+ 初め頃と予想。\n出典: https://gamewith.jp/wutheringwaves/456100
+URL:https://gamewith.jp/wutheringwaves/456100
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-v38@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261112
+DTEND;VALUE=DATE:20261113
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【鳴潮】Ver.3.8 アップデート（メンテナ
+ ンス）
+DESCRIPTION:バージョン｜予想｜Asiaサーバー（サーバー時
+ 間UTC+8・日次更新 JST5:00）\n期間: 2026-11-12 〜  (JST)\nVer.3.7
+ の期間が「11/12メンテナンス前まで」のため11/12配信の
+ 可能性が高い（公式の3.8日程は未発表）。新共鳴者「
+ リリー」（回折・拳銃）のプレビューが公式Xで公開済
+ み（実装時期は未発表）。\n出典: https://mediadogs.jp/2026/09
+ /30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-g38b@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261203
+DTEND;VALUE=DATE:20261204
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【鳴潮】Ver.3.8 後半ガチャ切替
+DESCRIPTION:ガチャ｜予想｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-12-03 〜  (JST)\n前半約3週
+ 間の通常周期からの予想。\n出典: https://mediadogs.jp/2026/09
+ /30/wuthering-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:ww-v39@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261224
+DTEND;VALUE=DATE:20261225
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【鳴潮】次バージョン（3.8の次）
+DESCRIPTION:バージョン｜予想｜Asiaサーバー（サーバー時
+ 間UTC+8・日次更新 JST5:00）\n期間: 2026-12-24 〜  (JST)\n約6週
+ 間周期からの予想。\n出典: https://mediadogs.jp/2026/09/30/wuthe
+ ring-waves-ver37-update/
+URL:https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-v46-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260928T120000
+DTEND;TZID=Asia/Tokyo:20260928T123000
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】Ver.4.6「月立つ前に獣と踊れ」 開始
+DESCRIPTION:バージョン｜確定｜Asiaサーバー（サーバー時
+ 間UTC+8・日次更新 JST5:00）\n期間: 2026-09-28 12:00 〜 2026-11-1
+ 1 04:59 (JST)\n今回は月曜アプデ。\n出典: https://prtimes.jp/mai
+ n/html/rd/p/000000451.000096124.html
+URL:https://prtimes.jp/main/html/rd/p/000000451.000096124.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-v46-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261111T045900
+DTEND;TZID=Asia/Tokyo:20261111T052900
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】Ver.4.6「月立つ前に獣と踊れ」 終了
+DESCRIPTION:バージョン｜確定｜Asiaサーバー（サーバー時
+ 間UTC+8・日次更新 JST5:00）\n期間: 2026-09-28 12:00 〜 2026-11-1
+ 1 04:59 (JST)\n今回は月曜アプデ。\n出典: https://prtimes.jp/mai
+ n/html/rd/p/000000451.000096124.html
+URL:https://prtimes.jp/main/html/rd/p/000000451.000096124.html
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【スタレ】Ver.4.6「月立つ前に獣と踊れ」 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-g-pearl-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260928T120000
+DTEND;TZID=Asia/Tokyo:20260928T123000
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】跳躍「海より出づる真珠」パール（新
+ ★5・氷/愉悦） 開始
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-09-28 12:00 〜 2026-11-10 16:00 
+ (JST)\nVer.4.6期間中ずっと開催。光円錐「明日に捧げる色
+ 」。サーバー時間 11/10 15:00。\n出典: https://prtimes.jp/main/h
+ tml/rd/p/000000451.000096124.html
+URL:https://prtimes.jp/main/html/rd/p/000000451.000096124.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-g-pearl-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261110T160000
+DTEND;TZID=Asia/Tokyo:20261110T163000
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】跳躍「海より出づる真珠」パール（新
+ ★5・氷/愉悦） 終了
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-09-28 12:00 〜 2026-11-10 16:00 
+ (JST)\nVer.4.6期間中ずっと開催。光円錐「明日に捧げる色
+ 」。サーバー時間 11/10 15:00。\n出典: https://prtimes.jp/main/h
+ tml/rd/p/000000451.000096124.html
+URL:https://prtimes.jp/main/html/rd/p/000000451.000096124.html
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【スタレ】跳躍「海より出づる真珠」パール（
+ 新★5・氷/愉悦） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-g-hiei-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260928T120000
+DTEND;TZID=Asia/Tokyo:20260928T123000
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】前半跳躍：緋英 復刻 開始
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-09-28 12:00 〜 2026-10-21 12:59 
+ (JST)\n「花盛りの裁き手」。光円錐「再び花が咲く季節
+ に」。サーバー時間 10/21 11:59。\n出典: https://prtimes.jp/mai
+ n/html/rd/p/000000451.000096124.html
+URL:https://prtimes.jp/main/html/rd/p/000000451.000096124.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-g-hiei-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261021T125900
+DTEND;TZID=Asia/Tokyo:20261021T132900
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】前半跳躍：緋英 復刻 終了
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-09-28 12:00 〜 2026-10-21 12:59 
+ (JST)\n「花盛りの裁き手」。光円錐「再び花が咲く季節
+ に」。サーバー時間 10/21 11:59。\n出典: https://prtimes.jp/mai
+ n/html/rd/p/000000451.000096124.html
+URL:https://prtimes.jp/main/html/rd/p/000000451.000096124.html
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【スタレ】前半跳躍：緋英 復刻 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-g-jin-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261021T130000
+DTEND;TZID=Asia/Tokyo:20261021T133000
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】後半跳躍：千冶・刃 復刻 開始
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-10-21 13:00 〜 2026-11-10 16:00 
+ (JST)\n光円錐「煉獄に焼かれし新身」。★4：青雀・雪衣
+ ・ミーシャ。\n出典: https://game8.jp/houkaistarrail/525736
+URL:https://game8.jp/houkaistarrail/525736
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-g-jin-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261110T160000
+DTEND;TZID=Asia/Tokyo:20261110T163000
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】後半跳躍：千冶・刃 復刻 終了
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-10-21 13:00 〜 2026-11-10 16:00 
+ (JST)\n光円錐「煉獄に焼かれし新身」。★4：青雀・雪衣
+ ・ミーシャ。\n出典: https://game8.jp/houkaistarrail/525736
+URL:https://game8.jp/houkaistarrail/525736
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【スタレ】後半跳躍：千冶・刃 復刻 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-e-ghost-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260928T120000
+DTEND;TZID=Asia/Tokyo:20260928T123000
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】イベント「愛、幽霊とロボット」 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-09-28 12:00 〜 2026-11-11 04:
+ 59 (JST)\nパズル系メインイベント（星玉）。\n出典: https:
+ //prtimes.jp/main/html/rd/p/000000451.000096124.html
+URL:https://prtimes.jp/main/html/rd/p/000000451.000096124.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-e-ghost-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261111T045900
+DTEND;TZID=Asia/Tokyo:20261111T052900
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】イベント「愛、幽霊とロボット」 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-09-28 12:00 〜 2026-11-11 04:
+ 59 (JST)\nパズル系メインイベント（星玉）。\n出典: https:
+ //prtimes.jp/main/html/rd/p/000000451.000096124.html
+URL:https://prtimes.jp/main/html/rd/p/000000451.000096124.html
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【スタレ】イベント「愛、幽霊とロボット」 
+ 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-login-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260928T120000
+DTEND;TZID=Asia/Tokyo:20260928T123000
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】ログボ「巡星の礼」（星軌専用チケッ
+ ト×10） 開始
+DESCRIPTION:ログボ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-09-28 12:00 〜 2026-11-10 04:59 
+ (JST)\n出典: https://prtimes.jp/main/html/rd/p/000000451.000096124.html
+URL:https://prtimes.jp/main/html/rd/p/000000451.000096124.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-login-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261110T045900
+DTEND;TZID=Asia/Tokyo:20261110T052900
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】ログボ「巡星の礼」（星軌専用チケッ
+ ト×10） 終了
+DESCRIPTION:ログボ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-09-28 12:00 〜 2026-11-10 04:59 
+ (JST)\n出典: https://prtimes.jp/main/html/rd/p/000000451.000096124.html
+URL:https://prtimes.jp/main/html/rd/p/000000451.000096124.html
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【スタレ】ログボ「巡星の礼」（星軌専用チケ
+ ット×10） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-2x-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261012T050000
+DTEND;TZID=Asia/Tokyo:20261012T053000
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】次元界分裂（次元界オーナメント2倍）
+  開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-10-12 05:00 〜 2026-10-25 04:
+ 59 (JST)\nサーバー時間 10/12 04:00〜10/25 03:59。\n出典: https:/
+ /x.com/houkaistarrail/status/2109116780467610037
+URL:https://x.com/houkaistarrail/status/2109116780467610037
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-2x-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261025T045900
+DTEND;TZID=Asia/Tokyo:20261025T052900
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】次元界分裂（次元界オーナメント2倍）
+  終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（サーバー時間UT
+ C+8・日次更新 JST5:00）\n期間: 2026-10-12 05:00 〜 2026-10-25 04:
+ 59 (JST)\nサーバー時間 10/12 04:00〜10/25 03:59。\n出典: https:/
+ /x.com/houkaistarrail/status/2109116780467610037
+URL:https://x.com/houkaistarrail/status/2109116780467610037
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【スタレ】次元界分裂（次元界オーナメント2
+ 倍） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-yoko@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】『崩壊：スターレイル』×横浜市 コラ
+ ボ開始
+DESCRIPTION:コラボ｜確定｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-10-31 〜  (JST)\n詳細は10月
+ 下旬発表予定。\n出典: https://x.com/houkaistarrail/status/2108754
+ 393306677582
+URL:https://x.com/houkaistarrail/status/2108754393306677582
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-fic-1026@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261026T050000
+DTEND;TZID=Asia/Tokyo:20261026T053000
+TRANSP:TRANSPARENT
+SUMMARY:【スタレ】虚構叙事 シーズン更新
+DESCRIPTION:更新｜確定｜Asiaサーバー（サーバー時間UTC+8・
+ 日次更新 JST5:00）\n期間: 2026-10-26 05:00 〜  (JST)\n現シーズ
+ ン 9/14 5:00〜10/26 4:59。6週間周期。\n出典: https://game8.jp/ho
+ ukaistarrail/583174
+URL:https://game8.jp/houkaistarrail/583174
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-apoc-1012@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261012T050000
+DTEND;TZID=Asia/Tokyo:20261012T053000
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【スタレ】末日の幻影 シーズン更新
+DESCRIPTION:更新｜予想｜Asiaサーバー（サーバー時間UTC+8・
+ 日次更新 JST5:00）\n期間: 2026-10-12 05:00 〜  (JST)\n末日→虚
+ 構→混沌が2週間おきに更新される周期からの予想。\n
+ 出典: https://wikiwiki.jp/star-rail/%E6%9C%AB%E6%97%A5%E3%81%AE%E5%B9%BB
+ %E5%BD%B1
+URL:https://wikiwiki.jp/star-rail/%E6%9C%AB%E6%97%A5%E3%81%AE%E5%B9%BB%E5%B
+ D%B1
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-moc-1109@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261109T050000
+DTEND;TZID=Asia/Tokyo:20261109T053000
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【スタレ】忘却の庭（混沌の記憶）シー
+ ズン更新
+DESCRIPTION:更新｜予想｜Asiaサーバー（サーバー時間UTC+8・
+ 日次更新 JST5:00）\n期間: 2026-11-09 05:00 〜  (JST)\n2週間ロ
+ ーテーション周期からの予想。\n出典: https://wikiwiki.jp/st
+ ar-rail/%E6%9C%AB%E6%97%A5%E3%81%AE%E5%B9%BB%E5%BD%B1
+URL:https://wikiwiki.jp/star-rail/%E6%9C%AB%E6%97%A5%E3%81%AE%E5%B9%BB%E5%B
+ D%B1
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-apoc-1123@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261123T050000
+DTEND;TZID=Asia/Tokyo:20261123T053000
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【スタレ】末日の幻影 シーズン更新
+DESCRIPTION:更新｜予想｜Asiaサーバー（サーバー時間UTC+8・
+ 日次更新 JST5:00）\n期間: 2026-11-23 05:00 〜  (JST)\n周期から
+ の予想。\n出典: https://wikiwiki.jp/star-rail/%E6%9C%AB%E6%97%A5%E3%
+ 81%AE%E5%B9%BB%E5%BD%B1
+URL:https://wikiwiki.jp/star-rail/%E6%9C%AB%E6%97%A5%E3%81%AE%E5%B9%BB%E5%B
+ D%B1
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-live47@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261030
+DTEND;VALUE=DATE:20261031
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【スタレ】Ver.4.7 予告番組
+DESCRIPTION:生放送｜予想｜Asiaサーバー（サーバー時間UTC+8
+ ・日次更新 JST5:00）\n期間: 2026-10-30 〜  (JST)\n日付未発表
+ 。4.6は配信8日前（9/20 20:30）に放送 → 10月末〜11月初め
+ 頃と予想。\n出典: https://gamewith.jp/houkaistarrail/article/show/4
+ 02987
+URL:https://gamewith.jp/houkaistarrail/article/show/402987
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-v47@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【スタレ】Ver.4.7 アップデート（星神★
+ アッハ実装予定）
+DESCRIPTION:バージョン｜予想｜Asiaサーバー（サーバー時
+ 間UTC+8・日次更新 JST5:00）\n期間: 2026-11-11 〜  (JST)\n4.6の
+ ガチャが11/10 16:00、イベントが11/11 4:59まで → 11/11配信
+ と予想（公式日程は未発表）。星神★アッハの4.7実装
+ は予告番組で発表済み。\n出典: https://gamewith.jp/houkaistarr
+ ail/article/show/396229
+URL:https://gamewith.jp/houkaistarrail/article/show/396229
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-v48@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261223
+DTEND;VALUE=DATE:20261224
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【スタレ】Ver.4.8 アップデート（ゼンゼ
+ ロコラボ予定）
+DESCRIPTION:バージョン｜予想｜Asiaサーバー（サーバー時
+ 間UTC+8・日次更新 JST5:00）\n期間: 2026-12-23 〜  (JST)\n日付
+ は6週間周期からの予想。ゼンゼロコラボ（エレン・ジ
+ ョー、アストラ・ヤオ）が4.8で実施されることは発表
+ 済み。\n出典: https://gamewith.jp/houkaistarrail/article/show/402987
+URL:https://gamewith.jp/houkaistarrail/article/show/402987
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-hw-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261005T100000
+DTEND;TZID=Asia/Tokyo:20261005T103000
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】ハロウィンイベント（降臨・コロシ
+ アム・ログインスタンプ等） 開始
+DESCRIPTION:イベント｜確定｜日本版（JST）\n期間: 2026-10-05 
+ 10:00 〜 2026-10-31 23:59 (JST)\n仮装祭のリンシア降臨、ワン
+ グレン＆ベイツール降臨、ハロウィンコロシアム、「
+ 悪戯」称号チャレンジ、ハロウィンログインスタンプ
+ 。\n出典: https://pad.gungho.jp/member/event/halloween/2610/
+URL:https://pad.gungho.jp/member/event/halloween/2610/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-hw-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261031T235900
+DTEND;TZID=Asia/Tokyo:20261101T002900
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】ハロウィンイベント（降臨・コロシ
+ アム・ログインスタンプ等） 終了
+DESCRIPTION:イベント｜確定｜日本版（JST）\n期間: 2026-10-05 
+ 10:00 〜 2026-10-31 23:59 (JST)\n仮装祭のリンシア降臨、ワン
+ グレン＆ベイツール降臨、ハロウィンコロシアム、「
+ 悪戯」称号チャレンジ、ハロウィンログインスタンプ
+ 。\n出典: https://pad.gungho.jp/member/event/halloween/2610/
+URL:https://pad.gungho.jp/member/event/halloween/2610/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【パズドラ】ハロウィンイベント（降臨・コロ
+ シアム・ログインスタンプ等） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-hw-gacha-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261005T100000
+DTEND;TZID=Asia/Tokyo:20261005T103000
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】ハロウィンガチャ／★7以上ハロウィ
+ ンガチャ 開始
+DESCRIPTION:ガチャ｜確定｜日本版（JST）\n期間: 2026-10-05 10:
+ 00 〜 2026-10-31 23:59 (JST)\n出典: https://pad.gungho.jp/member/event/
+ halloween/2610/
+URL:https://pad.gungho.jp/member/event/halloween/2610/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-hw-gacha-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261031T235900
+DTEND;TZID=Asia/Tokyo:20261101T002900
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】ハロウィンガチャ／★7以上ハロウィ
+ ンガチャ 終了
+DESCRIPTION:ガチャ｜確定｜日本版（JST）\n期間: 2026-10-05 10:
+ 00 〜 2026-10-31 23:59 (JST)\n出典: https://pad.gungho.jp/member/event/
+ halloween/2610/
+URL:https://pad.gungho.jp/member/event/halloween/2610/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【パズドラ】ハロウィンガチャ／★7以上ハロ
+ ウィンガチャ 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-imo-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261005T100000
+DTEND;TZID=Asia/Tokyo:20261005T103000
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】ミニゲーム「イモホリットの大収穫
+ 祭」 開始
+DESCRIPTION:イベント｜確定｜日本版（JST）\n期間: 2026-10-05 
+ 10:00 〜 2026-11-01 23:59 (JST)\n出典: https://pad.gungho.jp/member/eve
+ nt/halloween/2610/game/
+URL:https://pad.gungho.jp/member/event/halloween/2610/game/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-imo-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261101T235900
+DTEND;TZID=Asia/Tokyo:20261102T002900
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】ミニゲーム「イモホリットの大収穫
+ 祭」 終了
+DESCRIPTION:イベント｜確定｜日本版（JST）\n期間: 2026-10-05 
+ 10:00 〜 2026-11-01 23:59 (JST)\n出典: https://pad.gungho.jp/member/eve
+ nt/halloween/2610/game/
+URL:https://pad.gungho.jp/member/event/halloween/2610/game/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【パズドラ】ミニゲーム「イモホリットの大収
+ 穫祭」 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-hwq-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260929T200000
+DTEND;TZID=Asia/Tokyo:20260929T203000
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】ハロウィンクエスト（魔法石など） 
+ 開始
+DESCRIPTION:イベント｜確定｜日本版（JST）\n期間: 2026-09-29 
+ 20:00 〜 2026-10-31 23:59 (JST)\n出典: https://pad.gungho.jp/member/eve
+ nt/2609_2/
+URL:https://pad.gungho.jp/member/event/2609_2/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-hwq-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261031T235900
+DTEND;TZID=Asia/Tokyo:20261101T002900
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】ハロウィンクエスト（魔法石など） 
+ 終了
+DESCRIPTION:イベント｜確定｜日本版（JST）\n期間: 2026-09-29 
+ 20:00 〜 2026-10-31 23:59 (JST)\n出典: https://pad.gungho.jp/member/eve
+ nt/2609_2/
+URL:https://pad.gungho.jp/member/event/2609_2/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【パズドラ】ハロウィンクエスト（魔法石など
+ ） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-exrush-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261003T120000
+DTEND;TZID=Asia/Tokyo:20261003T123000
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】10月の決戦！EXラッシュ！ 開始
+DESCRIPTION:イベント｜確定｜日本版（JST）\n期間: 2026-10-03 
+ 12:00 〜 2026-10-31 23:59 (JST)\n出典: https://pad.gungho.jp/member/eve
+ nt/2609_2/
+URL:https://pad.gungho.jp/member/event/2609_2/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-exrush-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261031T235900
+DTEND;TZID=Asia/Tokyo:20261101T002900
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】10月の決戦！EXラッシュ！ 終了
+DESCRIPTION:イベント｜確定｜日本版（JST）\n期間: 2026-10-03 
+ 12:00 〜 2026-10-31 23:59 (JST)\n出典: https://pad.gungho.jp/member/eve
+ nt/2609_2/
+URL:https://pad.gungho.jp/member/event/2609_2/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【パズドラ】10月の決戦！EXラッシュ！ 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-pvp-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261001T040000
+DTEND;TZID=Asia/Tokyo:20261001T043000
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】4人でガチ【対戦】シーズン10 2nd 開
+ 始
+DESCRIPTION:イベント｜確定｜日本版（JST）\n期間: 2026-10-01 
+ 04:00 〜 2026-11-01 03:59 (JST)\nオートマッチは10/1 12:00〜10/31 
+ 23:59。\n出典: https://pad.gungho.jp/member/event/2609_2/
+URL:https://pad.gungho.jp/member/event/2609_2/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-pvp-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261101T035900
+DTEND;TZID=Asia/Tokyo:20261101T042900
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】4人でガチ【対戦】シーズン10 2nd 終
+ 了
+DESCRIPTION:イベント｜確定｜日本版（JST）\n期間: 2026-10-01 
+ 04:00 〜 2026-11-01 03:59 (JST)\nオートマッチは10/1 12:00〜10/31 
+ 23:59。\n出典: https://pad.gungho.jp/member/event/2609_2/
+URL:https://pad.gungho.jp/member/event/2609_2/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【パズドラ】4人でガチ【対戦】シーズン10 2nd 
+ 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-godfes-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261009T120000
+DTEND;TZID=Asia/Tokyo:20261009T123000
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】スーパーゴッドフェス（鳳凰機・Gフ
+ ェニックス等）＋モンスター交換所 開始
+DESCRIPTION:ガチャ｜確定｜日本版（JST）\n期間: 2026-10-09 12:
+ 00 〜 2026-10-13 11:59 (JST)\n魔法石10個。\n出典: https://pad.gung
+ ho.jp/member/raregacha/godfes/2610/
+URL:https://pad.gungho.jp/member/raregacha/godfes/2610/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-godfes-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261013T115900
+DTEND;TZID=Asia/Tokyo:20261013T122900
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】スーパーゴッドフェス（鳳凰機・Gフ
+ ェニックス等）＋モンスター交換所 終了
+DESCRIPTION:ガチャ｜確定｜日本版（JST）\n期間: 2026-10-09 12:
+ 00 〜 2026-10-13 11:59 (JST)\n魔法石10個。\n出典: https://pad.gung
+ ho.jp/member/raregacha/godfes/2610/
+URL:https://pad.gungho.jp/member/raregacha/godfes/2610/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【パズドラ】スーパーゴッドフェス（鳳凰機・
+ Gフェニックス等）＋モンスター交換所 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-fire-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261009T120000
+DTEND;TZID=Asia/Tokyo:20261009T123000
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】レアガチャ ～ファイアカーニバル～
+  開始
+DESCRIPTION:ガチャ｜確定｜日本版（JST）\n期間: 2026-10-09 12:
+ 00 〜 2026-10-16 11:59 (JST)\n出典: https://pad.gungho.jp/member/rarega
+ cha/fire/2610/
+URL:https://pad.gungho.jp/member/raregacha/fire/2610/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-fire-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261016T115900
+DTEND;TZID=Asia/Tokyo:20261016T122900
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】レアガチャ ～ファイアカーニバル～
+  終了
+DESCRIPTION:ガチャ｜確定｜日本版（JST）\n期間: 2026-10-09 12:
+ 00 〜 2026-10-16 11:59 (JST)\n出典: https://pad.gungho.jp/member/rarega
+ cha/fire/2610/
+URL:https://pad.gungho.jp/member/raregacha/fire/2610/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【パズドラ】レアガチャ ～ファイアカーニバ
+ ル～ 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-carn-1016-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261016T120000
+DTEND;TZID=Asia/Tokyo:20261016T123000
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【パズドラ】次のレアガチャ属性カーニ
+ バル 開始
+DESCRIPTION:ガチャ｜予想｜日本版（JST）\n期間: 2026-10-16 12:
+ 00 〜 2026-10-23 11:59 (JST)\n毎週金曜12:00切替の通常周期か
+ らの予想（属性未発表）。\n出典: https://pad.gungho.jp/member
+ /
+URL:https://pad.gungho.jp/member/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-carn-1016-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261023T115900
+DTEND;TZID=Asia/Tokyo:20261023T122900
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【パズドラ】次のレアガチャ属性カーニ
+ バル 終了
+DESCRIPTION:ガチャ｜予想｜日本版（JST）\n期間: 2026-10-16 12:
+ 00 〜 2026-10-23 11:59 (JST)\n毎週金曜12:00切替の通常周期か
+ らの予想（属性未発表）。\n出典: https://pad.gungho.jp/member
+ /
+URL:https://pad.gungho.jp/member/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-houou-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260929T200000
+DTEND;TZID=Asia/Tokyo:20260929T203000
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】「鳳凰」チャレンジ！【制限時間60
+ 分】 開始
+DESCRIPTION:イベント｜確定｜日本版（JST）\n期間: 2026-09-29 
+ 20:00 〜 2026-10-25 23:59 (JST)\n10/10 12:00〜緩和版フロアをス
+ テージダンジョンに追加。\n出典: https://pad.gungho.jp/member
+ /dungeon/2609/
+URL:https://pad.gungho.jp/member/dungeon/2609/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-houou-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261025T235900
+DTEND;TZID=Asia/Tokyo:20261026T002900
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】「鳳凰」チャレンジ！【制限時間60
+ 分】 終了
+DESCRIPTION:イベント｜確定｜日本版（JST）\n期間: 2026-09-29 
+ 20:00 〜 2026-10-25 23:59 (JST)\n10/10 12:00〜緩和版フロアをス
+ テージダンジョンに追加。\n出典: https://pad.gungho.jp/member
+ /dungeon/2609/
+URL:https://pad.gungho.jp/member/dungeon/2609/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【パズドラ】「鳳凰」チャレンジ！【制限時間
+ 60分】 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-trick-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261030T000000
+DTEND;TZID=Asia/Tokyo:20261030T003000
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】2択！トリックオアトリート 開始
+DESCRIPTION:イベント｜確定｜日本版（JST）\n期間: 2026-10-30 
+ 00:00 〜 2026-10-31 23:59 (JST)\n出典: https://pad.gungho.jp/member/eve
+ nt/halloween/2610/
+URL:https://pad.gungho.jp/member/event/halloween/2610/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-trick-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261031T235900
+DTEND;TZID=Asia/Tokyo:20261101T002900
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】2択！トリックオアトリート 終了
+DESCRIPTION:イベント｜確定｜日本版（JST）\n期間: 2026-10-30 
+ 00:00 〜 2026-10-31 23:59 (JST)\n出典: https://pad.gungho.jp/member/eve
+ nt/halloween/2610/
+URL:https://pad.gungho.jp/member/event/halloween/2610/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【パズドラ】2択！トリックオアトリート 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-live-kyoto@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261025T130000
+DTEND;TZID=Asia/Tokyo:20261025T180000
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】出張！パズドラ公式放送（京都会場
+ ・13:00〜放送）
+DESCRIPTION:生放送｜確定｜日本版（JST）\n期間: 2026-10-25 13:
+ 00 〜 2026-10-25 18:00 (JST)\n会場 イオンモールKYOTO 12:00〜18:0
+ 0予定。公式放送はYouTubeライブ。\n出典: https://pad.gungho.j
+ p/member/live/2604/
+URL:https://pad.gungho.jp/member/live/2604/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:pad-live-tokyo@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261220
+DTEND;VALUE=DATE:20261221
+TRANSP:TRANSPARENT
+SUMMARY:【パズドラ】出張！パズドラ公式放送（東京・池
+ 袋サンシャインシティ）
+DESCRIPTION:生放送｜確定｜日本版（JST）\n期間: 2026-12-20 〜
+   (JST)\n出典: https://pad.gungho.jp/member/live/2604/
+URL:https://pad.gungho.jp/member/live/2604/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-v16-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260908T160000
+DTEND;TZID=Asia/Tokyo:20260908T163000
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】「22匹目の楽園の白ウサギ」バージ
+ ョン 開始
+DESCRIPTION:バージョン｜確定｜Asiaサーバー（告知はJST表
+ 記）\n期間: 2026-09-08 16:00 〜 2026-10-19 18:00 (JST)\n新キャラ 
+ フォルス（火）、新エリア「アルカノの町」。\n出典: h
+ ttps://prtimes.jp/main/html/rd/p/000000041.000160794.html
+URL:https://prtimes.jp/main/html/rd/p/000000041.000160794.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-v16-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261019T180000
+DTEND;TZID=Asia/Tokyo:20261019T183000
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】「22匹目の楽園の白ウサギ」バージ
+ ョン 終了
+DESCRIPTION:バージョン｜確定｜Asiaサーバー（告知はJST表
+ 記）\n期間: 2026-09-08 16:00 〜 2026-10-19 18:00 (JST)\n新キャラ 
+ フォルス（火）、新エリア「アルカノの町」。\n出典: h
+ ttps://prtimes.jp/main/html/rd/p/000000041.000160794.html
+URL:https://prtimes.jp/main/html/rd/p/000000041.000160794.html
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【デナアビ】「22匹目の楽園の白ウサギ」バー
+ ジョン 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-g-falsi-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260908T160000
+DTEND;TZID=Asia/Tokyo:20260908T163000
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】限定万華「長き道の行く先」フォル
+ ス限定スキン「漆黒のアルテミス」 開始
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-09-08 16:00 〜 2026-10-19 18:00 (JST)\n出典: https://prtim
+ es.jp/main/html/rd/p/000000041.000160794.html
+URL:https://prtimes.jp/main/html/rd/p/000000041.000160794.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-g-falsi-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261019T180000
+DTEND;TZID=Asia/Tokyo:20261019T183000
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】限定万華「長き道の行く先」フォル
+ ス限定スキン「漆黒のアルテミス」 終了
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-09-08 16:00 〜 2026-10-19 18:00 (JST)\n出典: https://prtim
+ es.jp/main/html/rd/p/000000041.000160794.html
+URL:https://prtimes.jp/main/html/rd/p/000000041.000160794.html
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【デナアビ】限定万華「長き道の行く先」フォ
+ ルス限定スキン「漆黒のアルテミス」 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-g-shiryu-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260908T160000
+DTEND;TZID=Asia/Tokyo:20260908T163000
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】復刻万華「語り尽くせぬ夜の宴」シ
+ リュウ限定スキン 開始
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-09-08 16:00 〜 2026-10-19 18:00 (JST)\n出典: https://prtim
+ es.jp/main/html/rd/p/000000041.000160794.html
+URL:https://prtimes.jp/main/html/rd/p/000000041.000160794.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-g-shiryu-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261019T180000
+DTEND;TZID=Asia/Tokyo:20261019T183000
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】復刻万華「語り尽くせぬ夜の宴」シ
+ リュウ限定スキン 終了
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-09-08 16:00 〜 2026-10-19 18:00 (JST)\n出典: https://prtim
+ es.jp/main/html/rd/p/000000041.000160794.html
+URL:https://prtimes.jp/main/html/rd/p/000000041.000160794.html
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【デナアビ】復刻万華「語り尽くせぬ夜の宴」
+ シリュウ限定スキン 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-g-gensou-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20260929
+DTEND;VALUE=DATE:20260930
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】スキンガチャ「幻想曲」（ゼンマイ
+ ロイド・サイキ／ベレニカ） 開始
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-09-29 〜 2026-11-09 (JST)\n出典: https://game8.jp/duetnigh
+ tabyss
+URL:https://game8.jp/duetnightabyss
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-g-gensou-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261110
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】スキンガチャ「幻想曲」（ゼンマイ
+ ロイド・サイキ／ベレニカ） 終了
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-09-29 〜 2026-11-09 (JST)\n出典: https://game8.jp/duetnigh
+ tabyss
+URL:https://game8.jp/duetnightabyss
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【デナアビ】スキンガチャ「幻想曲」（ゼンマ
+ イロイド・サイキ／ベレニカ） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-login-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260908T160000
+DTEND;TZID=Asia/Tokyo:20260908T163000
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】累計ログボ「罪人の帰途」 開始
+DESCRIPTION:ログボ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-09-08 16:00 〜 2026-10-19 18:00 (JST)\n出典: https://prtim
+ es.jp/main/html/rd/p/000000041.000160794.html
+URL:https://prtimes.jp/main/html/rd/p/000000041.000160794.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-login-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261019T180000
+DTEND;TZID=Asia/Tokyo:20261019T183000
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】累計ログボ「罪人の帰途」 終了
+DESCRIPTION:ログボ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-09-08 16:00 〜 2026-10-19 18:00 (JST)\n出典: https://prtim
+ es.jp/main/html/rd/p/000000041.000160794.html
+URL:https://prtimes.jp/main/html/rd/p/000000041.000160794.html
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【デナアビ】累計ログボ「罪人の帰途」 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-e-fes-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260908T160000
+DTEND;TZID=Asia/Tokyo:20260908T163000
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】フェスティバルガイド 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-09-08 16:00 〜 2026-10-19 18:00 (JST)\n出典: https://
+ game8.jp/duetnightabyss
+URL:https://game8.jp/duetnightabyss
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-e-fes-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261019T180000
+DTEND;TZID=Asia/Tokyo:20261019T183000
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】フェスティバルガイド 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-09-08 16:00 〜 2026-10-19 18:00 (JST)\n出典: https://
+ game8.jp/duetnightabyss
+URL:https://game8.jp/duetnightabyss
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【デナアビ】フェスティバルガイド 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-e-irodori-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260908T160000
+DTEND;TZID=Asia/Tokyo:20260908T163000
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】彩りの絵とき 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-09-08 16:00 〜 2026-10-19 18:00 (JST)\n出典: https://
+ prtimes.jp/main/html/rd/p/000000041.000160794.html
+URL:https://prtimes.jp/main/html/rd/p/000000041.000160794.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-e-irodori-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261019T180000
+DTEND;TZID=Asia/Tokyo:20261019T183000
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】彩りの絵とき 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-09-08 16:00 〜 2026-10-19 18:00 (JST)\n出典: https://
+ prtimes.jp/main/html/rd/p/000000041.000160794.html
+URL:https://prtimes.jp/main/html/rd/p/000000041.000160794.html
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【デナアビ】彩りの絵とき 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-e-hihou-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260908T160000
+DTEND;TZID=Asia/Tokyo:20260908T163000
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】秘宝探索演習 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-09-08 16:00 〜 2026-10-20 (JST)\n出典: https://game8.
+ jp/duetnightabyss
+URL:https://game8.jp/duetnightabyss
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-e-hihou-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261020
+DTEND;VALUE=DATE:20261021
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】秘宝探索演習 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-09-08 16:00 〜 2026-10-20 (JST)\n出典: https://game8.
+ jp/duetnightabyss
+URL:https://game8.jp/duetnightabyss
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【デナアビ】秘宝探索演習 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-e-gekijo-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20260917
+DTEND;VALUE=DATE:20260918
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】体験型劇場・華麗なる共演 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-09-17 〜 2026-10-18 (JST)\n出典: https://game8.jp/due
+ tnightabyss
+URL:https://game8.jp/duetnightabyss
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-e-gekijo-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261018
+DTEND;VALUE=DATE:20261019
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】体験型劇場・華麗なる共演 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-09-17 〜 2026-10-18 (JST)\n出典: https://game8.jp/due
+ tnightabyss
+URL:https://game8.jp/duetnightabyss
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【デナアビ】体験型劇場・華麗なる共演 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-e-star-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20260924
+DTEND;VALUE=DATE:20260925
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】スターメモリアルⅠ 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-09-24 〜 2026-10-11 (JST)\n出典: https://game8.jp/due
+ tnightabyss
+URL:https://game8.jp/duetnightabyss
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-e-star-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261011
+DTEND;VALUE=DATE:20261012
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】スターメモリアルⅠ 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-09-24 〜 2026-10-11 (JST)\n出典: https://game8.jp/due
+ tnightabyss
+URL:https://game8.jp/duetnightabyss
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【デナアビ】スターメモリアルⅠ 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-e-kasuka-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261002
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】かすかな秘蔵 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-01 〜 2026-10-13 (JST)\n出典: https://game8.jp/due
+ tnightabyss
+URL:https://game8.jp/duetnightabyss
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-e-kasuka-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261013
+DTEND;VALUE=DATE:20261014
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】かすかな秘蔵 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-01 〜 2026-10-13 (JST)\n出典: https://game8.jp/due
+ tnightabyss
+URL:https://game8.jp/duetnightabyss
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【デナアビ】かすかな秘蔵 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-e-kaidan-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261007
+DTEND;VALUE=DATE:20261008
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】月狩り人の階段 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-07 〜 2026-10-16 (JST)\n出典: https://game8.jp/due
+ tnightabyss
+URL:https://game8.jp/duetnightabyss
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-e-kaidan-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】月狩り人の階段 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-07 〜 2026-10-16 (JST)\n出典: https://game8.jp/due
+ tnightabyss
+URL:https://game8.jp/duetnightabyss
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【デナアビ】月狩り人の階段 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-v-next@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261020
+DTEND;VALUE=DATE:20261021
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【デナアビ】次バージョン アップデート
+DESCRIPTION:バージョン｜予想｜Asiaサーバー（告知はJST表
+ 記）\n期間: 2026-10-20 〜  (JST)\n42日周期（9/8+42日）と現行
+ 万華の10/19 18:00終了からの予想。内容・日時は未発表。
+ \n出典: https://automaton-media.com/articles/interviewsjp/20260912-46695
+ 4/
+URL:https://automaton-media.com/articles/interviewsjp/20260912-466954/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-anniv@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261028
+DTEND;VALUE=DATE:20261029
+TRANSP:TRANSPARENT
+SUMMARY:【デナアビ】正式サービス1周年（2025/10/28リリー
+ ス）
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-28 〜  (JST)\n記念日。1周年記念施策の内
+ 容は未発表。\n出典: https://prtimes.jp/main/html/rd/p/000000020.00
+ 0160794.html
+URL:https://prtimes.jp/main/html/rd/p/000000020.000160794.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:dna-v-next2@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261202
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【デナアビ】次々バージョン アップデー
+ ト
+DESCRIPTION:バージョン｜予想｜Asiaサーバー（告知はJST表
+ 記）\n期間: 2026-12-01 〜  (JST)\n42日周期からの予想。\n出
+ 典: https://automaton-media.com/articles/interviewsjp/20260912-466954/
+URL:https://automaton-media.com/articles/interviewsjp/20260912-466954/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-v14-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260930T120000
+DTEND;TZID=Asia/Tokyo:20260930T123000
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Ver.1.4「名もなき祈歌」 開始
+DESCRIPTION:バージョン｜確定｜Asiaサーバー（告知はJST表
+ 記）\n期間: 2026-09-30 12:00 〜 2026-11-11 06:59 (JST)\n9/30 7:00-12:
+ 00メンテ後に配信。新エリア「プカランド」「セントア
+ ルボ村」。\n出典: https://www.iza.ne.jp/pressrelease/prtimes/PX2DWN
+ BNLFNWXESIKX4KLTKGF4/
+URL:https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-v14-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261111T065900
+DTEND;TZID=Asia/Tokyo:20261111T072900
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Ver.1.4「名もなき祈歌」 終了
+DESCRIPTION:バージョン｜確定｜Asiaサーバー（告知はJST表
+ 記）\n期間: 2026-09-30 12:00 〜 2026-11-11 06:59 (JST)\n9/30 7:00-12:
+ 00メンテ後に配信。新エリア「プカランド」「セントア
+ ルボ村」。\n出典: https://www.iza.ne.jp/pressrelease/prtimes/PX2DWN
+ BNLFNWXESIKX4KLTKGF4/
+URL:https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【NTE】Ver.1.4「名もなき祈歌」 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-g-kurobane-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260930T120000
+DTEND;TZID=Asia/Tokyo:20260930T123000
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】限定ボード「終局のオラクル」クロバネ（
+ 新Sランク・魂） 開始
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-09-30 12:00 〜 2026-10-21 06:59 (JST)\n弧盤研究「黒羽
+ 特別号」同時開催。CV能登麻美子。\n出典: https://www.iza.n
+ e.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+URL:https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-g-kurobane-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261021T065900
+DTEND;TZID=Asia/Tokyo:20261021T072900
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】限定ボード「終局のオラクル」クロバネ（
+ 新Sランク・魂） 終了
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-09-30 12:00 〜 2026-10-21 06:59 (JST)\n弧盤研究「黒羽
+ 特別号」同時開催。CV能登麻美子。\n出典: https://www.iza.n
+ e.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+URL:https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【NTE】限定ボード「終局のオラクル」クロバネ
+ （新Sランク・魂） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-g-requiem-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260930T120000
+DTEND;TZID=Asia/Tokyo:20260930T123000
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】限定ボード「永き夢の目覚め」レクイエム
+ 復刻 開始
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-09-30 12:00 〜 2026-10-21 06:59 (JST)\n出典: https://www.i
+ za.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+URL:https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-g-requiem-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261021T065900
+DTEND;TZID=Asia/Tokyo:20261021T072900
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】限定ボード「永き夢の目覚め」レクイエム
+ 復刻 終了
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-09-30 12:00 〜 2026-10-21 06:59 (JST)\n出典: https://www.i
+ za.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+URL:https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【NTE】限定ボード「永き夢の目覚め」レクイエ
+ ム復刻 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-upd-1021@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261021
+DTEND;VALUE=DATE:20261022
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Ver.1.4 後半アップデート
+DESCRIPTION:メンテ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-10-21 〜  (JST)\nメンテ時間は公式告知で確認。\
+ n出典: https://overworldgg.com/news/nte-ver1-4-kurobane/
+URL:https://overworldgg.com/news/nte-ver1-4-kurobane/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-g-akane-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261021
+DTEND;VALUE=DATE:20261022
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】後半限定ボード：明音凛（新Sランク・相）
+  開始
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-10-21 〜 2026-11-11 06:59 (JST)\n10/21アップデート後
+ 〜。CV長谷川育美。弧盤研募「日月星特別号」。ボード
+ 名は未確認。\n出典: https://overworldgg.com/news/nte-ver1-4-kuroba
+ ne/
+URL:https://overworldgg.com/news/nte-ver1-4-kurobane/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-g-akane-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261111T065900
+DTEND;TZID=Asia/Tokyo:20261111T072900
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】後半限定ボード：明音凛（新Sランク・相）
+  終了
+DESCRIPTION:ガチャ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-10-21 〜 2026-11-11 06:59 (JST)\n10/21アップデート後
+ 〜。CV長谷川育美。弧盤研募「日月星特別号」。ボード
+ 名は未確認。\n出典: https://overworldgg.com/news/nte-ver1-4-kuroba
+ ne/
+URL:https://overworldgg.com/news/nte-ver1-4-kurobane/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【NTE】後半限定ボード：明音凛（新Sランク・
+ 相） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-porsche-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260930T120000
+DTEND;TZID=Asia/Tokyo:20260930T123000
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Porscheコラボ第2弾「ファントムラン」＋第1
+ 弾復刻 開始
+DESCRIPTION:コラボ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-09-30 12:00 〜 2026-11-11 06:59 (JST)\n出典: https://www.i
+ za.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+URL:https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-porsche-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261111T065900
+DTEND;TZID=Asia/Tokyo:20261111T072900
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Porscheコラボ第2弾「ファントムラン」＋第1
+ 弾復刻 終了
+DESCRIPTION:コラボ｜確定｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-09-30 12:00 〜 2026-11-11 06:59 (JST)\n出典: https://www.i
+ za.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+URL:https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【NTE】Porscheコラボ第2弾「ファントムラン」＋
+ 第1弾復刻 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-web-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20260930T120000
+DTEND;TZID=Asia/Tokyo:20260930T123000
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Webイベント「クロバネの招待状」 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-09-30 12:00 〜 2026-11-11 06:59 (JST)\n出典: https://
+ www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+URL:https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-web-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;TZID=Asia/Tokyo:20261111T065900
+DTEND;TZID=Asia/Tokyo:20261111T072900
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Webイベント「クロバネの招待状」 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-09-30 12:00 〜 2026-11-11 06:59 (JST)\n出典: https://
+ www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+URL:https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【NTE】Webイベント「クロバネの招待状」 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-puka-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20261001
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Pukaland Travelogue（英語名・参考） 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-09-30 〜 2026-11-11 (JST)\n予告番組のグローバ
+ ル日程。日本語名・時刻はゲーム内で確認。\n出典: http
+ s://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-puka-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Pukaland Travelogue（英語名・参考） 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-09-30 〜 2026-11-11 (JST)\n予告番組のグローバ
+ ル日程。日本語名・時刻はゲーム内で確認。\n出典: http
+ s://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【NTE】Pukaland Travelogue（英語名・参考） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-stamina-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261005
+DTEND;VALUE=DATE:20261006
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Stamina Recharge（英語名・参考） 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-05 〜 2026-10-19 (JST)\n予告番組のグローバ
+ ル日程。\n出典: https://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-stamina-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261019
+DTEND;VALUE=DATE:20261020
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Stamina Recharge（英語名・参考） 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-05 〜 2026-10-19 (JST)\n予告番組のグローバ
+ ル日程。\n出典: https://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【NTE】Stamina Recharge（英語名・参考） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-coal-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261008
+DTEND;VALUE=DATE:20261009
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Coal Lump's Treasure（英語名・参考） 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-08 〜 2026-11-11 (JST)\n予告番組のグローバ
+ ル日程。\n出典: https://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-coal-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Coal Lump's Treasure（英語名・参考） 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-08 〜 2026-11-11 (JST)\n予告番組のグローバ
+ ル日程。\n出典: https://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【NTE】Coal Lump's Treasure（英語名・参考） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-rails-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261008
+DTEND;VALUE=DATE:20261009
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Beyond the Rails: Sunset Circle（英語名・参考） 
+ 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-08 〜 2026-10-22 (JST)\n予告番組のグローバ
+ ル日程。\n出典: https://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-rails-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261022
+DTEND;VALUE=DATE:20261023
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Beyond the Rails: Sunset Circle（英語名・参考） 
+ 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-08 〜 2026-10-22 (JST)\n予告番組のグローバ
+ ル日程。\n出典: https://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【NTE】Beyond the Rails: Sunset Circle（英語名・参考
+ ） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-pixel-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261019
+DTEND;VALUE=DATE:20261020
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Pixel Surge（英語名・参考） 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-19 〜 2026-10-26 (JST)\n予告番組のグローバ
+ ル日程。\n出典: https://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-pixel-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261026
+DTEND;VALUE=DATE:20261027
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Pixel Surge（英語名・参考） 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-19 〜 2026-10-26 (JST)\n予告番組のグローバ
+ ル日程。\n出典: https://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【NTE】Pixel Surge（英語名・参考） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-snap-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261021
+DTEND;VALUE=DATE:20261022
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Snap! Golden Crackshot（英語名・参考） 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-21 〜 2026-11-11 (JST)\n予告番組のグローバ
+ ル日程。\n出典: https://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-snap-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Snap! Golden Crackshot（英語名・参考） 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-21 〜 2026-11-11 (JST)\n予告番組のグローバ
+ ル日程。\n出典: https://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【NTE】Snap! Golden Crackshot（英語名・参考） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-gold-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261026
+DTEND;VALUE=DATE:20261027
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Gold Crash（英語名・参考） 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-26 〜 2026-11-09 (JST)\n予告番組のグローバ
+ ル日程。\n出典: https://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-gold-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261110
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Gold Crash（英語名・参考） 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-26 〜 2026-11-09 (JST)\n予告番組のグローバ
+ ル日程。\n出典: https://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【NTE】Gold Crash（英語名・参考） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-flip-start@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261029
+DTEND;VALUE=DATE:20261030
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Puka Lucky Flip（英語名・参考） 開始
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-29 〜 2026-11-11 (JST)\n予告番組のグローバ
+ ル日程。\n出典: https://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-e-flip-end@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+TRANSP:TRANSPARENT
+SUMMARY:【NTE】Puka Lucky Flip（英語名・参考） 終了
+DESCRIPTION:イベント｜確定｜Asiaサーバー（告知はJST表記
+ ）\n期間: 2026-10-29 〜 2026-11-11 (JST)\n予告番組のグローバ
+ ル日程。\n出典: https://ntegame.net/ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:【NTE】Puka Lucky Flip（英語名・参考） 終了
+TRIGGER:-PT24H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-live15@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261028
+DTEND;VALUE=DATE:20261029
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【NTE】Ver.1.5 予告番組
+DESCRIPTION:生放送｜予想｜Asiaサーバー（告知はJST表記）\n
+ 期間: 2026-10-28 〜  (JST)\n日付未発表。1.4は配信2週間前（
+ 9/16）に放送 → 10月下旬と予想。\n出典: https://ntegame.net/
+ ja/guides/version-1-4-preview/
+URL:https://ntegame.net/ja/guides/version-1-4-preview/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-v15@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【NTE】Ver.1.5 アップデート
+DESCRIPTION:バージョン｜予想｜Asiaサーバー（告知はJST表
+ 記）\n期間: 2026-11-11 〜  (JST)\n1.4の各ガチャ・イベント
+ が11/11 6:59終了 → 11/11配信と予想（未発表）。\n出典: ht
+ tps://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+URL:https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-v16@tt-apps.games
+DTSTAMP:20261011T121208Z
+DTSTART;VALUE=DATE:20261223
+DTEND;VALUE=DATE:20261224
+TRANSP:TRANSPARENT
+SUMMARY:（予想）【NTE】Ver.1.6 アップデート
+DESCRIPTION:バージョン｜予想｜Asiaサーバー（告知はJST表
+ 記）\n期間: 2026-12-23 〜  (JST)\n6週間周期からの予想。\n
+ 出典: https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTK
+ GF4/
+URL:https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/
+STATUS:TENTATIVE
+END:VEVENT
+END:VCALENDAR
