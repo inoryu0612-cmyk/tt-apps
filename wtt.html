@@ -91,6 +91,7 @@ h2{font-size:17px;margin:4px 0 8px}h3{font-size:14px;margin:12px 0 6px;color:var
 .ro{display:block;font-size:10px;color:var(--sub);font-weight:400;line-height:1.2;word-break:break-word}
 .uv{display:inline-block;font-size:9px;line-height:1.3;padding:0 3px;margin-left:3px;border:1px solid #d9a400;color:#8a6a00;border-radius:3px;vertical-align:middle;font-weight:400;white-space:nowrap}
 .seg{display:inline-flex;border:1px solid var(--line,#ccc);border-radius:8px;overflow:hidden}.seg button{border:0;background:transparent;padding:6px 14px;font-size:14px;cursor:pointer}.seg button.on{background:#1f5fbf;color:#fff}
+.clist{background:#fff;border-radius:10px;overflow:hidden;margin-top:6px;border:1px solid #e7e9ee}.crow{display:flex;align-items:center;gap:8px;padding:10px 12px;min-height:52px;border-top:1px solid #eef0f4;cursor:pointer}.crow:first-child{border-top:0}.crow:active{background:#eef4ff}.crow .cn{flex:1;min-width:0}.crow .nm{font-size:16px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.crow .nm.big{font-size:17px}.crow .ro{font-size:11px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.crow .cs{text-align:right;font-size:12px;color:var(--sub);white-space:nowrap}.crow .cs b{font-size:16px;color:var(--ink);margin-right:1px}.crow .cs small{font-size:11px}.chd{background:#f3f5f9;font-size:12px;font-weight:700;color:var(--sub);padding:5px 12px;border-top:1px solid #e7e9ee}.cbar{display:flex;align-items:center;gap:10px;margin-bottom:8px}.cbar .btn{padding:8px 12px;font-size:14px}.cbar .nm{font-size:19px;font-weight:700}#pc-g{display:flex;margin-bottom:4px}#pc-g button{flex:1;padding:9px 4px;font-size:14px}
 .plist{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.plist .chip{border:1px solid #ccd;border-radius:14px;padding:3px 10px;font-size:13px;cursor:pointer;background:#fff}.plist .chip small{color:var(--sub);font-size:10px;margin-left:4px}
 
 /* ===== compact rows (v3) ===== */
@@ -188,7 +189,7 @@ body{background:#eef1f5}
  <div id="sentinel" style="height:1px"></div>
 </section>
 <section id="v-player" hidden>
- <div class="panel"><label style="font-size:12px;color:var(--sub)">選手を選択<input type="search" id="p-input" list="plist" placeholder="選手名・ローマ字で検索" autocomplete="off"></label> <label style="font-size:12px;color:var(--sub)">性別 <select id="p-g"><option value="">すべて</option><option value="M">男子</option><option value="F">女子</option></select></label></div>
+ <div class="panel"><label style="font-size:12px;color:var(--sub)">選手検索（全選手・ローマ字可）<input type="search" id="p-input" list="plist" placeholder="選手名・ローマ字で検索" autocomplete="off"></label></div>
  <div id="p-list" class="panel"></div><div id="p-body"></div>
 </section>
 <section id="v-rank" hidden>
@@ -270,7 +271,7 @@ if(SEC!=='league')A.forEach(a=>{if(a.res.startsWith('優勝')){const e=E[a.e];a.
 Object.values(PS).forEach(s=>s.titles.sort().reverse());
 PLAYERS=Object.keys(PS).sort((a,b)=>PS[b].n-PS[a].n);
 $('plist').innerHTML=PLAYERS.map(p=>`<option value="${esc(p)}">${esc(romaOf(p))}${GD[p]?' '+GL[GD[p]]:''}</option>`).join('');}
-function rebuild(){buildStats();buildRec();buildRest()}
+function rebuild(){buildStats();buildRec();buildRest();if(typeof FXR!=="undefined")buildForeign()}
 rebuild();
 // ---------- filters
 function fillSel(id,vals,all='すべて'){$(id).innerHTML=`<option value="">${all}</option>`+vals.map(v=>`<option value="${esc(v[0])}">${esc(v[1])}</option>`).join('')}
@@ -432,13 +433,13 @@ function playerItems(p){const out=[];M.forEach(m=>{if(!inSec(m.e))return;
  if(!m.team){if(jpPlayers(m.jp).includes(p))out.push(itemOf(m,null,false));else if(m.flag&&jpPlayers(m.opp).includes(p))out.push(itemOf(m,null,true))}
  else (m.rubs||[]).forEach(r=>{const a=jpPlayers(r.jp).includes(p),b=m.lg&&jpPlayers(r.opp).includes(p);if(a||b)out.push(itemOf(r,m,!a))})});
  return out.sort((x,y)=>(y.date||'').localeCompare(x.date||'')||(E[y.e].sk||'').localeCompare(E[x.e].sk||'')||y.rv-x.rv)}
-function openPlayer(p,t){if(!PS[p])return;const was=!$('pp').hidden;PP=p;if(t)PPT=t;if(!was){PPscroll=window.scrollY;history.pushState({pp:1},'');}
- $('pp').hidden=false;document.body.style.overflow='hidden';$('pp-name').textContent=p;drawPP();$('pp').scrollTop=0}
+function openPlayer(p,t){const fx=String(p).startsWith('F:');if(fx?!FX[p.slice(2)]:!PS[p])return;const was=!$('pp').hidden;PP=p;if(t)PPT=t;if(!was){PPscroll=window.scrollY;history.pushState({pp:1},'');}
+ $('pp').hidden=false;document.body.style.overflow='hidden';if(fx){const o=FX[p.slice(2)];$('pp-name').textContent=flagIOC(o.c)+' '+o.n}else $('pp-name').textContent=p;drawPP();$('pp').scrollTop=0}
 function closePlayer(){$('pp').hidden=true;document.body.style.overflow='';PP=null;window.scrollTo(0,PPscroll)}
 $('pp-back').onclick=()=>{if(history.state&&history.state.pp)history.back();else closePlayer()};
-window.addEventListener('popstate',()=>{if(!$('pp').hidden)closePlayer()});
+window.addEventListener('popstate',()=>{if(!$('pp').hidden)closePlayer();else if(PV&&!(history.state&&history.state.pc)&&!$('v-player').hidden)closeCountry()});
 document.querySelectorAll('.ptabs button').forEach(b=>b.onclick=()=>{PPT=b.dataset.pt;drawPP();$('pp').scrollTop=0});
-function drawPP(){const p=PP,s=PS[p];if(!s){$('pp-body').innerHTML='<div class="empty">この区分の試合はありません</div>';return}
+function drawPP(){const isF=String(PP).startsWith('F:');document.querySelector('.ptabs button[data-pt=rec]').hidden=isF;if(isF)return drawFP();const p=PP,s=PS[p];if(!s){$('pp-body').innerHTML='<div class="empty">この区分の試合はありません</div>';return}
  const IT=playerItems(p);$('pp-n').textContent=IT.length;document.querySelectorAll('.ptabs button').forEach(b=>b.classList.toggle('on',b.dataset.pt===PPT));
  const box=$('pp-body');box.innerHTML='';
  if(PPT==='ms'){const oc=i=>{const c=[...new Set(i.R.ps.map(x=>x.c))];return c.length===1?c[0]:''};const cc={};IT.forEach(i=>{const c=oc(i);if(c&&c!=='JPN')cc[c]=(cc[c]||0)+1});const cns=Object.keys(cc).sort((a,b)=>(a==='CHN'?-1:b==='CHN'?1:cc[b]-cc[a]));const subs=[...new Set(IT.map(i=>i.sub.replace('（個別試合）','')))];const ys=[...new Set(IT.map(i=>(i.date||'').slice(0,4)).filter(Boolean))];
@@ -500,11 +501,62 @@ function showPlayer(p){if(p&&PS[p]){openPlayer(p);return}$('p-body').innerHTML=p
     if(m.team){m.rubs.filter(r=>r.opp===h.opp&&jpPlayers(r.jp).includes(p)).forEach(r=>{const c=cardEl(r,true);box.appendChild(c)})}else box.appendChild(cardEl(m,false))});box.scrollIntoView({behavior:'smooth'})})};
  $('h-q').oninput=draw;draw()}
 const resolveP=v=>PS[v]?v:(R2D[v.toUpperCase()]&&PS[R2D[v.toUpperCase()]]?R2D[v.toUpperCase()]:null);
-function drawPlist(){const g=$('p-g').value,q=$('p-input').value.trim().toLowerCase();const L=PLAYERS.filter(p=>(!g||GD[p]===g)&&(!q||p.toLowerCase().includes(q)||romaOf(p).toLowerCase().includes(q)));
- $('p-list').innerHTML=`<div class="nogd" style="text-align:left">${g?GL[g]:'全選手'}：${L.length}人（試合数順）</div><div class="plist">`+L.map(p=>`<span class="chip" data-p="${esc(p)}" title="${esc(romaOf(p))}">${esc(p)}${flagOf(p)?'<span class="uv">漢字未確認</span>':''}<small>${PS[p].n}</small></span>`).join('')+'</div>';
- $('p-list').querySelectorAll('.chip').forEach(el=>el.onclick=()=>openPlayer(el.dataset.p))}
-$('p-g').onchange=()=>{$('p-list').hidden=false;drawPlist()};
-$('p-input').onchange=()=>{const r=resolveP($('p-input').value.trim());if(r)openPlayer(r)};$('p-input').oninput=()=>{const r=resolveP($('p-input').value.trim());if(r&&$('p-input').value.trim()===r)openPlayer(r);else drawPlist()};
+// ===== country directory (v5)
+const CJ={JPN:'日本',CHN:'中国',KOR:'韓国',TPE:'チャイニーズタイペイ',HKG:'香港',MAC:'マカオ',SGP:'シンガポール',MAS:'マレーシア',PRK:'北朝鮮',THA:'タイ',INA:'インドネシア',PHI:'フィリピン',VIE:'ベトナム',IND:'インド',IRI:'イラン',KAZ:'カザフスタン',UZB:'ウズベキスタン',QAT:'カタール',KSA:'サウジアラビア',UAE:'アラブ首長国連邦',BRN:'バーレーン',LBN:'レバノン',IRQ:'イラク',AFG:'アフガニスタン',PAK:'パキスタン',SRI:'スリランカ',NEP:'ネパール',MDV:'モルディブ',MGL:'モンゴル',LAO:'ラオス',CAM:'カンボジア',TKM:'トルクメニスタン',GER:'ドイツ',FRA:'フランス',SWE:'スウェーデン',DEN:'デンマーク',NOR:'ノルウェー',FIN:'フィンランド',ISL:'アイスランド',ENG:'イングランド',SCO:'スコットランド',WAL:'ウェールズ',GBR:'イギリス',IRL:'アイルランド',NED:'オランダ',BEL:'ベルギー',LUX:'ルクセンブルク',SUI:'スイス',AUT:'オーストリア',ITA:'イタリア',ESP:'スペイン',POR:'ポルトガル',GRE:'ギリシャ',POL:'ポーランド',ROU:'ルーマニア',CRO:'クロアチア',SVK:'スロバキア',CZE:'チェコ',SLO:'スロベニア',UKR:'ウクライナ',HUN:'ハンガリー',TUR:'トルコ',SRB:'セルビア',RUS:'ロシア',AIN:'個人資格中立選手',BUL:'ブルガリア',MDA:'モルドバ',MLT:'マルタ',ISR:'イスラエル',MON:'モナコ',MKD:'北マケドニア',MNE:'モンテネグロ',KOS:'コソボ',EST:'エストニア',CYP:'キプロス',AZE:'アゼルバイジャン',LTU:'リトアニア',LAT:'ラトビア',JEY:'ジャージー',BIH:'ボスニア・ヘルツェゴビナ',BLR:'ベラルーシ',ALB:'アルバニア',SMR:'サンマリノ',GEO:'ジョージア',USA:'アメリカ',CAN:'カナダ',MEX:'メキシコ',PUR:'プエルトリコ',BRA:'ブラジル',ARG:'アルゼンチン',CHI:'チリ',PER:'ペルー',COL:'コロンビア',VEN:'ベネズエラ',DOM:'ドミニカ共和国',ECU:'エクアドル',CRC:'コスタリカ',CUB:'キューバ',GUA:'グアテマラ',PAR:'パラグアイ',TTO:'トリニダード・トバゴ',ANT:'アンティグア・バーブーダ',AUS:'オーストラリア',NZL:'ニュージーランド',NCL:'ニューカレドニア',EGY:'エジプト',NGR:'ナイジェリア',TUN:'チュニジア',RSA:'南アフリカ',ALG:'アルジェリア',CMR:'カメルーン',MAD:'マダガスカル',SEN:'セネガル',BEN:'ベナン',SLE:'シエラレオネ',RTT:'難民選手団','?':'国籍不明'};
+const cjN=c=>CJ[c]||c||'国籍不明';
+let FX={},FC={},PV=null,PVG='';var FXR=1;
+function buildForeign(){FX={};FC={};
+ const one=(m,r)=>{const x=r||m;const L=sideP(x.jp,'JPN',true),R=sideP(x.opp,x.nat,false);if(L.team||R.team)return;
+  const sub=r?(x.sub||'')+' '+(m.sub||''):(m.sub||'');
+  const add=(A,B,res,fl)=>{const jp=A.ps.filter(y=>y.c==='JPN').map(y=>y.n);if(!jp.length)return;const fo=B.ps.filter(y=>y.c!=='JPN');if(!fo.length)return;
+   const dbl=A.ps.length>1||B.ps.length>1;const g=/混合/.test(sub)?'':/男子/.test(sub)?'M':/女子/.test(sub)?'F':(!dbl&&GD[jp[0]])||'';
+   const ok=res===0||res===1;const it=r?itemOf(x,m,fl):itemOf(x,null,fl);const cs=new Set();
+   fo.forEach(f=>{const c=f.c||'?';const n=strip(f.n);const k=n+'|'+c;const o=FX[k]||(FX[k]={k,n,c,w:0,l:0,m:0,g:{M:0,F:0},h:{},it:[]});
+    o.m++;if(ok){res?o.l++:o.w++}if(g)o.g[g]++;o.it.push(it);
+    jp.forEach(j=>{const h=o.h[j]||(o.h[j]={w:0,l:0,m:0});h.m++;if(ok){res?h.l++:h.w++}});cs.add(c)});
+   cs.forEach(c=>{const C=FC[c]||(FC[c]={c,m:0,w:0,l:0,ps:[]});C.m++;if(ok){res?C.l++:C.w++}})};
+  add(L,R,x.res,false);if(m.lg&&r)add(R,L,x.res===0?1:x.res===1?0:x.res,true)};
+ M.forEach(m=>{if(!inSec(m.e))return;if(!m.team)one(m,null);else (m.rubs||[]).forEach(r=>one(m,r))});
+ Object.values(FX).forEach(o=>{FC[o.c].ps.push(o.k);o.gd=o.g.M>o.g.F?'M':o.g.F>o.g.M?'F':'';o.it.sort((x,y)=>(y.date||'').localeCompare(x.date||'')||(E[y.e].sk||'').localeCompare(E[x.e].sk||'')||y.rv-x.rv)})}
+const fxRow=o=>`<div class="crow" data-f="${esc(o.k)}"><div class="cn"><div class="nm">${PV?'':flagIOC(o.c)+' '}${esc(o.n)}${flagOf(o.n)?'<span class="uv">漢字未確認</span>':''}</div><div class="ro">${esc(romaOf(o.n))}</div></div><div class="cs"><b>${o.m}</b>試合<br><small>対日本 ${o.w}-${o.l}</small></div></div>`;
+const jpRow=p=>{const s=PS[p];return `<div class="crow" data-p="${esc(p)}"><div class="cn"><div class="nm">${PV?'':flagIOC('JPN')+' '}${esc(p)}${flagOf(p)?'<span class="uv">漢字未確認</span>':''}</div><div class="ro">${esc(romaOf(p))}</div></div><div class="cs"><b>${s.n}</b>試合<br><small>${s.w}勝${s.l}敗 ${pct(s.w,s.n)}</small></div></div>`};
+function drawPlist(){const q=$('p-input').value.trim().toLowerCase();const box=$('p-list');
+ const bind=()=>{box.querySelectorAll('.crow[data-p]').forEach(el=>el.onclick=()=>openPlayer(el.dataset.p));box.querySelectorAll('.crow[data-f]').forEach(el=>el.onclick=()=>openPlayer('F:'+el.dataset.f));
+  box.querySelectorAll('.crow[data-c]').forEach(el=>el.onclick=()=>openCountry(el.dataset.c));const bk=$('pc-back');if(bk)bk.onclick=()=>{if(history.state&&history.state.pc)history.back();else closeCountry()};
+  box.querySelectorAll('#pc-g button').forEach(b=>b.onclick=()=>{PVG=b.dataset.g;drawPlist()})};
+ if(q){const hit=n=>n.toLowerCase().includes(q)||romaOf(n).toLowerCase().includes(q);const J=PLAYERS.filter(hit),F=Object.values(FX).filter(o=>hit(o.n)).sort((a,b)=>b.m-a.m);const pv=PV;PV=null;
+  box.innerHTML=`<div class="nogd" style="text-align:left">「${esc(q)}」の検索結果：${J.length+F.length}人</div><div class="clist">`+J.slice(0,100).map(jpRow).join('')+F.slice(0,150).map(fxRow).join('')+'</div>';PV=pv;bind();return}
+ if(!PV){const C=Object.values(FC).sort((a,b)=>b.m-a.m);const jm=PLAYERS.reduce((a,p)=>a+PS[p].n,0);
+  box.innerHTML=`<div class="nogd" style="text-align:left">国・地域を選択（日本以外は日本選手との対戦数順、${C.length}か国・地域）</div><div class="clist">`+
+  `<div class="crow" data-c="JPN"><div class="cn"><div class="nm big">${flagIOC('JPN')} 日本</div><div class="ro">日本選手（全成績）</div></div><div class="cs"><b>${PLAYERS.length}</b>人</div></div>`+
+  C.map(c=>`<div class="crow" data-c="${esc(c.c)}"><div class="cn"><div class="nm big">${flagIOC(c.c)} ${esc(cjN(c.c))}</div><div class="ro">対日本 ${c.m}試合　日本の${c.l}勝${c.w}敗</div></div><div class="cs"><b>${c.ps.length}</b>人</div></div>`).join('')+'</div>';bind();return}
+ const jp=PV==='JPN';const all=jp?PLAYERS.map(p=>({p,g:GD[p]||'',m:PS[p].n})):(FC[PV]?FC[PV].ps:[]).map(k=>({k,g:FX[k].gd,m:FX[k].m}));all.sort((a,b)=>b.m-a.m);
+ const cnt={M:0,F:0,'':0};all.forEach(x=>cnt[x.g]++);const L=PVG?all.filter(x=>x.g===PVG):all;
+ const rows=xs=>xs.map(x=>jp?jpRow(x.p):fxRow(FX[x.k])).join('');
+ let body='';if(PVG)body=rows(L);else[['M','男子'],['F','女子'],['','性別不明（混合種目のみ等）']].forEach(([g,l])=>{const xs=L.filter(x=>x.g===g);if(xs.length)body+=`<div class="chd">${l}（${xs.length}人）</div>`+rows(xs)});
+ box.innerHTML=`<div class="cbar"><button id="pc-back" class="btn">‹ 国一覧</button><div class="nm big">${flagIOC(PV)} ${esc(cjN(PV))}</div></div><div class="seg" id="pc-g">${[['','すべて'],['M','男子'],['F','女子']].map(([g,l])=>`<button data-g="${g}" class="${PVG===g?'on':''}">${l} ${g?cnt[g]:all.length}</button>`).join('')}</div>`+
+  `<div class="nogd" style="text-align:left">${jp?'試合数順。勝敗は全成績（国際大会/リーグ戦の切替に連動）':'日本選手との対戦数順。「対日本」はこの選手から見た日本選手との勝敗'}</div><div class="clist">${body||'<div class="empty">該当なし</div>'}</div>`;bind()}
+buildForeign();
+function openCountry(c){PV=c;PVG='';history.pushState({pc:1},'');drawPlist();window.scrollTo(0,0)}
+function closeCountry(){PV=null;drawPlist();window.scrollTo(0,0)}
+function drawFP(){const o=FX[PP.slice(2)];const box=$('pp-body');if(!o){box.innerHTML='<div class="empty">この区分の試合はありません</div>';$('pp-n').textContent=0;return}
+ if(PPT==='rec')PPT='ms';const IT=o.it;$('pp-n').textContent=IT.length;document.querySelectorAll('.ptabs button').forEach(b=>b.classList.toggle('on',b.dataset.pt===PPT));box.innerHTML='';
+ const H=Object.entries(o.h).sort((a,b)=>b[1].m-a[1].m||a[0].localeCompare(b[0]));
+ if(PPT==='ms'){const subs=[...new Set(IT.map(i=>i.sub.replace('（個別試合）','')))];
+  box.innerHTML=`<div class="pfil"><select id="fp-o"><option value="">日本選手（全員）</option>${H.map(([j,h])=>`<option value="${esc(j)}">${esc(j)}（${h.m}）</option>`).join('')}</select><select id="fp-s"><option value="">全種目</option>${subs.map(x=>`<option>${esc(x)}</option>`).join('')}</select><select id="fp-r"><option value="">勝敗</option><option value="1">日本選手の勝ち</option><option value="0">日本選手の負け</option></select></div><div class="psum" id="fp-sum"></div><div class="mlist" id="fp-list"></div><div class="more" id="fp-more"></div>`;
+  const draw=()=>{const fo=$('fp-o').value,fs=$('fp-s').value,fr=$('fp-r').value;const has=(i,j)=>i.L.ps.some(x=>x.n===j);
+   const L=IT.filter(i=>(!fo||has(i,fo))&&(!fs||i.sub.replace('（個別試合）','')===fs)&&(fr===''||String(i.res)===fr));
+   const w=L.filter(i=>i.res===0).length,l=L.filter(i=>i.res===1).length;
+   $('fp-sum').textContent=`${L.length}試合　${o.n}から見て ${w}勝${l}敗（勝率${pct(w,w+l)}）`;
+   const list=$('fp-list');list.innerHTML='';let n=0,lastY='';const add=()=>{const fr2=document.createDocumentFragment();const end=Math.min(L.length,n+120);for(;n<end;n++){const y=(L[n].date||'').slice(0,4)||'日付不明';if(y!==lastY){lastY=y;const yd=document.createElement('div');yd.className='ydiv';yd.textContent=y+(y!=='日付不明'?'年':'');fr2.appendChild(yd)}fr2.appendChild(rowEl(L[n]))}
+    list.appendChild(fr2);$('fp-more').innerHTML=n<L.length?`<button class="btn">さらに表示（残り${L.length-n}試合）</button>`:'';if(n<L.length)$('fp-more').firstChild.onclick=add};add()};
+  if(PPF&&PPF.o){$('fp-o').value=PPF.o}PPF=null;['fp-o','fp-s','fp-r'].forEach(id=>$(id).onchange=draw);draw()}
+ else if(PPT==='st'){box.innerHTML=`<div class="panel"><h3 style="margin-top:2px">日本選手別の対戦成績</h3><div class="nogd" style="text-align:left">${esc(o.n)}から見た勝敗。行をタップでその試合一覧</div><div class="tablewrap"><table><tr><th class="l">日本選手</th><th>試合</th><th>勝</th><th>敗</th><th>勝率</th></tr>${H.map(([j,h])=>`<tr class="hrow" data-j="${esc(j)}" style="cursor:pointer"><td class="l"><span class="link">${esc(j)}</span><span class="ro">${esc(romaOf(j))}</span></td><td>${h.m}</td><td>${h.w}</td><td>${h.l}</td><td>${pct(h.w,h.w+h.l)}</td></tr>`).join('')}</table></div></div>`;
+  box.querySelectorAll('.hrow').forEach(el=>el.onclick=()=>{PPF={o:el.dataset.j};PPT='ms';drawPP();$('pp').scrollTop=0})}
+ else{const gs=o.gd?GL[o.gd]:'性別不明';box.innerHTML=`<div class="panel"><h2 style="font-size:20px">${flagIOC(o.c)} ${nameHTML(o.n,false)}</h2><div class="ro" style="font-size:13px">${esc(romaOf(o.n))}</div><div style="font-size:14px;margin-top:4px">${flagIOC(o.c)} ${esc(cjN(o.c))}　${gs}　<span style="color:var(--sub)">表示区分：${SEC==='intl'?'国際大会':SEC==='league'?'リーグ戦':'すべて'}</span></div>
+  <div class="stats"><div class="stat"><div class="v">${o.m}</div><div class="k">対日本 試合</div></div><div class="stat"><div class="v">${o.w}</div><div class="k">勝</div></div><div class="stat"><div class="v">${o.l}</div><div class="k">敗</div></div><div class="stat"><div class="v">${pct(o.w,o.w+o.l)}</div><div class="k">勝率</div></div><div class="stat"><div class="v">${H.length}</div><div class="k">対戦した日本選手</div></div></div>
+  <div class="nogd" style="text-align:left">※日本選手との試合のみ収録（団体戦の個別試合・ダブルスを含む）。勝敗はこの選手から見た成績。</div></div>`}}
+$('p-input').onchange=()=>{const v=$('p-input').value.trim();const r=resolveP(v);if(r)openPlayer(r)};$('p-input').oninput=()=>{const v=$('p-input').value.trim();const r=resolveP(v);if(r&&v===r)openPlayer(r);else drawPlist()};
 drawPlist();
 // ---------- ranking
 let RG='M';
@@ -536,11 +588,12 @@ function rank(){const k=$('r-sort').value,t=$('r-tier').value,dbl=$('r-dbl').val
  $('r-body').querySelectorAll('.link').forEach(el=>el.onclick=()=>openPlayer(el.dataset.p))}
 document.querySelectorAll('#r-g button').forEach(b=>b.onclick=()=>{RG=b.dataset.g;document.querySelectorAll('#r-g button').forEach(x=>x.classList.toggle('on',x===b));rank()});
 $('r-sort').onchange=rank;$('r-tier').onchange=rank;['r-dbl','r-year','r-min','r-yth'].forEach(id=>$(id).onchange=rank);fillSel('r-year',[...new Set(E.map(e=>e.y))].sort((a,b)=>b-a).map(y=>[y,y+'年']),'全期間');
-function setSec(v){SEC=v;if(v==='league'&&$('r-sort').value==='t')$('r-sort').value='w';document.querySelectorAll('#sec button').forEach(b=>b.classList.toggle('on',b.dataset.s===v));rebuild();fillEvents();$('f-event').value='';apply();drawPlist();if(PP&&!$('pp').hidden){if(PS[PP])drawPP();else $('pp-body').innerHTML='<div class="empty">この区分の試合はありません</div>'}if(!$('v-rank').hidden)rank()}
+function setSec(v){SEC=v;if(v==='league'&&$('r-sort').value==='t')$('r-sort').value='w';document.querySelectorAll('#sec button').forEach(b=>b.classList.toggle('on',b.dataset.s===v));rebuild();fillEvents();$('f-event').value='';apply();drawPlist();if(PP&&!$('pp').hidden){if(PS[PP]||String(PP).startsWith('F:'))drawPP();else $('pp-body').innerHTML='<div class="empty">この区分の試合はありません</div>'}if(!$('v-rank').hidden)rank()}
 document.querySelectorAll('#sec button').forEach(b=>b.onclick=()=>setSec(b.dataset.s));
 function covHTML(){const C=D.COV;if(!C)return '';return `<details class="panel"><summary>リーグ戦の収録状況</summary><div class="tablewrap"><table class="cov"><tr><th class="l">リーグ</th><th>男女</th><th>シーズン</th><th>試合</th><th>ゲーム得点</th><th>日本対決</th><th>対戦数</th><th class="l">状況</th></tr>${C.cov.map(r=>`<tr><td class="l">${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td><td>${r[6]}</td><td class="l">${esc(r[7])}</td></tr>`).join('')}</table></div><ul style="font-size:12px;margin:6px 0 0;padding-left:18px">${C.gap.map(g=>`<li>${esc(g[0])}：${esc(g[3])}</li>`).join('')}</ul></details>`}
 // url hash for testing: #event=ID&player=X
 (function(){const h=new URLSearchParams(location.hash.slice(1));if(h.get('sec'))setSec(h.get('sec'));if(h.get('player'))$('f-player').value=h.get('player');if(h.get('event')){fillEvents();$('f-event').value=h.get('event')}apply();
+ if(h.get('tab')==='player'&&h.get('c')){tab('player');openCountry(h.get('c'));if(h.get('fp'))openPlayer('F:'+h.get('fp'),h.get('pt')||'ms')}
  if(h.get('tab')==='player'&&h.get('player')){tab('player');openPlayer(h.get('player'),h.get('pt')||'ms')}if(h.get('tab')==='rank'){if(h.get('g'))RG=h.get('g');if(h.get('sort'))$('r-sort').value=h.get('sort');if(h.get('dbl'))$('r-dbl').value=h.get('dbl');if(h.get('yth'))$('r-yth').checked=true;document.querySelectorAll('#r-g button').forEach(x=>x.classList.toggle('on',x.dataset.g===RG));tab('rank')}})();
 </script>
 </body>
