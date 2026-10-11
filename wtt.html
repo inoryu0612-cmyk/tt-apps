@@ -147,7 +147,7 @@ body{background:#eef1f5}
 .ptabs button:first-child{border-left:0}
 .ptabs button.on{background:#2f6fd6;color:#fff}
 #pp-body{max-width:760px;margin:0 auto;padding:8px}
-.pfil{display:flex;gap:6px;margin:2px 0 6px}.pfil select{font-size:14px;padding:6px}
+.pfil{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 6px}.pfil select{font-size:14px;padding:6px;flex:1 1 28%;min-width:0}
 .psum{font-size:13px;color:#5d6470;margin:2px 4px 4px}
 .chip.pc{cursor:pointer}
 @media (max-width:480px){header h1{font-size:14px;margin-bottom:6px}.tab{padding:7px 4px;font-size:14px}main{padding:6px}}
@@ -194,8 +194,11 @@ body{background:#eef1f5}
 <section id="v-rank" hidden>
  <div class="panel row">
   <div class="seg" id="r-g"><button data-g="M" class="on">男子</button><button data-g="F">女子</button></div>
-  <label style="font-size:12px;color:var(--sub)">並び替え <select id="r-sort"><option value="t">優勝数</option><option value="w">勝数</option><option value="p">勝率（30試合以上）</option><option value="n">試合数</option></select></label>
+  <label style="font-size:12px;color:var(--sub)">並び替え <select id="r-sort"><option value="t">優勝数</option><option value="w">勝数</option><option value="p">勝率（30試合以上）</option><option value="n">試合数</option><option value="cw">対中国 勝率</option><option value="cn">対中国 勝数</option></select></label>
   <label style="font-size:12px;color:var(--sub)">大会区分 <select id="r-tier"></select></label>
+  <label style="font-size:12px;color:var(--sub)">🇨🇳戦 <select id="r-dbl"><option value="">シングルスのみ</option><option value="1">ダブルス含む</option></select></label>
+  <label class="cnopt" style="font-size:12px;color:var(--sub)">期間 <select id="r-year"></select></label>
+  <label class="cnopt" style="font-size:12px;color:var(--sub)">最低試合数 <select id="r-min"><option>1</option><option>3</option><option>5</option><option>10</option><option>20</option></select></label>
  </div>
  <div class="panel tablewrap" id="r-body"></div>
 </section>
@@ -423,7 +426,7 @@ function rowEl(it){it=winLeft(it);const d=document.createElement('div');d.classN
   d.appendChild(b)});
  return d}
 // ===== player page (overlay)
-let PP=null,PPT='ms',PPscroll=0;
+let PP=null,PPT='ms',PPscroll=0,PPF=null;
 function playerItems(p){const out=[];M.forEach(m=>{if(!inSec(m.e))return;
  if(!m.team){if(jpPlayers(m.jp).includes(p))out.push(itemOf(m,null,false));else if(m.flag&&jpPlayers(m.opp).includes(p))out.push(itemOf(m,null,true))}
  else (m.rubs||[]).forEach(r=>{const a=jpPlayers(r.jp).includes(p),b=m.lg&&jpPlayers(r.opp).includes(p);if(a||b)out.push(itemOf(r,m,!a))})});
@@ -437,19 +440,21 @@ document.querySelectorAll('.ptabs button').forEach(b=>b.onclick=()=>{PPT=b.datas
 function drawPP(){const p=PP,s=PS[p];if(!s){$('pp-body').innerHTML='<div class="empty">この区分の試合はありません</div>';return}
  const IT=playerItems(p);$('pp-n').textContent=IT.length;document.querySelectorAll('.ptabs button').forEach(b=>b.classList.toggle('on',b.dataset.pt===PPT));
  const box=$('pp-body');box.innerHTML='';
- if(PPT==='ms'){const subs=[...new Set(IT.map(i=>i.sub.replace('（個別試合）','')))];const ys=[...new Set(IT.map(i=>(i.date||'').slice(0,4)).filter(Boolean))];
-  box.innerHTML=`<div class="pfil"><select id="pf-s"><option value="">全種目</option>${subs.map(x=>`<option>${esc(x)}</option>`).join('')}</select><select id="pf-y"><option value="">全期間</option>${ys.map(y=>`<option value="${y}">${y}年</option>`).join('')}</select><select id="pf-r"><option value="">勝敗</option><option value="1">勝ち</option><option value="0">負け</option></select></div><div class="psum" id="pf-sum"></div><div class="mlist" id="pf-list"></div><div class="more" id="pf-more"></div>`;
-  const draw=()=>{const fs=$('pf-s').value,fy=$('pf-y').value,fr=$('pf-r').value;const L=IT.filter(i=>(!fs||i.sub.replace('（個別試合）','')===fs)&&(!fy||(i.date||'').startsWith(fy))&&(fr===''||i.res==fr));
+ if(PPT==='ms'){const oc=i=>{const c=[...new Set(i.R.ps.map(x=>x.c))];return c.length===1?c[0]:''};const cc={};IT.forEach(i=>{const c=oc(i);if(c&&c!=='JPN')cc[c]=(cc[c]||0)+1});const cns=Object.keys(cc).sort((a,b)=>(a==='CHN'?-1:b==='CHN'?1:cc[b]-cc[a]));const subs=[...new Set(IT.map(i=>i.sub.replace('（個別試合）','')))];const ys=[...new Set(IT.map(i=>(i.date||'').slice(0,4)).filter(Boolean))];
+  box.innerHTML=`<div class="pfil"><select id="pf-s"><option value="">全種目</option>${subs.map(x=>`<option>${esc(x)}</option>`).join('')}</select><select id="pf-y"><option value="">全期間</option>${ys.map(y=>`<option value="${y}">${y}年</option>`).join('')}</select><select id="pf-r"><option value="">勝敗</option><option value="1">勝ち</option><option value="0">負け</option></select><select id="pf-c"><option value="">対戦国</option>${cns.map(c=>`<option value="${c}">${flagIOC(c)} ${c}</option>`).join('')}</select><select id="pf-k"><option value="">S/D</option><option value="S">シングルス</option><option value="D">ダブルス</option></select></div><div class="psum" id="pf-sum"></div><div class="mlist" id="pf-list"></div><div class="more" id="pf-more"></div>`;
+  const draw=()=>{const fs=$('pf-s').value,fy=$('pf-y').value,fr=$('pf-r').value,fc=$('pf-c').value,fk=$('pf-k').value;const L=IT.filter(i=>(!fs||i.sub.replace('（個別試合）','')===fs)&&(!fy||(i.date||'').startsWith(fy))&&(fr===''||i.res==fr)&&(!fc||oc(i)===fc)&&(!fk||((i.L.ps.length>1||i.R.ps.length>1)?'D':'S')===fk));
    const w=L.filter(i=>i.res===1).length,l=L.filter(i=>i.res===0).length;$('pf-sum').textContent=`${L.length}試合　${w}勝${l}敗（勝率${pct(w,w+l)}）　行をタップで詳細`;
    const list=$('pf-list');list.innerHTML='';let n=0,lastY='';
    const add=()=>{const fr2=document.createDocumentFragment();const end=Math.min(L.length,n+120);for(;n<end;n++){const y=(L[n].date||'').slice(0,4)||'日付不明';if(y!==lastY){lastY=y;const yd=document.createElement('div');yd.className='ydiv';yd.textContent=y+(y!=='日付不明'?'年':'');fr2.appendChild(yd)}fr2.appendChild(rowEl(L[n]))}
     list.appendChild(fr2);$('pf-more').innerHTML=n<L.length?`<button class="btn">さらに表示（残り${L.length-n}試合）</button>`:'';if(n<L.length)$('pf-more').firstChild.onclick=add};add()};
-  ['pf-s','pf-y','pf-r'].forEach(id=>$(id).onchange=draw);draw()}
+  if(PPF){if(PPF.c&&cns.includes(PPF.c))$('pf-c').value=PPF.c;if(PPF.k)$('pf-k').value=PPF.k;PPF=null}['pf-s','pf-y','pf-r','pf-c','pf-k'].forEach(id=>$(id).onchange=draw);draw()}
  else if(PPT==='info'){const T4=s.titles.length;box.innerHTML=`<div class="panel"><h2 style="font-size:20px">${nameHTML(p,false)}</h2><div class="ro" style="font-size:13px">${esc(romaOf(p))}</div><div style="font-size:14px;margin-top:4px">${flagIOC('JPN')} 日本　${GD[p]?GL[GD[p]]:'性別不明'}　<span style="color:var(--sub)">表示区分：${SEC==='intl'?'国際大会':SEC==='league'?'リーグ戦':'すべて'}</span></div>
   <div class="stats"><div class="stat"><div class="v">${s.n}</div><div class="k">試合数</div></div><div class="stat"><div class="v">${s.w}</div><div class="k">勝</div></div><div class="stat"><div class="v">${s.l}</div><div class="k">敗</div></div><div class="stat"><div class="v">${pct(s.w,s.n)}</div><div class="k">勝率</div></div><div class="stat"><div class="v">${T4}</div><div class="k">優勝数</div></div><div class="stat"><div class="v">${Object.keys(s.h2h).length}</div><div class="k">対戦相手数</div></div></div>
   <div class="nogd" style="text-align:left">※試合数は個人種目＋団体戦の個別試合（勝敗記録のある試合）。日本対決は両選手に計上。</div></div>`}
  else if(PPT==='st'){const bySub={};IT.forEach(i=>{if(i.res===2)return;const k=i.sub.replace('（個別試合）','');const o=bySub[k]||(bySub[k]={w:0,l:0});i.res?o.w++:o.l++});
-  box.innerHTML=`<div class="panel"><h3 style="margin-top:2px">大会区分別</h3><div class="tablewrap"><table><tr><th>区分</th><th>試合</th><th>勝</th><th>敗</th><th>勝率</th><th>優勝</th></tr>${s.tier.map((t,i)=>t.n||t.t?`<tr><td>${esc(T[i])}</td><td>${t.n}</td><td>${t.w}</td><td>${t.l}</td><td>${pct(t.w,t.n)}</td><td>${t.t}</td></tr>`:'').join('')}</table></div>
+  const cS=cnStats('','',false)[p]||{w:0,l:0},cD=cnStats('','',true)[p]||{w:0,l:0};
+  box.innerHTML=`<div class="panel"><h3 style="margin-top:2px">🇨🇳 対中国</h3><div class="tablewrap"><table><tr><th>形式</th><th>試合</th><th>勝</th><th>敗</th><th>勝率</th><th></th></tr><tr><td>シングルス</td><td>${cS.w+cS.l}</td><td>${cS.w}</td><td>${cS.l}</td><td>${pct(cS.w,cS.w+cS.l)}</td><td><span class="link" id="cn-s">一覧</span></td></tr><tr><td>ダブルス含む</td><td>${cD.w+cD.l}</td><td>${cD.w}</td><td>${cD.l}</td><td>${pct(cD.w,cD.w+cD.l)}</td><td><span class="link" id="cn-d">一覧</span></td></tr></table></div>
+  <h3>大会区分別</h3><div class="tablewrap"><table><tr><th>区分</th><th>試合</th><th>勝</th><th>敗</th><th>勝率</th><th>優勝</th></tr>${s.tier.map((t,i)=>t.n||t.t?`<tr><td>${esc(T[i])}</td><td>${t.n}</td><td>${t.w}</td><td>${t.l}</td><td>${pct(t.w,t.n)}</td><td>${t.t}</td></tr>`:'').join('')}</table></div>
   <h3>種目別</h3><div class="tablewrap"><table><tr><th>種目</th><th>勝</th><th>敗</th><th>勝率</th></tr>${Object.entries(bySub).sort((a,b)=>(b[1].w+b[1].l)-(a[1].w+a[1].l)).map(([k,o])=>`<tr><td>${esc(k)}</td><td>${o.w}</td><td>${o.l}</td><td>${pct(o.w,o.w+o.l)}</td></tr>`).join('')}</table></div>
   <h3>対戦成績（相手別）</h3><input type="text" id="h-q" placeholder="相手名で絞り込み"><div class="tablewrap"><table id="h2h"></table></div></div><div id="h2h-ms"></div>`;
   const H=Object.values(s.h2h).sort((a,b)=>(b.w+b.l)-(a.w+a.l)||b.w-a.w);
@@ -457,7 +462,7 @@ function drawPP(){const p=PP,s=PS[p];if(!s){$('pp-body').innerHTML='<div class="
    $('h2h').innerHTML=`<tr><th class="l">相手</th><th>国</th><th>勝</th><th>敗</th><th>勝率</th></tr>`+rows.map((h,i)=>`<tr><td class="l"><span class="link" data-k="${i}">${strip(h.opp).split('／').map(snSpan).join('／')}</span>${flagOf(h.opp)?'<span class="uv">漢字未確認</span>':''}${romaOf(h.opp)?`<span class="ro">${esc(romaOf(h.opp))}</span>`:''}</td><td>${flagIOC((h.nat||'').split('/')[0])}</td><td>${h.w}</td><td>${h.l}</td><td>${pct(h.w,h.w+h.l)}</td></tr>`).join('');
    $('h2h').querySelectorAll('.link').forEach(el=>el.onclick=()=>{const h=rows[+el.dataset.k];const nm=strip(h.opp).split('／');const L=IT.filter(i=>{const R=i.R.ps.map(x=>x.n);return nm.every(n=>R.includes(n))});
     const b=$('h2h-ms');b.innerHTML=`<div class="psum" style="font-weight:700">vs ${esc(strip(h.opp))}（${h.w}勝${h.l}敗）</div>`;const l=document.createElement('div');l.className='mlist';L.forEach(i=>l.appendChild(rowEl(i)));b.appendChild(l);b.scrollIntoView({behavior:'smooth'})})};
-  $('h-q').oninput=draw;draw()}
+  $('h-q').oninput=draw;draw();$('cn-s').onclick=()=>{PPF={c:'CHN',k:'S'};PPT='ms';drawPP();$('pp').scrollTop=0};$('cn-d').onclick=()=>{PPF={c:'CHN',k:''};PPT='ms';drawPP();$('pp').scrollTop=0}}
  else {const best={};IT.forEach(i=>{if(i.parent)return;const f=ownFinal(i.m,i.L.ps.some(x=>x.n===p)||i.L.mem?'jp':'opp');if(!f)return;const k=i.e+'|'+i.sub;const o=RORD(f);if(!best[k]||o<best[k].o)best[k]={o,f,e:i.e,sub:i.sub}});
   IT.forEach(i=>{if(!i.parent||E[i.e].lg)return;const f=ownFinal(i.parent,'jp');if(!f)return;const k=i.e+'|'+i.parent.sub;const o=RORD(f);if(!best[k]||o<best[k].o)best[k]={o,f,e:i.e,sub:i.parent.sub}});
   const B=Object.values(best).filter(b=>b.o<=4).sort((a,b)=>E[b.e].sk.localeCompare(E[a.e].sk));
@@ -502,21 +507,39 @@ $('p-input').onchange=()=>{const r=resolveP($('p-input').value.trim());if(r)open
 drawPlist();
 // ---------- ranking
 let RG='M';
-function rank(){const k=$('r-sort').value,t=$('r-tier').value;
+// ---------- vs China
+function cnPairs(m,r,P){ // returns [[jpPlayers],[oppCountries],res,isDbl]
+ const out=[];const one=(jpS,oppS,nat,res,lg)=>{if(res===2||res==null)return;
+  const L=sideP(jpS,'JPN',true),R=sideP(oppS,nat,false);if(L.team||R.team)return;
+  const add=(A,B,rs)=>{const jp=A.ps.filter(x=>x.c==='JPN').map(x=>x.n);if(!jp.length)return;if(!B.ps.length||!B.ps.every(x=>x.c==='CHN'))return;out.push([jp,rs,A.ps.length>1||B.ps.length>1])};
+  add(L,R,res);if(lg)add(R,L,1-res)};
+ if(!m.team)one(m.jp,m.opp,m.nat,m.res,0);else (m.rubs||[]).forEach(x=>one(x.jp,x.opp,x.nat,x.res,m.lg));return out}
+function cnStats(tier,year,dbl){const S={};M.forEach(m=>{if(!inSec(m.e))return;const e=E[m.e];if(tier!==''&&String(e.t)!==String(tier))return;if(year&&!(m.date||String(e.y)).startsWith(year))return;
+ cnPairs(m).forEach(([jp,res,d])=>{if(d&&!dbl)return;jp.forEach(p=>{const o=S[p]||(S[p]={w:0,l:0});res?o.w++:o.l++})})});return S}
+let RCN=null;
+function rank(){const k=$('r-sort').value,t=$('r-tier').value,dbl=$('r-dbl').value==='1',cnv=k==='cw'||k==='cn';
+ document.querySelectorAll('.cnopt').forEach(x=>x.style.display=cnv?'':'none');
+ const y=cnv?$('r-year').value:'';const CN=cnStats(t,y,dbl);const cr=p=>CN[p]||{w:0,l:0};
+ const lab=dbl?'ダブルス含む':'シングルスのみ';
+ if(cnv){const mn=+$('r-min').value||1;
+  let L=Object.keys(CN).map(p=>({p,...CN[p],n:CN[p].w+CN[p].l})).filter(x=>x.n>=mn&&GD[x.p]===RG);
+  L.sort(k==='cw'?(a,b)=>b.w/b.n-a.w/a.n||b.w-a.w||b.n-a.n:(a,b)=>b.w-a.w||b.w/b.n-a.w/a.n||b.n-a.n);RCN=L;
+  $('r-body').innerHTML=`<div class="nogd" style="text-align:left">${GL[RG]}・🇨🇳中国選手との対戦成績（${lab}、${mn}試合以上、${L.length}人）。団体戦の個別試合を含む。ダブルスは相手ペアが2人とも中国選手の試合のみ。${y?y+'年。':''}選手名タップで対中国の試合一覧。</div><table><tr><th>#</th><th class="l">選手</th><th>対中国<br>試合</th><th>勝</th><th>敗</th><th>勝率</th></tr>`+L.slice(0,300).map((x,i)=>`<tr><td>${i+1}</td><td class="l"><span class="link" data-p="${esc(x.p)}">${snSpan(x.p)}</span>${flagOf(x.p)?'<span class="uv">漢字未確認</span>':''}<span class="ro">${esc(romaOf(x.p))}</span></td><td>${x.n}</td><td>${x.w}</td><td>${x.l}</td><td><b>${pct(x.w,x.n)}</b></td></tr>`).join('')+'</table>';
+  $('r-body').querySelectorAll('.link').forEach(el=>el.onclick=()=>{PPF={c:'CHN',k:dbl?'':'S'};openPlayer(el.dataset.p,'ms')});return}
  let L=Object.values(PS).map(s=>{const x=t===''?{n:s.n,w:s.w,l:s.l,t:s.titles.length}:s.tier[+t];return {p:s.name,...x}}).filter(x=>(x.n>0||x.t>0)&&GD[x.p]===RG);
  if(k==='p')L=L.filter(x=>x.n>=30);
  const key={t:x=>[x.t,x.w],w:x=>[x.w,x.t],p:x=>[x.w/x.n,x.n],n:x=>[x.n,x.w]}[k];
  L.sort((a,b)=>{const A=key(a),B=key(b);return B[0]-A[0]||B[1]-A[1]});
- $('r-body').innerHTML=`<div class="nogd" style="text-align:left">${GL[RG]}ランキング（${L.length}人）。性別は出場種目（男子・女子種目）から判定。混合ダブルス・混合団体の成績も本人の性別側に計上。</div><table><tr><th>#</th><th class="l">選手</th><th>優勝</th><th>試合</th><th>勝</th><th>敗</th><th>勝率</th></tr>`+L.slice(0,300).map((x,i)=>`<tr><td>${i+1}</td><td class="l"><span class="link" data-p="${esc(x.p)}">${snSpan(x.p)}</span>${flagOf(x.p)?'<span class="uv">漢字未確認</span>':''}<span class="ro">${esc(romaOf(x.p))}</span></td><td>${x.t}</td><td>${x.n}</td><td>${x.w}</td><td>${x.l}</td><td>${pct(x.w,x.n)}</td></tr>`).join('')+'</table>'+(k==='p'?'<div class="nogd">勝率は30試合以上の選手のみ</div>':'');
+ $('r-body').innerHTML=`<div class="nogd" style="text-align:left">${GL[RG]}ランキング（${L.length}人）。性別は出場種目（男子・女子種目）から判定。混合ダブルス・混合団体の成績も本人の性別側に計上。対中国勝率は${lab}。</div><table><tr><th>#</th><th class="l">選手</th><th>優勝</th><th>試合</th><th>勝</th><th>敗</th><th>勝率</th><th>対中国<br>勝率</th></tr>`+L.slice(0,300).map((x,i)=>{const c=cr(x.p);return `<tr><td>${i+1}</td><td class="l"><span class="link" data-p="${esc(x.p)}">${snSpan(x.p)}</span>${flagOf(x.p)?'<span class="uv">漢字未確認</span>':''}<span class="ro">${esc(romaOf(x.p))}</span></td><td>${x.t}</td><td>${x.n}</td><td>${x.w}</td><td>${x.l}</td><td>${pct(x.w,x.n)}</td><td>${c.w+c.l?`${pct(c.w,c.w+c.l)}<small style="display:block;color:var(--sub);font-size:10.5px">${c.w}-${c.l}</small>`:'—'}</td></tr>`}).join('')+'</table>'+(k==='p'?'<div class="nogd">勝率は30試合以上の選手のみ</div>':'');
  $('r-body').querySelectorAll('.link').forEach(el=>el.onclick=()=>openPlayer(el.dataset.p))}
 document.querySelectorAll('#r-g button').forEach(b=>b.onclick=()=>{RG=b.dataset.g;document.querySelectorAll('#r-g button').forEach(x=>x.classList.toggle('on',x===b));rank()});
-$('r-sort').onchange=rank;$('r-tier').onchange=rank;
+$('r-sort').onchange=rank;$('r-tier').onchange=rank;['r-dbl','r-year','r-min'].forEach(id=>$(id).onchange=rank);fillSel('r-year',[...new Set(E.map(e=>e.y))].sort((a,b)=>b-a).map(y=>[y,y+'年']),'全期間');
 function setSec(v){SEC=v;if(v==='league'&&$('r-sort').value==='t')$('r-sort').value='w';document.querySelectorAll('#sec button').forEach(b=>b.classList.toggle('on',b.dataset.s===v));rebuild();fillEvents();$('f-event').value='';apply();drawPlist();if(PP&&!$('pp').hidden){if(PS[PP])drawPP();else $('pp-body').innerHTML='<div class="empty">この区分の試合はありません</div>'}if(!$('v-rank').hidden)rank()}
 document.querySelectorAll('#sec button').forEach(b=>b.onclick=()=>setSec(b.dataset.s));
 function covHTML(){const C=D.COV;if(!C)return '';return `<details class="panel"><summary>リーグ戦の収録状況</summary><div class="tablewrap"><table class="cov"><tr><th class="l">リーグ</th><th>男女</th><th>シーズン</th><th>試合</th><th>ゲーム得点</th><th>日本対決</th><th>対戦数</th><th class="l">状況</th></tr>${C.cov.map(r=>`<tr><td class="l">${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td><td>${r[6]}</td><td class="l">${esc(r[7])}</td></tr>`).join('')}</table></div><ul style="font-size:12px;margin:6px 0 0;padding-left:18px">${C.gap.map(g=>`<li>${esc(g[0])}：${esc(g[3])}</li>`).join('')}</ul></details>`}
 // url hash for testing: #event=ID&player=X
 (function(){const h=new URLSearchParams(location.hash.slice(1));if(h.get('sec'))setSec(h.get('sec'));if(h.get('player'))$('f-player').value=h.get('player');if(h.get('event')){fillEvents();$('f-event').value=h.get('event')}apply();
- if(h.get('tab')==='player'&&h.get('player')){tab('player');openPlayer(h.get('player'),h.get('pt')||'ms')}if(h.get('tab')==='rank'){if(h.get('g'))RG=h.get('g');document.querySelectorAll('#r-g button').forEach(x=>x.classList.toggle('on',x.dataset.g===RG));tab('rank')}})();
+ if(h.get('tab')==='player'&&h.get('player')){tab('player');openPlayer(h.get('player'),h.get('pt')||'ms')}if(h.get('tab')==='rank'){if(h.get('g'))RG=h.get('g');if(h.get('sort'))$('r-sort').value=h.get('sort');if(h.get('dbl'))$('r-dbl').value=h.get('dbl');document.querySelectorAll('#r-g button').forEach(x=>x.classList.toggle('on',x.dataset.g===RG));tab('rank')}})();
 </script>
 </body>
 </html>
