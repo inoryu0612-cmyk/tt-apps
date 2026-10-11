@@ -32,7 +32,8 @@ button.btn.pri{background:var(--acc2);color:#fff;border-color:var(--acc2)}
 .th.t1{border-left-color:#c8102e}.th.t2{border-left-color:#e08a00}.th.t3{border-left-color:#2a8f5b}.th.t4{border-left-color:#6a4fb3}
 .th .nm{font-weight:700;font-size:15px}
 .th .inf{font-size:12px;color:var(--sub);margin-top:2px}
-.th .best{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.th .best{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.th .best .chip{max-width:100%;overflow:hidden;text-overflow:ellipsis}.tbest{display:flex;flex-wrap:wrap;gap:4px;padding:8px 12px 2px}.th{padding:8px 12px}
+.ych{display:flex;gap:5px;overflow-x:auto;padding:6px 8px;background:#f4f6f9;position:sticky;z-index:15;border-bottom:1px solid #e1e5eb;-webkit-overflow-scrolling:touch;scrollbar-width:none}.ych::-webkit-scrollbar{display:none}.ych button{flex:1 0 auto;min-width:46px;border:1px solid #c9d1dc;background:#fff;border-radius:999px;padding:5px 4px;font-size:13px;font-weight:600;color:#33475b}.ych button.on{background:#2f6fd6;border-color:#2f6fd6;color:#fff}
 .chip{background:var(--chip);border-radius:999px;padding:2px 8px;font-size:11.5px;white-space:nowrap}
 .chip.gold{background:#fff4cc}.chip.silver{background:#eef0f3}.chip.bronze{background:#f8e6d8}
 .arrow{float:right;color:var(--sub);transition:transform .15s}
@@ -201,6 +202,7 @@ body{background:#eef1f5}
 </header>
 <main>
 <section id="v-matches">
+ <div class="ych" id="m-ych"></div>
  <div class="panel">
   <div class="filters collapsed" id="filters">
    <label class="wide">選手名<input type="search" id="f-player" list="plist" placeholder="例: 張本美和 / HARIMOTO / 孫穎莎" autocomplete="off"></label>
@@ -341,16 +343,16 @@ function playerMatch(set,p,q){if(!p)return true;if(set.has(p))return true;for(co
 let VIEW=[],shown=0,openSet=new Set(),userTouched=false;
 function apply(){const f=F();const ev={};const secOK=e=>inSec(e);
  const LG={};M.forEach(m=>{if(!secOK(m.e))return;const e=E[m.e];if(!tierOK(e,f.t))return;if(f.y!==''&&e.y!=f.y)return;if(f.e!==''&&m.e!=f.e)return;if(f.s!==''&&m.sub!==f.s)return;
-  if(m.lg){if(f.r!=='')return;const g=LGG(e)+'|'+m.sub+'|'+(m.date||'0000');(m.rubs||[]).forEach(r=>{const a=jpPlayers(r.jp),b=jpPlayers(r.opp);if(!a.length&&!b.length)return;if(f.jj&&!(a.length&&b.length))return;
+  if(m.lg){if(f.r!=='')return;const SEA=(e.n.match(/\d{4}-\d{4}/)||[String(e.y)])[0];const g=LGG(e)+'|'+m.sub+'|'+SEA;(m.rubs||[]).forEach(r=>{const a=jpPlayers(r.jp),b=jpPlayers(r.opp);if(!a.length&&!b.length)return;if(f.jj&&!(a.length&&b.length))return;
    if(f.p&&!playerMatch(new Set(a.concat(b)),f.p,''))return;const fl=!a.length;const it=itemOf(r,m,fl);if(f.res!==''&&it.res!=f.res)return;it.L.cb=fl?m.opp:m.jp;it.R.cb=fl?m.jp:m.opp;
-   const G=LG[g]||(LG[g]={key:g,lgn:LGG(e),sub:m.sub,date:m.date||'',ev:e,ties:new Set(),it:[]});G.ties.add(m);G.it.push(it)});return}
+   const G=LG[g]||(LG[g]={key:g,lgn:LGG(e),sub:m.sub,date:m.date||'',d1:m.date||'',sea:SEA,ev:e,ties:new Set(),it:[]});if((m.date||'')>G.date)G.date=m.date;if(m.date&&(!G.d1||m.date<G.d1))G.d1=m.date;G.ties.add(m);G.it.push(it)});return}
   if(f.r!==''&&m.rk!==f.r)return;if(f.res!==''&&m.res!=f.res)return;if(f.jj&&!m.flag)return;if(!playerMatch(m.pl,f.p,m.q))return;(ev[m.e]||(ev[m.e]={m:[],a:[]})).m.push(m)});
  if(f.r===''&&f.res===''&&!f.jj) A.forEach(a=>{if(!secOK(a.e))return;const e=E[a.e];if(!tierOK(e,f.t))return;if(f.y!==''&&e.y!=f.y)return;if(f.e!==''&&a.e!=f.e)return;if(f.s!==''&&a.sub!==f.s)return;if(!playerMatch(a.pl,f.p,a.q))return;(ev[a.e]||(ev[a.e]={m:[],a:[]})).a.push(a)});
- VIEW=Object.keys(ev).map(k=>({e:E[k],m:ev[k].m.sort((x,y)=>(y.date||'').localeCompare(x.date||'')||y.rv-x.rv||SUBO.findIndex(s=>x.sub.includes(s))-SUBO.findIndex(s=>y.sub.includes(s))),a:ev[k].a}));Object.values(LG).forEach(G=>{const e=G.ev;const ts=[...G.ties];const vi='L|'+G.key;VIEW.push({e:{i:vi,n:`${md(G.date)||'日付不明'} ${G.lgn} ${G.sub.replace('リーグ戦','')}`,c:e.c,t:4,lg:1,hc:e.hc,sk:G.date||'0000',d1:G.date,d2:G.date,y:e.y,season:(e.n.match(/\d{4}-\d{4}/)||[''])[0]},m:[],it:G.it.sort((x,y)=>x.P.i-y.P.i||(x.m.rnd||'').localeCompare(y.m.rnd||'')),a:[],ties:ts})});VIEW.sort((a,b)=>b.e.sk.localeCompare(a.e.sk));
+ VIEW=Object.keys(ev).map(k=>({e:E[k],m:ev[k].m.sort((x,y)=>(y.date||'').localeCompare(x.date||'')||y.rv-x.rv||SUBO.findIndex(s=>x.sub.includes(s))-SUBO.findIndex(s=>y.sub.includes(s))),a:ev[k].a}));Object.values(LG).forEach(G=>{const e=G.ev;const ts=[...G.ties];const vi='L|'+G.key;VIEW.push({e:{i:vi,n:`${G.lgn} ${G.sub.replace('リーグ戦','')} ${G.sea}`,c:e.c,t:4,lg:1,hc:e.hc,sk:G.date||'0000',d1:G.d1,d2:G.date,y:e.y,season:G.sea},m:[],it:G.it.sort((x,y)=>(y.date||'').localeCompare(x.date||'')||x.P.i-y.P.i||(x.m.rnd||'').localeCompare(y.m.rnd||'')),a:[],ties:ts})});VIEW.sort((a,b)=>b.e.sk.localeCompare(a.e.sk));
  const nm=VIEW.reduce((s,v)=>s+(v.it?v.it.length:v.m.length),0),na=VIEW.reduce((s,v)=>s+v.a.length,0);let w=0,l=0;VIEW.forEach(v=>{v.m.forEach(m=>{if(!m.team){if(m.res===1)w++;else if(m.res===0)l++}});(v.it||[]).forEach(i=>{if(i.m.flag)return;if(i.res===1)w++;else if(i.res===0)l++})});
- $('summary').textContent=`${(()=>{const lg=VIEW.filter(v=>v.it).length;return lg?`${VIEW.length-lg?VIEW.length-lg+"大会＋":""}リーグ${lg}開催日`:VIEW.length+'大会'})()}・${nm}試合${na?`・成績${na}件`:''}（個人種目 ${w}勝${l}敗／日本側から見た集計）`;$('covbox').innerHTML=SEC!=='intl'?covHTML():'';
- openSet=new Set();const narrow=f.p||f.e!==''||f.jj||f.r!=='';VIEW.slice(0,narrow?5:2).forEach(v=>openSet.add(v.e.i));
- $('tours').innerHTML='';shown=0;more();}
+ $('summary').textContent=`${(()=>{const lg=VIEW.filter(v=>v.it).length;return lg?`${VIEW.length-lg?VIEW.length-lg+"大会＋":""}リーグ${lg}シーズン`:VIEW.length+'大会'})()}・${nm}試合${na?`・成績${na}件`:''}（個人種目 ${w}勝${l}敗／日本側から見た集計）`;$('covbox').innerHTML=SEC!=='intl'?covHTML():'';
+ openSet=new Set();const narrow=f.p||f.e!==''||f.jj||f.r!=='';VIEW.slice(0,narrow?5:0).forEach(v=>openSet.add(v.e.i));
+ $('tours').innerHTML='';shown=0;more();syncYch()}
 function more(){const box=$('tours');const n=Math.min(VIEW.length,shown+20);const frag=document.createDocumentFragment();
  for(let i=shown;i<n;i++)frag.appendChild(tourEl(VIEW[i]));box.appendChild(frag);shown=n;
  if(!VIEW.length)box.innerHTML='<div class="empty">該当する試合がありません</div>'}
@@ -358,12 +360,12 @@ new IntersectionObserver(es=>{if(es[0].isIntersecting&&shown<VIEW.length)more()}
 const medal=f=>f.startsWith('優勝')?'gold':f.startsWith('準優勝')?'silver':/^(3位|ベスト4)/.test(f)?'bronze':'';
 const cfl=n=>{const x=String(n).match(/^(.*?)\(([A-Z]{3})\)$/);return x?flagIOC(x[2])+esc(x[1]):esc(n).replace(/\(([A-Z]{3})\)/g,(_,c)=>flagIOC(c))};
 function tourEl(v){const e=v.e;const d=document.createElement('div');d.className='tour';
- if(v.it){d.classList.add('lgt');d.innerHTML=`<div class="th t5"><span class="arrow">▶</span><div class="nm">${flagE(e.hc)} ${esc(e.n)}</div><div class="inf">${esc(e.season)}シーズン｜${v.it.length}試合（日本選手出場分）</div><div class="lgties">${v.ties.map(m=>`<span>${esc(m.jp)} <b>${esc((m.score||'').replace('-',' - '))}</b> ${esc(m.opp)}${m.rnd&&m.rnd!=='レギュラーシーズン'?' <i>'+esc(m.rnd)+'</i>':''}</span>`).join('')}</div></div><div class="tb"></div>`;
+ if(v.it){d.classList.add('lgt');d.innerHTML=`<div class="th t5"><span class="arrow">▶</span><div class="nm">${flagE(e.hc)} ${esc(e.n)}シーズン</div><div class="inf">${esc(e.d1===e.d2?e.d1:e.d1+'〜'+e.d2)}｜${v.ties.length}チーム戦・${v.it.length}試合（日本選手出場分）</div></div><div class="tb"></div>`;
   const tb=d.querySelector('.tb');const render=()=>{const ml=document.createElement('div');ml.className='mlist';v.it.forEach(it=>ml.appendChild(rowEl(it)));tb.appendChild(ml);tb.dataset.r=1};
   const toggle=()=>{d.classList.toggle('open');if(d.classList.contains('open')&&!tb.dataset.r)render()};d.querySelector('.th').onclick=toggle;d._open=()=>{if(!d.classList.contains('open'))toggle()};d._close=()=>d.classList.remove('open');if(openSet.has(e.i))toggle();return d}
  const b=BEST[e.i]||{};const chips=Object.keys(b).sort((x,y)=>SUBO.findIndex(s=>x.includes(s))-SUBO.findIndex(s=>y.includes(s))).map(s=>{const o=b[s];return `<span class="chip ${medal(o.f)}">${esc(s)}: ${esc(o.f.replace(/（.*$/,''))} ${o.who.slice(0,3).map(cfl).join('、')}${o.who.length>3?' 他':''}</span>`}).join('');
- const dates=e.asia?`${e.y}年`:(e.d1===e.d2?e.d1:`${e.d1}〜${e.d2}`);
- d.innerHTML=`<div class="th t${e.t+1}"><span class="arrow">▶</span><div class="nm">${esc(e.n)}</div><div class="inf">${esc(dates)}｜${esc(e.c)}｜${esc(TS[e.t])}｜${v.m.length?v.m.length+'試合':''}${v.a.length?v.a.length+'件（成績のみ）':''}</div><div class="best">${chips}</div></div><div class="tb"></div>`;
+ const dates=e.asia?`${e.y}年`:(e.d1===e.d2?e.d1:`${e.d1}〜${e.d2}`);const bk=Object.keys(b).sort((x,y)=>RORD(b[x].f)-RORD(b[y].f)||SUBO.findIndex(s=>x.includes(s))-SUBO.findIndex(s=>y.includes(s)));const bestTop=bk.length?(()=>{const o=b[bk[0]];return `<span class="chip ${medal(o.f)}">日本最高: ${esc(bk[0])} ${esc(o.f.replace(/（.*$/,''))} ${o.who.slice(0,2).map(cfl).join('、')}${o.who.length>2?' 他':''}</span>`})():'';
+ d.innerHTML=`<div class="th t${e.t+1}"><span class="arrow">▶</span><div class="nm">${flagE(e.hc)} ${esc(e.n)}</div><div class="inf">${esc(dates)}｜${v.m.length?v.m.length+'試合':''}${v.a.length?v.a.length+'件（成績のみ）':''}</div>${bestTop?`<div class="best">${bestTop}</div>`:''}</div><div class="tb"><div class="best tbest">${chips}</div><div class="inf" style="padding:0 12px 6px">${esc(e.c)}｜${esc(TS[e.t])}</div></div>`;
  const tb=d.querySelector('.tb');let rendered=0;
  const render=()=>{const items=v.m;const n=Math.min(items.length,rendered+40);const fr=document.createDocumentFragment();
   if(rendered===0&&v.a.length){const w=document.createElement('div');w.innerHTML=v.a.map(resCard).join('')+(e.asia?'<div class="nogd">この大会は試合単位の公式データがないため、ベスト4以上の成績のみ表示</div>':'');fr.appendChild(w)}
@@ -514,13 +516,13 @@ function drawPP(){const isF=String(PP).startsWith('F:');document.querySelector('
  const IT=playerItems(p);$('pp-n').textContent=IT.length;document.querySelectorAll('.ptabs button').forEach(b=>b.classList.toggle('on',b.dataset.pt===PPT));
  const box=$('pp-body');box.innerHTML='';
  if(PPT==='ms'){const oc=i=>{const c=[...new Set(i.R.ps.map(x=>x.c))];return c.length===1?c[0]:''};const cc={};IT.forEach(i=>{const c=oc(i);if(c&&c!=='JPN')cc[c]=(cc[c]||0)+1});const cns=Object.keys(cc).sort((a,b)=>(a==='CHN'?-1:b==='CHN'?1:cc[b]-cc[a]));const subs=[...new Set(IT.map(i=>i.sub.replace('（個別試合）','')))];const ys=[...new Set(IT.map(i=>(i.date||'').slice(0,4)).filter(Boolean))];
-  box.innerHTML=`<div class="pfil"><select id="pf-s"><option value="">全種目</option>${subs.map(x=>`<option>${esc(x)}</option>`).join('')}</select><select id="pf-y"><option value="">全期間</option>${ys.map(y=>`<option value="${y}">${y}年</option>`).join('')}</select><select id="pf-r"><option value="">勝敗</option><option value="1">勝ち</option><option value="0">負け</option></select><select id="pf-c"><option value="">対戦国</option>${cns.map(c=>`<option value="${c}">${flagIOC(c)} ${cjN(c)}</option>`).join('')}</select><select id="pf-k"><option value="">S/D</option><option value="S">シングルス</option><option value="D">ダブルス</option></select><select id="pf-u"><option value="">ユース含む</option><option value="n">ユース除く</option></select></div><div class="psum" id="pf-sum"></div><div class="mlist" id="pf-list"></div><div class="more" id="pf-more"></div>`;
+  box.innerHTML=`<div class="ych" id="pf-ych" style="top:${(document.querySelector('.pbar')?.offsetHeight||46)+(document.querySelector('.ptabs')?.offsetHeight||40)}px"><button data-y="" class="on">全期間</button>${ys.slice().sort((a,b)=>b-a).map(y=>`<button data-y="${y}">${y}</button>`).join('')}</div><div class="pfil"><select id="pf-s"><option value="">全種目</option>${subs.map(x=>`<option>${esc(x)}</option>`).join('')}</select><select id="pf-y"><option value="">全期間</option>${ys.map(y=>`<option value="${y}">${y}年</option>`).join('')}</select><select id="pf-r"><option value="">勝敗</option><option value="1">勝ち</option><option value="0">負け</option></select><select id="pf-c"><option value="">対戦国</option>${cns.map(c=>`<option value="${c}">${flagIOC(c)} ${cjN(c)}</option>`).join('')}</select><select id="pf-k"><option value="">S/D</option><option value="S">シングルス</option><option value="D">ダブルス</option></select><select id="pf-u"><option value="">ユース含む</option><option value="n">ユース除く</option></select></div><div class="psum" id="pf-sum"></div><div class="mlist" id="pf-list"></div><div class="more" id="pf-more"></div>`;
   const draw=()=>{const fs=$('pf-s').value,fy=$('pf-y').value,fr=$('pf-r').value,fc=$('pf-c').value,fk=$('pf-k').value,fu=$('pf-u').value;if(YT<0)YT=T.indexOf('(4)ユース（U19）');const L=IT.filter(i=>(fu!=='n'||!isY(E[i.e].t))&&(!fs||i.sub.replace('（個別試合）','')===fs)&&(!fy||(i.date||'').startsWith(fy))&&(fr===''||i.res==fr)&&(!fc||oc(i)===fc)&&(!fk||((i.L.ps.length>1||i.R.ps.length>1)?'D':'S')===fk));
    const w=L.filter(i=>i.res===1).length,l=L.filter(i=>i.res===0).length;$('pf-sum').textContent=`${L.length}試合　${w}勝${l}敗（勝率${pct(w,w+l)}）　行をタップで詳細`;
    const list=$('pf-list');list.innerHTML='';let n=0,lastY='';const gen=++PFG;
    const add=()=>{if(gen!==PFG)return;const fr2=document.createDocumentFragment();const end=Math.min(L.length,n+120);for(;n<end;n++){const y=(L[n].date||'').slice(0,4)||'日付不明';if(y!==lastY){lastY=y;const yd=document.createElement('div');yd.className='ydiv';yd.textContent=y+(y!=='日付不明'?'年':'');fr2.appendChild(yd)}fr2.appendChild(rowEl(L[n]))}
     list.appendChild(fr2);$('pf-more').innerHTML=n<L.length?`<button class="btn">さらに表示（残り${L.length-n}試合）</button>`:'';if(n<L.length){$('pf-more').firstChild.onclick=add;if(window.IntersectionObserver){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io.disconnect();add()}},{root:$('pp'),rootMargin:'800px'});io.observe($('pf-more'))}}};add()};
-  if(PPF){if(PPF.c&&cns.includes(PPF.c))$('pf-c').value=PPF.c;if(PPF.k)$('pf-k').value=PPF.k;if(PPF.ny)$('pf-u').value='n';PPF=null}['pf-s','pf-y','pf-r','pf-c','pf-k','pf-u'].forEach(id=>$(id).onchange=draw);draw()}
+  if(PPF){if(PPF.c&&cns.includes(PPF.c))$('pf-c').value=PPF.c;if(PPF.k)$('pf-k').value=PPF.k;if(PPF.ny)$('pf-u').value='n';PPF=null}const syncP=()=>{const v=$('pf-y').value;document.querySelectorAll('#pf-ych button').forEach(b=>b.classList.toggle('on',b.dataset.y===v))};['pf-s','pf-y','pf-r','pf-c','pf-k','pf-u'].forEach(id=>$(id).onchange=()=>{draw();syncP()});$('pf-ych').onclick=ev=>{const b=ev.target.closest('button');if(!b)return;$('pf-y').value=b.dataset.y;draw();syncP();$('pp').scrollTop=0};draw();syncP()}
  else if(PPT==='info'){const T4=s.titles.length;box.innerHTML=`<div class="panel"><h2 style="font-size:20px">${nameHTML(p,false)}</h2><div class="ro" style="font-size:13px">${esc(romaOf(p))}</div><div style="font-size:14px;margin-top:4px">${flagIOC('JPN')} 日本　${GD[p]?GL[GD[p]]:'性別不明'}　<span style="color:var(--sub)">表示区分：${SEC==='intl'?'国際大会':SEC==='league'?'リーグ戦':'すべて'}</span></div>
   <div class="stats"><div class="stat"><div class="v">${s.n}</div><div class="k">試合数</div></div><div class="stat"><div class="v">${s.w}</div><div class="k">勝</div></div><div class="stat"><div class="v">${s.l}</div><div class="k">敗</div></div><div class="stat"><div class="v">${pct(s.w,s.n)}</div><div class="k">勝率</div></div><div class="stat"><div class="v">${T4}</div><div class="k">優勝数</div></div><div class="stat"><div class="v">${Object.keys(s.h2h).length}</div><div class="k">対戦相手数</div></div></div>
   <div class="nogd" style="text-align:left">※試合数は個人種目＋団体戦の個別試合（勝敗記録のある試合）。日本対決は両選手に計上。</div></div>`}
@@ -543,7 +545,12 @@ function drawPP(){const isF=String(PP).startsWith('F:');document.querySelector('
   <h3>ベスト8以上の成績（${B.length}）</h3>${B.length?'<div class="tablewrap"><table>'+B.map(b=>`<tr><td class="l">${esc(E[b.e].y)} ${esc(E[b.e].n)}</td><td class="l">${esc(subShort(b.sub))}</td><td class="l"><span class="chip ${medal(b.f)}">${esc(b.f.replace(/（.*$/,''))}</span></td></tr>`).join('')+'</table></div>':'<div class="nogd" style="text-align:left">なし</div>'}</div>`}
 }
 
-['f-tier','f-year'].forEach(id=>$(id).onchange=()=>{fillEvents();apply()});
+['f-tier','f-year'].forEach(id=>$(id).onchange=()=>{fillEvents();apply();syncYch()});
+function syncYch(){const v=$('f-year').value;document.querySelectorAll('#m-ych button').forEach(b=>b.classList.toggle('on',b.dataset.y===v))}
+function ychTop(){const h=document.querySelector('header');$('m-ych').style.top=(h?h.offsetHeight:0)+'px'}
+(()=>{const ys=[...new Set(E.map(e=>String(e.y)))].filter(y=>+y>=2021).sort((a,b)=>b-a);$('m-ych').innerHTML=`<button data-y="">全期間</button>`+ys.map(y=>`<button data-y="${y}">${y}</button>`).join('');
+ $('m-ych').onclick=ev=>{const b=ev.target.closest('button');if(!b)return;$('f-year').value=b.dataset.y;fillEvents();apply();syncYch();const hh=document.querySelector('header').offsetHeight;window.scrollTo(0,Math.max(0,$('v-matches').getBoundingClientRect().top+window.scrollY-hh))};
+ ychTop();window.addEventListener('resize',ychTop);syncYch()})();
 ['f-event','f-sub','f-round','f-res','f-jj'].forEach(id=>$(id).onchange=apply);
 let tmr;$('f-player').oninput=()=>{clearTimeout(tmr);tmr=setTimeout(apply,250)};
 $('f-reset').onclick=()=>{['f-player'].forEach(i=>$(i).value='');['f-tier','f-year','f-sub','f-round','f-res'].forEach(i=>$(i).value='');$('f-jj').checked=false;fillEvents();$('f-event').value='';apply()};
