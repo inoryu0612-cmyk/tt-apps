@@ -243,6 +243,9 @@ function jpPlayers(str){ // names of Japanese players in a side string
  return str.split('／').filter(p=>p&&!isForeign(p)&&p!=='日本');}
 function matchPlayers(m){if(m.lg){const s=new Set();m.rubs.forEach(r=>{jpPlayers(r.jp).forEach(p=>s.add(p));jpPlayers(r.opp).forEach(p=>s.add(p))});return s}const s=new Set(jpPlayers(m.jp)); if(m.flag) jpPlayers(m.opp).forEach(p=>s.add(p)); if(m.team) m.rubs.forEach(r=>jpPlayers(r.jp).forEach(p=>s.add(p))); return s;}
 M.forEach(m=>m.pl=matchPlayers(m));
+// ===== country directory (v5)
+const CJ={JPN:'日本',CHN:'中国',KOR:'韓国',TPE:'チャイニーズタイペイ',HKG:'香港',MAC:'マカオ',SGP:'シンガポール',MAS:'マレーシア',PRK:'北朝鮮',THA:'タイ',INA:'インドネシア',PHI:'フィリピン',VIE:'ベトナム',IND:'インド',IRI:'イラン',KAZ:'カザフスタン',UZB:'ウズベキスタン',QAT:'カタール',KSA:'サウジアラビア',UAE:'アラブ首長国連邦',BRN:'バーレーン',LBN:'レバノン',IRQ:'イラク',AFG:'アフガニスタン',PAK:'パキスタン',SRI:'スリランカ',NEP:'ネパール',MDV:'モルディブ',MGL:'モンゴル',LAO:'ラオス',CAM:'カンボジア',TKM:'トルクメニスタン',GER:'ドイツ',FRA:'フランス',SWE:'スウェーデン',DEN:'デンマーク',NOR:'ノルウェー',FIN:'フィンランド',ISL:'アイスランド',ENG:'イングランド',SCO:'スコットランド',WAL:'ウェールズ',GBR:'イギリス',IRL:'アイルランド',NED:'オランダ',BEL:'ベルギー',LUX:'ルクセンブルク',SUI:'スイス',AUT:'オーストリア',ITA:'イタリア',ESP:'スペイン',POR:'ポルトガル',GRE:'ギリシャ',POL:'ポーランド',ROU:'ルーマニア',CRO:'クロアチア',SVK:'スロバキア',CZE:'チェコ',SLO:'スロベニア',UKR:'ウクライナ',HUN:'ハンガリー',TUR:'トルコ',SRB:'セルビア',RUS:'ロシア',AIN:'個人資格中立選手',BUL:'ブルガリア',MDA:'モルドバ',MLT:'マルタ',ISR:'イスラエル',MON:'モナコ',MKD:'北マケドニア',MNE:'モンテネグロ',KOS:'コソボ',EST:'エストニア',CYP:'キプロス',AZE:'アゼルバイジャン',LTU:'リトアニア',LAT:'ラトビア',JEY:'ジャージー',BIH:'ボスニア・ヘルツェゴビナ',BLR:'ベラルーシ',ALB:'アルバニア',SMR:'サンマリノ',GEO:'ジョージア',USA:'アメリカ',CAN:'カナダ',MEX:'メキシコ',PUR:'プエルトリコ',BRA:'ブラジル',ARG:'アルゼンチン',CHI:'チリ',PER:'ペルー',COL:'コロンビア',VEN:'ベネズエラ',DOM:'ドミニカ共和国',ECU:'エクアドル',CRC:'コスタリカ',CUB:'キューバ',GUA:'グアテマラ',PAR:'パラグアイ',TTO:'トリニダード・トバゴ',ANT:'アンティグア・バーブーダ',AUS:'オーストラリア',NZL:'ニュージーランド',NCL:'ニューカレドニア',EGY:'エジプト',NGR:'ナイジェリア',TUN:'チュニジア',RSA:'南アフリカ',ALG:'アルジェリア',CMR:'カメルーン',MAD:'マダガスカル',SEN:'セネガル',BEN:'ベナン',SLE:'シエラレオネ',RTT:'難民選手団','?':'国籍不明'};
+const cjN=c=>CJ[c]||c||'国籍不明';
 const sideNames=str=>{const x=str.match(/^日本（(.*)）$/);return x?x[1].split('・'):str.replace(/（団体）$/,'').split('／')};
 M.forEach(m=>{const ns=[...sideNames(m.jp),...sideNames(m.opp)];if(m.team)m.rubs.forEach(r=>ns.push(...sideNames(r.jp),...sideNames(r.opp)));m.q=ns.map(n=>strip(n)+'\u0001'+romaOf(n)).join('\u0002').toLowerCase()});
 A.forEach(a=>{a.pl=new Set(jpPlayers(a.who));a.q=[...a.pl].map(n=>n+'\u0001'+romaOf(n)).join('\u0002').toLowerCase()});
@@ -308,8 +311,9 @@ function more(){const box=$('tours');const n=Math.min(VIEW.length,shown+20);cons
  if(!VIEW.length)box.innerHTML='<div class="empty">該当する試合がありません</div>'}
 new IntersectionObserver(es=>{if(es[0].isIntersecting&&shown<VIEW.length)more()},{rootMargin:'600px'}).observe($('sentinel'));
 const medal=f=>f.startsWith('優勝')?'gold':f.startsWith('準優勝')?'silver':/^(3位|ベスト4)/.test(f)?'bronze':'';
+const cfl=n=>{const x=String(n).match(/^(.*?)\(([A-Z]{3})\)$/);return x?flagIOC(x[2])+esc(x[1]):esc(n).replace(/\(([A-Z]{3})\)/g,(_,c)=>flagIOC(c))};
 function tourEl(v){const e=v.e;const d=document.createElement('div');d.className='tour';
- const b=BEST[e.i]||{};const chips=Object.keys(b).sort((x,y)=>SUBO.findIndex(s=>x.includes(s))-SUBO.findIndex(s=>y.includes(s))).map(s=>{const o=b[s];return `<span class="chip ${medal(o.f)}">${esc(s)}: ${esc(o.f.replace(/（.*$/,''))} ${esc(o.who.slice(0,3).join('、'))}${o.who.length>3?' 他':''}</span>`}).join('');
+ const b=BEST[e.i]||{};const chips=Object.keys(b).sort((x,y)=>SUBO.findIndex(s=>x.includes(s))-SUBO.findIndex(s=>y.includes(s))).map(s=>{const o=b[s];return `<span class="chip ${medal(o.f)}">${esc(s)}: ${esc(o.f.replace(/（.*$/,''))} ${o.who.slice(0,3).map(cfl).join('、')}${o.who.length>3?' 他':''}</span>`}).join('');
  const dates=e.asia?`${e.y}年`:(e.d1===e.d2?e.d1:`${e.d1}〜${e.d2}`);
  d.innerHTML=`<div class="th t${e.t+1}"><span class="arrow">▶</span><div class="nm">${esc(e.n)}</div><div class="inf">${esc(dates)}｜${esc(e.c)}｜${esc(TS[e.t])}｜${v.m.length?v.m.length+'試合':''}${v.a.length?v.a.length+'件（成績のみ）':''}</div><div class="best">${chips}</div></div><div class="tb"></div>`;
  const tb=d.querySelector('.tb');let rendered=0;
@@ -322,13 +326,13 @@ function tourEl(v){const e=v.e;const d=document.createElement('div');d.className
  const toggle=()=>{d.classList.toggle('open');if(d.classList.contains('open')&&!tb.dataset.r)render()};
  d.querySelector('.th').onclick=toggle; d._open=()=>{if(!d.classList.contains('open'))toggle()};d._close=()=>d.classList.remove('open');
  if(openSet.has(e.i))toggle();return d}
-function resCard(a){return `<div class="card res-card"><div class="meta"><b>${esc(a.sub)}</b><span class="tag fin">成績のみ</span></div><div class="r"><span>${esc(a.who)}</span><span class="res">${esc(a.res)}</span></div><div class="meta" style="margin:4px 0 0">${esc(a.opp)}</div></div>`}
+function resCard(a){return `<div class="card res-card"><div class="meta"><b>${esc(a.sub)}</b><span class="tag fin">成績のみ</span></div><div class="r"><span>${cfl(a.who)}</span><span class="res">${esc(a.res)}</span></div><div class="meta" style="margin:4px 0 0">${cfl(a.opp)}</div></div>`}
 function sideHTML(str,nat,isJpSide){let parts;
- const m=str.match(/^日本（(.*)）$/);if(m)return `日本<span class="cc">(JPN)</span><div class="cc" style="margin:0">${m[1].split('・').map(x=>`<span title="${esc(romaOf(x))}">${nameHTML(x,false)}</span>`).join('・')}</div>`;
- if(/（団体）$/.test(str))return `${esc(str.replace('（団体）',''))}<span class="cc">(${esc(nat)})</span>`;
+ const m=str.match(/^日本（(.*)）$/);if(m)return `${flagIOC('JPN')} 日本<div class="cc" style="margin:0">${m[1].split('・').map(x=>`<span title="${esc(romaOf(x))}">${nameHTML(x,false)}</span>`).join('・')}</div>`;
+ if(/（団体）$/.test(str))return `${flagIOC(nat)} ${esc(CJ[nat]||str.replace('（団体）',''))}`;
  parts=str.split('／');const nats=(nat||'').split('/');
  return parts.map((p,i)=>{let n=p,c;const x=p.match(/^(.*)\(([A-Z]{3})\)$/);if(x){n=x[1];c=x[2]}else if(isJpSide)c='JPN';else c=nats.length===parts.length?nats[i]:nats[0];
-  return `<div title="${esc(romaOf(n))}">${nameHTML(n,false)}<span class="cc">(${esc(c)})</span>${romaOf(n)?`<span class="ro">${esc(romaOf(n))}</span>`:''}</div>`}).join('')}
+  return `<div title="${esc(romaOf(n))}">${flagIOC(c)} ${nameHTML(n,false)}${romaOf(n)?`<span class="ro">${esc(romaOf(n))}</span>`:''}</div>`}).join('')}
 function scoreHTML(o){const mm=(o.score||'').match(/^(\d+)-(\d+)(.*)$/);const main=mm?`${mm[1]}${DASH}${mm[2]}`:esc(o.score||'—');let note=mm?mm[3]:'';note=note.replace(/^・/,'').replace(/^（|）$/g,'');
  return `<div class="sc">${main}</div>${note?`<div class="note">${esc(note)}</div>`:''}`}
 function gamesHTML(gd){if(!gd)return '<div class="nogd">ゲーム詳細なし</div>';
@@ -357,7 +361,7 @@ const SUBS={'男子シングルス':'男S','女子シングルス':'女S','男�
 function subShort(s){s=(s||'').replace('（個別試合）','');let u='';if(s.startsWith('U19')){u='U19';s=s.replace(/^U19\s*/,'')}if(/リーグ戦$/.test(s))return '';return u+(SUBS[s]||s)}
 function md(d){const x=(d||'').match(/^(\d{4})-(\d\d)-(\d\d)/);return x?`${+x[2]}月${+x[3]}日`:''}
 function sideP(str,nat,isJp){str=str||'';const t=str.match(/^日本（(.*)）$/);if(t)return {team:1,ps:[{n:'日本',c:'JPN'}],mem:t[1]};
- if(/（団体）$/.test(str))return {team:1,ps:[{n:str.replace('（団体）',''),c:nat}]};
+ if(/（団体）$/.test(str))return {team:1,ps:[{n:CJ[nat]||str.replace('（団体）',''),c:nat}]};
  const parts=str.split('／'),nats=(nat||'').split('/');
  return {ps:parts.map((p,i)=>{const x=p.match(/^(.*)\(([A-Z]{3}|\?)\)$/);if(x)return {n:x[1],c:x[2]};return {n:p,c:isJp?'JPN':(nats.length===parts.length?nats[i]:nats[0])}})}}
 function itemOf(m,parent,flip){const P=parent||m;const lgTie=m.lg&&m.team&&!parent;
@@ -449,7 +453,7 @@ function drawPP(){const isF=String(PP).startsWith('F:');document.querySelector('
  const IT=playerItems(p);$('pp-n').textContent=IT.length;document.querySelectorAll('.ptabs button').forEach(b=>b.classList.toggle('on',b.dataset.pt===PPT));
  const box=$('pp-body');box.innerHTML='';
  if(PPT==='ms'){const oc=i=>{const c=[...new Set(i.R.ps.map(x=>x.c))];return c.length===1?c[0]:''};const cc={};IT.forEach(i=>{const c=oc(i);if(c&&c!=='JPN')cc[c]=(cc[c]||0)+1});const cns=Object.keys(cc).sort((a,b)=>(a==='CHN'?-1:b==='CHN'?1:cc[b]-cc[a]));const subs=[...new Set(IT.map(i=>i.sub.replace('（個別試合）','')))];const ys=[...new Set(IT.map(i=>(i.date||'').slice(0,4)).filter(Boolean))];
-  box.innerHTML=`<div class="pfil"><select id="pf-s"><option value="">全種目</option>${subs.map(x=>`<option>${esc(x)}</option>`).join('')}</select><select id="pf-y"><option value="">全期間</option>${ys.map(y=>`<option value="${y}">${y}年</option>`).join('')}</select><select id="pf-r"><option value="">勝敗</option><option value="1">勝ち</option><option value="0">負け</option></select><select id="pf-c"><option value="">対戦国</option>${cns.map(c=>`<option value="${c}">${flagIOC(c)} ${c}</option>`).join('')}</select><select id="pf-k"><option value="">S/D</option><option value="S">シングルス</option><option value="D">ダブルス</option></select><select id="pf-u"><option value="">ユース含む</option><option value="n">ユース除く</option></select></div><div class="psum" id="pf-sum"></div><div class="mlist" id="pf-list"></div><div class="more" id="pf-more"></div>`;
+  box.innerHTML=`<div class="pfil"><select id="pf-s"><option value="">全種目</option>${subs.map(x=>`<option>${esc(x)}</option>`).join('')}</select><select id="pf-y"><option value="">全期間</option>${ys.map(y=>`<option value="${y}">${y}年</option>`).join('')}</select><select id="pf-r"><option value="">勝敗</option><option value="1">勝ち</option><option value="0">負け</option></select><select id="pf-c"><option value="">対戦国</option>${cns.map(c=>`<option value="${c}">${flagIOC(c)} ${cjN(c)}</option>`).join('')}</select><select id="pf-k"><option value="">S/D</option><option value="S">シングルス</option><option value="D">ダブルス</option></select><select id="pf-u"><option value="">ユース含む</option><option value="n">ユース除く</option></select></div><div class="psum" id="pf-sum"></div><div class="mlist" id="pf-list"></div><div class="more" id="pf-more"></div>`;
   const draw=()=>{const fs=$('pf-s').value,fy=$('pf-y').value,fr=$('pf-r').value,fc=$('pf-c').value,fk=$('pf-k').value,fu=$('pf-u').value;if(YT<0)YT=T.indexOf('(4)ユース（U19）');const L=IT.filter(i=>(fu!=='n'||!isY(E[i.e].t))&&(!fs||i.sub.replace('（個別試合）','')===fs)&&(!fy||(i.date||'').startsWith(fy))&&(fr===''||i.res==fr)&&(!fc||oc(i)===fc)&&(!fk||((i.L.ps.length>1||i.R.ps.length>1)?'D':'S')===fk));
    const w=L.filter(i=>i.res===1).length,l=L.filter(i=>i.res===0).length;$('pf-sum').textContent=`${L.length}試合　${w}勝${l}敗（勝率${pct(w,w+l)}）　行をタップで詳細`;
    const list=$('pf-list');list.innerHTML='';let n=0,lastY='';
@@ -507,9 +511,6 @@ function showPlayer(p){if(p&&PS[p]){openPlayer(p);return}$('p-body').innerHTML=p
     if(m.team){m.rubs.filter(r=>r.opp===h.opp&&jpPlayers(r.jp).includes(p)).forEach(r=>{const c=cardEl(r,true);box.appendChild(c)})}else box.appendChild(cardEl(m,false))});box.scrollIntoView({behavior:'smooth'})})};
  $('h-q').oninput=draw;draw()}
 const resolveP=v=>PS[v]?v:(R2D[v.toUpperCase()]&&PS[R2D[v.toUpperCase()]]?R2D[v.toUpperCase()]:null);
-// ===== country directory (v5)
-const CJ={JPN:'日本',CHN:'中国',KOR:'韓国',TPE:'チャイニーズタイペイ',HKG:'香港',MAC:'マカオ',SGP:'シンガポール',MAS:'マレーシア',PRK:'北朝鮮',THA:'タイ',INA:'インドネシア',PHI:'フィリピン',VIE:'ベトナム',IND:'インド',IRI:'イラン',KAZ:'カザフスタン',UZB:'ウズベキスタン',QAT:'カタール',KSA:'サウジアラビア',UAE:'アラブ首長国連邦',BRN:'バーレーン',LBN:'レバノン',IRQ:'イラク',AFG:'アフガニスタン',PAK:'パキスタン',SRI:'スリランカ',NEP:'ネパール',MDV:'モルディブ',MGL:'モンゴル',LAO:'ラオス',CAM:'カンボジア',TKM:'トルクメニスタン',GER:'ドイツ',FRA:'フランス',SWE:'スウェーデン',DEN:'デンマーク',NOR:'ノルウェー',FIN:'フィンランド',ISL:'アイスランド',ENG:'イングランド',SCO:'スコットランド',WAL:'ウェールズ',GBR:'イギリス',IRL:'アイルランド',NED:'オランダ',BEL:'ベルギー',LUX:'ルクセンブルク',SUI:'スイス',AUT:'オーストリア',ITA:'イタリア',ESP:'スペイン',POR:'ポルトガル',GRE:'ギリシャ',POL:'ポーランド',ROU:'ルーマニア',CRO:'クロアチア',SVK:'スロバキア',CZE:'チェコ',SLO:'スロベニア',UKR:'ウクライナ',HUN:'ハンガリー',TUR:'トルコ',SRB:'セルビア',RUS:'ロシア',AIN:'個人資格中立選手',BUL:'ブルガリア',MDA:'モルドバ',MLT:'マルタ',ISR:'イスラエル',MON:'モナコ',MKD:'北マケドニア',MNE:'モンテネグロ',KOS:'コソボ',EST:'エストニア',CYP:'キプロス',AZE:'アゼルバイジャン',LTU:'リトアニア',LAT:'ラトビア',JEY:'ジャージー',BIH:'ボスニア・ヘルツェゴビナ',BLR:'ベラルーシ',ALB:'アルバニア',SMR:'サンマリノ',GEO:'ジョージア',USA:'アメリカ',CAN:'カナダ',MEX:'メキシコ',PUR:'プエルトリコ',BRA:'ブラジル',ARG:'アルゼンチン',CHI:'チリ',PER:'ペルー',COL:'コロンビア',VEN:'ベネズエラ',DOM:'ドミニカ共和国',ECU:'エクアドル',CRC:'コスタリカ',CUB:'キューバ',GUA:'グアテマラ',PAR:'パラグアイ',TTO:'トリニダード・トバゴ',ANT:'アンティグア・バーブーダ',AUS:'オーストラリア',NZL:'ニュージーランド',NCL:'ニューカレドニア',EGY:'エジプト',NGR:'ナイジェリア',TUN:'チュニジア',RSA:'南アフリカ',ALG:'アルジェリア',CMR:'カメルーン',MAD:'マダガスカル',SEN:'セネガル',BEN:'ベナン',SLE:'シエラレオネ',RTT:'難民選手団','?':'国籍不明'};
-const cjN=c=>CJ[c]||c||'国籍不明';
 let FX={},FC={},PV=null,PVG='';var FXR=1;
 function buildForeign(){FX={};FC={};
  const one=(m,r)=>{const x=r||m;const L=sideP(x.jp,'JPN',true),R=sideP(x.opp,x.nat,false);if(L.team||R.team)return;
