@@ -121,6 +121,21 @@ body{background:#eef1f5}
 .gl .n{color:#8b919b}.gl .w{font-weight:700;color:#1f4e78}
 .md .mlist{margin:6px 0 0;border:1px solid #e7e9ee}
 .ydiv{background:#f1f3f6;color:#5d6470;font-size:12px;font-weight:700;padding:3px 10px;position:sticky;top:0;z-index:1}
+/* team ties (v4) */
+.mr.tie .msc small.hint{color:#9aa3b0;font-size:10px}
+.ms .mem{font-size:10.5px;color:#8b919b;line-height:1.25;margin-top:1px;overflow-wrap:anywhere}
+.ms .pn.emp{font-weight:700;color:#12305e}
+.ms .pn.dim{color:#5d6470}
+.ml .fin{color:#a0522d;background:#fbeee4;border-radius:3px;padding:0 4px;margin-left:4px;font-size:10.5px}
+.rubl{margin:0 -8px;background:#f4f6fa;border-top:1px solid #e3e7ee}
+.mr.rb{background:transparent;padding:3px 8px 0 4px;border-bottom:1px solid #e3e7ee;display:block}
+.mr.rb:last-child{border-bottom:0}
+.rbg{display:grid;grid-template-columns:24px minmax(0,1fr);align-items:center}
+.rbn{font-size:11px;color:#8b919b;text-align:center;font-variant-numeric:tabular-nums;align-self:center}
+.mr.rb .fl{font-size:13px;height:15px}
+.mr.rb .pn{font-size:15.5px}.mr.rb .pn.s{font-size:14.5px}.mr.rb .pn.xs{font-size:13px}
+.mr.rb .msc{font-size:16px}
+.mr.rb>.md{margin:0 -8px 0 -4px;background:#fff;border-top:1px dashed #dfe3ea}
 /* player overlay */
 #pp{position:fixed;inset:0;background:#eef1f5;z-index:60;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .pbar{position:sticky;top:0;z-index:5;background:#2f6fd6;color:#fff;display:grid;grid-template-columns:76px 1fr 76px;align-items:center;height:46px}
@@ -338,26 +353,73 @@ function itemOf(m,parent,flip){const P=parent||m;const lgTie=m.lg&&m.team&&!pare
  let L=lgTie?{club:1,ps:[{n:m.jp,c:''}]}:sideP(m.jp,'JPN',true),R=lgTie?{club:1,ps:[{n:m.opp,c:''}]}:sideP(m.opp,m.nat,false);
  let sc=m.score||'',gd=m.gd||'',res=m.res;
  if(flip){[L,R]=[R,L];const x=sc.match(/^(\d+)-(\d+)(.*)$/);if(x)sc=x[2]+'-'+x[1]+x[3];gd=gd?gd.split(',').map(g=>g.split('-').reverse().join('-')).join(','):'';res=res===2?2:1-res}
- return {m,P,e:P.e,date:P.date,rv:P.rv||0,sub:parent?(m.sub||P.sub):m.sub,rnd:parent?(((P.rnd&&P.rnd!=='レギュラーシーズン'&&!/リーグ戦$/.test(P.rnd))?P.rnd+' ':'')+(m.rnd||'').replace(/^.* (第\d+試合)$/,'$1')):m.rnd,L,R,sc,gd,res,flag:m.flag,final:parent?'':m.final,team:!!(m.team&&!parent),rubs:m.rubs,parent}}
+ return {m,P,e:P.e,date:P.date,rv:P.rv||0,sub:parent?(m.sub||P.sub):m.sub,rnd:parent?(((P.rnd&&P.rnd!=='レギュラーシーズン'&&!/リーグ戦$/.test(P.rnd))?P.rnd+' ':'')+(m.rnd||'').replace(/^.* (第\d+試合)$/,'$1')):m.rnd,L,R,sc,gd,res,flag:m.flag,final:parent?'':m.final,team:!!(m.team&&!parent),rubs:m.rubs,parent,fl:!!flip}}
 function labelH(it){const e=E[it.e];const ss=subShort(it.sub);const rk=(it.rnd||'').replace(/（第\d+組）/,'').replace(/^(男子|女子)リーグ戦$/,'');
  return `${esc(md(it.date))}${esc(evShort(e))}${flagE(e.hc)}<span class="rk"> ${esc(ss)}${ss&&rk?' ':''}${esc(rk)}</span>`}
-function pnCls(n,club){const l=[...n].length;return 'pn'+(club?' club':l>10?' xs':l>7?' s':'')}
-function sideH(sp,cls){const fl=sp.club?'':[...new Set(sp.ps.map(p=>flagIOC(p.c)))].join('');
- return `<div class="ms ${cls}"><div class="fl">${fl||'&nbsp;'}</div>${sp.ps.map(p=>`<div class="${pnCls(p.n,sp.club)}">${esc(p.n)}</div>`).join('')}</div>`}
+function pnCls(n,club){if(!club)n=shortN(n);const l=[...n].length;return 'pn'+(club?' club':l>10?' xs':l>7?' s':'')}
+function sideH(sp,cls,emp){const fl=sp.club?'':[...new Set(sp.ps.map(p=>flagIOC(p.c)))].join('');
+ const mem=sp.mem&&sp.mem!=='個別試合データなし'?`<div class="mem">${esc(sp.mem.split('・').join('・'))}</div>`:'';
+ return `<div class="ms ${cls}"><div class="fl">${fl||'&nbsp;'}</div>${sp.ps.map(p=>`<div class="${pnCls(p.n,sp.club)}${emp===1?' emp':emp===0?' dim':''}">${sp.club?esc(p.n):snSpan(p.n)}</div>`).join('')}${mem}</div>`}
 function fullSide(sp){return sp.ps.map(p=>{const pl=!sp.club&&PS[p.n]&&p.c==='JPN';return `<span class="${pl?'plk':''}" ${pl?`data-pp="${esc(p.n)}"`:''}>${esc(p.n)}</span>${flagOf(p.n)?'<span class="uv">漢字未確認</span>':''}${romaOf(p.n)?`<span class="ro">${esc(romaOf(p.n))}</span>`:''}`}).join('<span style="color:#999">／</span>')+(sp.mem?`<span class="ro">${esc(sp.mem)}</span>`:'')}
 function scParts(sc){const x=(sc||'').match(/^(\d+)-(\d+)(.*)$/);return x?{a:x[1],b:x[2],note:x[3].replace(/^[・（]|）$/g,'').replace(/^（/,'')}:null}
-function detailH(it){const e=E[it.e];const x=scParts(it.sc);
+function detailH(it,noMeta){const e=E[it.e];const x=scParts(it.sc);
  const meta=`${esc(e.n)}｜${esc(it.sub||'')}｜${esc(it.rnd||'')}${it.date?'｜'+esc(it.date):''}${it.final?`<span class="tag fin">${esc(it.final)}</span>`:''}${it.flag?'<span class="tag">日本対決</span>':''}${it.res===2?'<span class="tag">勝敗記録なし</span>':''}${x&&x.note?`<span class="tag">${esc(x.note)}</span>`:''}`;
- let h=`<div class="dm">${meta}</div><div class="gh"><div class="a">${fullSide(it.L)}</div><div class="c">${x?`${x.a}${DASH}${x.b}`:esc(it.sc||'—')}</div><div class="b">${fullSide(it.R)}</div></div>`;
+ let h=`${noMeta?(x&&x.note?`<div class="dm"><span class="tag">${esc(x.note)}</span></div>`:''):`<div class="dm">${meta}</div>`}<div class="gh"><div class="a">${fullSide(it.L)}</div><div class="c">${x?`${x.a}${DASH}${x.b}`:esc(it.sc||'—')}</div><div class="b">${fullSide(it.R)}</div></div>`;
  if(it.team)return h;
  if(it.gd){h+='<div class="gls">'+it.gd.split(',').slice(0,7).map((g,i)=>{const q=g.split('-');const a=+q[0],b=+q[1];return `<div class="gl"><span class="n">${i+1}</span><span><span class="${a>b?'w':''}">${a}</span>${DASH}<span class="${b>a?'w':''}">${b}</span></span></div>`}).join('')+'</div>'}
  else h+='<div class="nogd">ゲーム詳細なし</div>';return h}
-function rowEl(it){const d=document.createElement('div');d.className='mr';const x=scParts(it.sc);
- d.innerHTML=`<div class="ml">${labelH(it)}${it.flag?'<b class="jj">日本対決</b>':''}</div><div class="mg">${sideH(it.L,'L'+(it.res===1?' win':''))}<div class="msc">${x?`${x.a} - ${x.b}`:esc(it.sc||'—')}${x&&x.note?`<small>${esc(x.note.slice(0,8))}</small>`:''}${it.team?'<small>▼個別</small>':''}</div>${sideH(it.R,'R'+(it.res===0?' win':''))}</div>`;
- d.addEventListener('click',ev=>{if(ev.target.closest('.md')&&ev.target.closest('.md').parentNode===d){const pl=ev.target.closest('[data-pp]');if(pl){ev.stopPropagation();openPlayer(pl.dataset.pp)}return}
-  if(ev.target.closest('.md'))return;ev.stopPropagation();let b=d.querySelector(':scope>.md');if(b){b.remove();return}
-  b=document.createElement('div');b.className='md';b.innerHTML=detailH(it);
-  if(it.team){if(it.rubs&&it.rubs.length){const l=document.createElement('div');l.className='mlist';it.rubs.forEach(r=>l.appendChild(rowEl(itemOf(r,it.m,false))));b.appendChild(l)}else b.insertAdjacentHTML('beforeend','<div class="nogd">個別試合データなし</div>')}
+// ===== surname-only display for katakana names (v4)
+const KR=(()=>{const t={};const add=(s,r)=>{const a=s.split(' '),b=r.split(' ');a.forEach((k,i)=>t[k]=b[i])};
+add('ア イ ウ エ オ カ キ ク ケ コ サ シ ス セ ソ タ チ ツ テ ト ナ ニ ヌ ネ ノ ハ ヒ フ ヘ ホ マ ミ ム メ モ ヤ ユ ヨ ラ リ ル レ ロ ワ ヲ ン','a i u e o ka ki ku ke ko sa shi su se so ta chi tsu te to na ni nu ne no ha hi fu he ho ma mi mu me mo ya yu yo ra ri ru re ro wa o n');
+add('ガ ギ グ ゲ ゴ ザ ジ ズ ゼ ゾ ダ ヂ ヅ デ ド バ ビ ブ ベ ボ パ ピ プ ペ ポ ヴ','ga gi gu ge go za ji zu ze zo da ji zu de do ba bi bu be bo pa pi pu pe po vu');
+add('ァ ィ ゥ ェ ォ ャ ュ ョ ヮ','a i u e o ya yu yo wa');return t})();
+function k2r(s){let o='';for(const c of s){if(c==='ッ'||c==='ー')continue;const r=KR[c];if(r==null)continue;
+ if(/[ャュョァィゥェォ]/.test(c)&&o){o=o.replace(/[iu]$/,'');o+=r.length>1?r.slice(-1).replace(/^/,r[0]==='y'?'y':'')+'':r;continue}o+=r}return o}
+function dice(a,b){a=a.toLowerCase().replace(/[^a-z]/g,'');b=b.toLowerCase().replace(/[^a-z]/g,'');if(!a||!b)return 0;const g=s=>{const m=new Map();for(let i=0;i<s.length-1;i++){const x=s.slice(i,i+2);m.set(x,(m.get(x)||0)+1)}return m};
+ const A=g(a),B=g(b);let n=0;A.forEach((v,k)=>{n+=Math.min(v,B.get(k)||0)});const t=Math.max(1,a.length-1+b.length-1);return 2*n/t+(a[0]===b[0]?.15:0)}
+const SNC={};
+function snInfo(n){if(SNC[n])return SNC[n];const base=strip(n);let r={sn:base,full:base,ini:''};
+ if(base.includes('・')&&/[ァ-ヶ]/.test(base)&&!/[\u4e00-\u9fff]/.test(base)){const K=base.split('・');const ro=romaOf(base)||'';const T=ro.split(/\s+/).filter(Boolean);
+  const isS=w=>/[A-Z]{2}/.test(w)&&w===w.toUpperCase();let S=T.filter(isS),G=T.filter(w=>!isS(w));
+  let part;if(!S.length||!G.length){part=[K[K.length-1]];r.ini=K[0][0]}
+  else{const s=Math.min(S.length,K.length-1),sur=S.join(''),giv=G.join('');
+   const a=dice(k2r(K.slice(-s).join('')),sur)+dice(k2r(K.slice(0,K.length-s).join('')),giv);
+   const b=dice(k2r(K.slice(0,s).join('')),sur)+dice(k2r(K.slice(s).join('')),giv);
+   if(b>a){part=K.slice(0,s);r.ini=K[s][0]}else{part=K.slice(-s);r.ini=K[0][0]}}
+  r.sn=part.join('・')}
+ return SNC[n]=r}
+const shortN=n=>snInfo(n).sn;
+function snSpan(n){const x=snInfo(n);return x.sn===x.full?esc(x.full):`<span class="sn" data-sn="${esc(x.sn)}" data-full="${esc(x.full)}" data-ini="${esc(x.ini)}" title="${esc(x.full)}${romaOf(x.full)?' / '+esc(romaOf(x.full)):''}">${esc(x.sn)}</span>`}
+let snT=0;function snPass(){snT=0;const roots=[...document.querySelectorAll('.mlist,#h2h,#r-body')].filter(e=>!e.parentElement.closest('.mlist'));
+ roots.forEach(R=>{const g=new Map();R.querySelectorAll('.sn').forEach(e=>{const k=e.dataset.sn;if(!g.has(k))g.set(k,new Set());g.get(k).add(e.dataset.full)});
+  R.querySelectorAll('.sn').forEach(e=>{const t=g.get(e.dataset.sn).size>1&&e.dataset.ini?`${e.dataset.sn}(${e.dataset.ini})`:e.dataset.sn;if(e.textContent!==t)e.textContent=t})})}
+new MutationObserver(()=>{if(!snT)snT=requestAnimationFrame(snPass)}).observe(document.documentElement,{childList:true,subtree:true});
+function hasJP(sp){return sp.ps.some(p=>p.c==='JPN')}
+function tieEmp(it){if(!it.m.lg)return [null,null];const rs=it.rubs||[];let l=0,r=0;rs.forEach(x=>{const ri=itemOf(x,it.m,it.fl);if(hasJP(ri.L))l=1;if(hasJP(ri.R))r=1});if(l&&r)return [null,null];return [l?1:0,r?1:0]}
+function rubNo(ri,idx){const m=(ri.m.rnd||'').match(/第(\d+)(試合|マッチ)/);const n=m?m[1]:String(idx+1);
+ const E0=E[ri.e];if(E0&&E0.lg&&(E0.c||'').startsWith('Tリーグ')&&m&&m[2]==='マッチ'&&n==='5')return 'VM';
+ const dbl=ri.L.ps.length>1||ri.R.ps.length>1||/ダブルス/.test(ri.m.sub||'');return (dbl?'W':'')+n}
+function scoreH(x,it){return x?`${x.a} - ${x.b}`:esc(it.sc||'—')}
+function rubEl(ri,idx){const d=document.createElement('div');d.className='mr rb';const x=scParts(ri.sc);
+ d.innerHTML=`<div class="rbg"><div class="rbn">${esc(rubNo(ri,idx))}</div><div class="mg">${sideH(ri.L,'L'+(ri.res===1?' win':''))}<div class="msc">${scoreH(x,ri)}${x&&x.note?`<small>${esc(x.note.slice(0,8))}</small>`:''}</div>${sideH(ri.R,'R'+(ri.res===0?' win':''))}</div></div>`;
+ d.addEventListener('click',ev=>{ev.stopPropagation();const inMd=ev.target.closest('.md');if(inMd){const pl=ev.target.closest('[data-pp]');if(pl)openPlayer(pl.dataset.pp);return}
+  let b=d.querySelector(':scope>.md');if(b){b.remove();return}b=document.createElement('div');b.className='md';b.innerHTML=detailH(ri,true);d.appendChild(b)});
+ return d}
+function winLeft(it){if(it.team||it.res!==0)return it;if(it.parent&&!(E[it.e]&&E[it.e].lg))return it;
+ const o=Object.assign({},it);o.L=it.R;o.R=it.L;const x=(it.sc||'').match(/^(\d+)-(\d+)(.*)$/);if(x)o.sc=x[2]+'-'+x[1]+x[3];
+ o.gd=it.gd?it.gd.split(',').map(g=>g.split('-').reverse().join('-')).join(','):'';o.res=1;o.swapped=1;return o}
+function rowEl(it){it=winLeft(it);const d=document.createElement('div');d.className='mr'+(it.team?' tie':'');const x=scParts(it.sc);
+ const fin=it.final?`<b class="fin">${esc(it.final.replace(/※.*$/,'').trim())}</b>`:'';
+ const [eL,eR]=it.team?tieEmp(it):[null,null];
+ d.innerHTML=`<div class="ml">${labelH(it)}${it.flag&&!it.team?'<b class="jj">日本対決</b>':''}${it.team?fin:''}</div><div class="mg">${sideH(it.L,'L'+(it.res===1?' win':''),eL)}<div class="msc">${scoreH(x,it)}${x&&x.note?`<small>${esc(x.note.slice(0,8))}</small>`:''}${it.team?'<small class="hint">▼</small>':''}</div>${sideH(it.R,'R'+(it.res===0?' win':''),eR)}</div>`;
+ d.addEventListener('click',ev=>{const own=ev.target.closest('.md,.rubl');if(own&&own.parentNode===d){const pl=ev.target.closest('[data-pp]');if(pl&&own.classList.contains('md')){ev.stopPropagation();openPlayer(pl.dataset.pp)}return}
+  if(ev.target.closest('.md,.rubl'))return;ev.stopPropagation();
+  let b=d.querySelector(':scope>.md,:scope>.rubl');if(b){b.remove();d.querySelector('.hint')&&(d.querySelector('.hint').textContent='▼');return}
+  if(it.team){b=document.createElement('div');b.className='rubl';
+   if(it.rubs&&it.rubs.length)it.rubs.forEach((r,k)=>b.appendChild(rubEl(itemOf(r,it.m,it.fl),k)));
+   else b.innerHTML=`<div class="nogd">個別試合データなし${x&&x.note?'（'+esc(x.note)+'）':''}</div>`;
+   const h=d.querySelector('.hint');if(h)h.textContent='▲'}
+  else{b=document.createElement('div');b.className='md';b.innerHTML=detailH(it)}
   d.appendChild(b)});
  return d}
 // ===== player page (overlay)
@@ -392,7 +454,7 @@ function drawPP(){const p=PP,s=PS[p];if(!s){$('pp-body').innerHTML='<div class="
   <h3>対戦成績（相手別）</h3><input type="text" id="h-q" placeholder="相手名で絞り込み"><div class="tablewrap"><table id="h2h"></table></div></div><div id="h2h-ms"></div>`;
   const H=Object.values(s.h2h).sort((a,b)=>(b.w+b.l)-(a.w+a.l)||b.w-a.w);
   const draw=()=>{const q=$('h-q').value.trim().toUpperCase();const rows=H.filter(h=>!q||h.opp.toUpperCase().includes(q)||romaOf(h.opp).toUpperCase().includes(q)).slice(0,200);
-   $('h2h').innerHTML=`<tr><th class="l">相手</th><th>国</th><th>勝</th><th>敗</th><th>勝率</th></tr>`+rows.map((h,i)=>`<tr><td class="l"><span class="link" data-k="${i}">${esc(strip(h.opp))}</span>${flagOf(h.opp)?'<span class="uv">漢字未確認</span>':''}${romaOf(h.opp)?`<span class="ro">${esc(romaOf(h.opp))}</span>`:''}</td><td>${flagIOC((h.nat||'').split('/')[0])}</td><td>${h.w}</td><td>${h.l}</td><td>${pct(h.w,h.w+h.l)}</td></tr>`).join('');
+   $('h2h').innerHTML=`<tr><th class="l">相手</th><th>国</th><th>勝</th><th>敗</th><th>勝率</th></tr>`+rows.map((h,i)=>`<tr><td class="l"><span class="link" data-k="${i}">${strip(h.opp).split('／').map(snSpan).join('／')}</span>${flagOf(h.opp)?'<span class="uv">漢字未確認</span>':''}${romaOf(h.opp)?`<span class="ro">${esc(romaOf(h.opp))}</span>`:''}</td><td>${flagIOC((h.nat||'').split('/')[0])}</td><td>${h.w}</td><td>${h.l}</td><td>${pct(h.w,h.w+h.l)}</td></tr>`).join('');
    $('h2h').querySelectorAll('.link').forEach(el=>el.onclick=()=>{const h=rows[+el.dataset.k];const nm=strip(h.opp).split('／');const L=IT.filter(i=>{const R=i.R.ps.map(x=>x.n);return nm.every(n=>R.includes(n))});
     const b=$('h2h-ms');b.innerHTML=`<div class="psum" style="font-weight:700">vs ${esc(strip(h.opp))}（${h.w}勝${h.l}敗）</div>`;const l=document.createElement('div');l.className='mlist';L.forEach(i=>l.appendChild(rowEl(i)));b.appendChild(l);b.scrollIntoView({behavior:'smooth'})})};
   $('h-q').oninput=draw;draw()}
@@ -426,7 +488,7 @@ function showPlayer(p){if(p&&PS[p]){openPlayer(p);return}$('p-body').innerHTML=p
  box.innerHTML=h;$('p-go').onclick=()=>{$('f-reset').onclick();$('f-player').value=p;apply();tab('matches')};
  const H=Object.values(s.h2h).sort((a,b)=>(b.w+b.l)-(a.w+a.l)||b.w-a.w);
  const draw=()=>{const q=$('h-q').value.trim().toUpperCase();const rows=H.filter(h=>!q||h.opp.toUpperCase().includes(q)||romaOf(h.opp).toUpperCase().includes(q)).slice(0,200);
-  $('h2h').innerHTML=`<tr><th class="l">相手</th><th>国</th><th>勝</th><th>敗</th><th>勝率</th></tr>`+rows.map((h,i)=>`<tr><td class="l"><span class="link" data-k="${i}" title="${esc(romaOf(h.opp))}">${esc(h.opp)}</span>${flagOf(h.opp)?'<span class="uv">漢字未確認</span>':''}${romaOf(h.opp)?`<span class="ro">${esc(romaOf(h.opp))}</span>`:''}</td><td>${esc(h.nat)}</td><td>${h.w}</td><td>${h.l}</td><td>${pct(h.w,h.w+h.l)}</td></tr>`).join('');
+  $('h2h').innerHTML=`<tr><th class="l">相手</th><th>国</th><th>勝</th><th>敗</th><th>勝率</th></tr>`+rows.map((h,i)=>`<tr><td class="l"><span class="link" data-k="${i}">${strip(h.opp).split('／').map(snSpan).join('／')}</span>${flagOf(h.opp)?'<span class="uv">漢字未確認</span>':''}${romaOf(h.opp)?`<span class="ro">${esc(romaOf(h.opp))}</span>`:''}</td><td>${esc(h.nat)}</td><td>${h.w}</td><td>${h.l}</td><td>${pct(h.w,h.w+h.l)}</td></tr>`).join('');
   $('h2h').querySelectorAll('.link').forEach(el=>el.onclick=()=>{const h=rows[+el.dataset.k];const box=$('h2h-ms');box.innerHTML=`<h3>${esc(p)} vs ${esc(h.opp)}（${h.w}勝${h.l}敗）</h3>`;
    [...new Set(h.ms)].sort((a,b)=>(b.date||'').localeCompare(a.date||'')).forEach(m=>{const e=E[m.e];const t=document.createElement('div');t.className='nogd';t.style.textAlign='left';t.textContent=`${e.y} ${e.n}`;box.appendChild(t);
     if(m.team){m.rubs.filter(r=>r.opp===h.opp&&jpPlayers(r.jp).includes(p)).forEach(r=>{const c=cardEl(r,true);box.appendChild(c)})}else box.appendChild(cardEl(m,false))});box.scrollIntoView({behavior:'smooth'})})};
@@ -445,7 +507,7 @@ function rank(){const k=$('r-sort').value,t=$('r-tier').value;
  if(k==='p')L=L.filter(x=>x.n>=30);
  const key={t:x=>[x.t,x.w],w:x=>[x.w,x.t],p:x=>[x.w/x.n,x.n],n:x=>[x.n,x.w]}[k];
  L.sort((a,b)=>{const A=key(a),B=key(b);return B[0]-A[0]||B[1]-A[1]});
- $('r-body').innerHTML=`<div class="nogd" style="text-align:left">${GL[RG]}ランキング（${L.length}人）。性別は出場種目（男子・女子種目）から判定。混合ダブルス・混合団体の成績も本人の性別側に計上。</div><table><tr><th>#</th><th class="l">選手</th><th>優勝</th><th>試合</th><th>勝</th><th>敗</th><th>勝率</th></tr>`+L.slice(0,300).map((x,i)=>`<tr><td>${i+1}</td><td class="l"><span class="link" data-p="${esc(x.p)}" title="${esc(romaOf(x.p))}">${esc(x.p)}</span>${flagOf(x.p)?'<span class="uv">漢字未確認</span>':''}<span class="ro">${esc(romaOf(x.p))}</span></td><td>${x.t}</td><td>${x.n}</td><td>${x.w}</td><td>${x.l}</td><td>${pct(x.w,x.n)}</td></tr>`).join('')+'</table>'+(k==='p'?'<div class="nogd">勝率は30試合以上の選手のみ</div>':'');
+ $('r-body').innerHTML=`<div class="nogd" style="text-align:left">${GL[RG]}ランキング（${L.length}人）。性別は出場種目（男子・女子種目）から判定。混合ダブルス・混合団体の成績も本人の性別側に計上。</div><table><tr><th>#</th><th class="l">選手</th><th>優勝</th><th>試合</th><th>勝</th><th>敗</th><th>勝率</th></tr>`+L.slice(0,300).map((x,i)=>`<tr><td>${i+1}</td><td class="l"><span class="link" data-p="${esc(x.p)}">${snSpan(x.p)}</span>${flagOf(x.p)?'<span class="uv">漢字未確認</span>':''}<span class="ro">${esc(romaOf(x.p))}</span></td><td>${x.t}</td><td>${x.n}</td><td>${x.w}</td><td>${x.l}</td><td>${pct(x.w,x.n)}</td></tr>`).join('')+'</table>'+(k==='p'?'<div class="nogd">勝率は30試合以上の選手のみ</div>':'');
  $('r-body').querySelectorAll('.link').forEach(el=>el.onclick=()=>openPlayer(el.dataset.p))}
 document.querySelectorAll('#r-g button').forEach(b=>b.onclick=()=>{RG=b.dataset.g;document.querySelectorAll('#r-g button').forEach(x=>x.classList.toggle('on',x===b));rank()});
 $('r-sort').onchange=rank;$('r-tier').onchange=rank;
