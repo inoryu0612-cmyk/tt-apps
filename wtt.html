@@ -13,7 +13,7 @@ header h1{font-size:16px;margin:0 0 8px;font-weight:700}
 .sec{margin:0 0 8px;border-color:rgba(255,255,255,.5)}.sec button{color:#fff;padding:4px 12px;font-size:13px}.sec button.on{background:#fff;color:#1f3f7f}
 .cov{font-size:12px}.cov td,.cov th{padding:3px 6px}
 .tabs{display:flex;gap:6px}
-.tab{flex:1;max-width:160px;background:rgba(255,255,255,.15);border:0;color:#fff;padding:8px 6px;border-radius:8px;font-size:14px;cursor:pointer}
+.tab{flex:1;max-width:160px;white-space:nowrap;background:rgba(255,255,255,.15);border:0;color:#fff;padding:8px 6px;border-radius:8px;font-size:14px;cursor:pointer}
 .tab.on{background:#fff;color:var(--acc2);font-weight:700}
 main{max-width:980px;margin:0 auto;padding:10px}
 .panel{background:var(--card);border-radius:12px;padding:10px;margin-bottom:10px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
@@ -92,6 +92,7 @@ h2{font-size:17px;margin:4px 0 8px}h3{font-size:14px;margin:12px 0 6px;color:var
 .uv{display:inline-block;font-size:9px;line-height:1.3;padding:0 3px;margin-left:3px;border:1px solid #d9a400;color:#8a6a00;border-radius:3px;vertical-align:middle;font-weight:400;white-space:nowrap}
 .seg{display:inline-flex;border:1px solid var(--line,#ccc);border-radius:8px;overflow:hidden}.seg button{border:0;background:transparent;padding:6px 14px;font-size:14px;cursor:pointer}.seg button.on{background:#1f5fbf;color:#fff}
 .clist{background:#fff;border-radius:10px;overflow:hidden;margin-top:6px;border:1px solid #e7e9ee}.crow{display:flex;align-items:center;gap:8px;padding:10px 12px;min-height:52px;border-top:1px solid #eef0f4;cursor:pointer}.crow:first-child{border-top:0}.crow:active{background:#eef4ff}.crow .cn{flex:1;min-width:0}.crow .nm{font-size:16px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.crow .nm.big{font-size:17px}.crow .ro{font-size:11px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.crow .cs{text-align:right;font-size:12px;color:var(--sub);white-space:nowrap}.crow .cs b{font-size:16px;color:var(--ink);margin-right:1px}.crow .cs small{font-size:11px}.chd{background:#f3f5f9;font-size:12px;font-weight:700;color:var(--sub);padding:5px 12px;border-top:1px solid #e7e9ee}.cbar{display:flex;align-items:center;gap:10px;margin-bottom:8px}.cbar .btn{padding:8px 12px;font-size:14px}.cbar .nm{font-size:19px;font-weight:700}#pc-g{display:flex;margin-bottom:4px}#pc-g button{flex:1;padding:9px 4px;font-size:14px}
+.tmf{display:flex;flex-wrap:wrap;gap:6px}.tmf label{flex:1 1 30%;min-width:0;font-size:12px;color:var(--sub);display:flex;flex-direction:column}.tmf label[hidden]{display:none}.tmf select{font-size:14px;padding:6px;width:100%}.tvs{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}.tvc{cursor:pointer;font-size:13px;padding:5px 10px;border:1px solid #d5dae3;background:#fff}.tvc.on{background:#2f6fd6;color:#fff;border-color:#2f6fd6}
 .plist{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.plist .chip{border:1px solid #ccd;border-radius:14px;padding:3px 10px;font-size:13px;cursor:pointer;background:#fff}.plist .chip small{color:var(--sub);font-size:10px;margin-left:4px}
 
 /* ===== compact rows (v3) ===== */
@@ -162,6 +163,7 @@ body{background:#eef1f5}
   <button class="tab on" data-tab="matches">試合</button>
   <button class="tab" data-tab="player">選手</button>
   <button class="tab" data-tab="rank">ランキング</button>
+  <button class="tab" data-tab="team">団体戦</button>
  </div>
 </header>
 <main>
@@ -191,6 +193,10 @@ body{background:#eef1f5}
 <section id="v-player" hidden>
  <div class="panel"><label style="font-size:12px;color:var(--sub)">選手検索（全選手・ローマ字可）<input type="search" id="p-input" list="plist" placeholder="選手名・ローマ字で検索" autocomplete="off"></label></div>
  <div id="p-list" class="panel"></div><div id="p-body"></div>
+</section>
+<section id="v-team" hidden>
+ <div class="panel"><div class="tmf"><label>種別<select id="tm-s"></select></label><label>年<select id="tm-y"></select></label><label>大会<select id="tm-e"></select></label><label class="tm-lg">リーグ<select id="tm-l"></select></label><label class="tm-lg">シーズン<select id="tm-z"></select></label><label class="tm-lg">チーム<select id="tm-c"></select></label></div></div>
+ <div id="tm-sum"></div><div id="tm-list"></div>
 </section>
 <section id="v-rank" hidden>
  <div class="panel row">
@@ -480,7 +486,7 @@ $('ftoggle').onclick=()=>{$('filters').classList.toggle('collapsed');$('ftoggle'
 $('f-openall').onclick=()=>{while(shown<VIEW.length)more();document.querySelectorAll('.tour').forEach(t=>t._open())};
 $('f-closeall').onclick=()=>document.querySelectorAll('.tour').forEach(t=>t._close());
 // ---------- tabs
-function tab(n){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===n));['matches','player','rank'].forEach(v=>$('v-'+v).hidden=v!==n);if(n==='rank')rank();window.scrollTo(0,0)}
+function tab(n){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===n));['matches','player','rank','team'].forEach(v=>$('v-'+v).hidden=v!==n);if(n==='rank')rank();if(n==='team'){tmFill();drawTeam()}window.scrollTo(0,0)}
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 // ---------- player page
 function pct(w,n){return n?(100*w/n).toFixed(1)+'%':'—'}
@@ -588,13 +594,71 @@ function rank(){const k=$('r-sort').value,t=$('r-tier').value,dbl=$('r-dbl').val
  $('r-body').querySelectorAll('.link').forEach(el=>el.onclick=()=>openPlayer(el.dataset.p))}
 document.querySelectorAll('#r-g button').forEach(b=>b.onclick=()=>{RG=b.dataset.g;document.querySelectorAll('#r-g button').forEach(x=>x.classList.toggle('on',x===b));rank()});
 $('r-sort').onchange=rank;$('r-tier').onchange=rank;['r-dbl','r-year','r-min','r-yth'].forEach(id=>$(id).onchange=rank);fillSel('r-year',[...new Set(E.map(e=>e.y))].sort((a,b)=>b-a).map(y=>[y,y+'年']),'全期間');
-function setSec(v){SEC=v;if(v==='league'&&$('r-sort').value==='t')$('r-sort').value='w';document.querySelectorAll('#sec button').forEach(b=>b.classList.toggle('on',b.dataset.s===v));rebuild();fillEvents();$('f-event').value='';apply();drawPlist();if(PP&&!$('pp').hidden){if(PS[PP]||String(PP).startsWith('F:'))drawPP();else $('pp-body').innerHTML='<div class="empty">この区分の試合はありません</div>'}if(!$('v-rank').hidden)rank()}
+function setSec(v){SEC=v;if(v==='league'&&$('r-sort').value==='t')$('r-sort').value='w';document.querySelectorAll('#sec button').forEach(b=>b.classList.toggle('on',b.dataset.s===v));rebuild();fillEvents();$('f-event').value='';apply();drawPlist();if(PP&&!$('pp').hidden){if(PS[PP]||String(PP).startsWith('F:'))drawPP();else $('pp-body').innerHTML='<div class="empty">この区分の試合はありません</div>'}if(!$('v-rank').hidden)rank();if(!$('v-team').hidden){TMF.n='';tmFill();drawTeam()}}
 document.querySelectorAll('#sec button').forEach(b=>b.onclick=()=>setSec(b.dataset.s));
+// ===== team tab (v6)
+const TSUB=[['男子団体','男子団体'],['女子団体','女子団体'],['混合団体','混合団体'],['男子リーグ戦','リーグ男子'],['女子リーグ戦','リーグ女子']];
+const seasonOf=e=>{const x=(e.n||'').match(/(\d{4}-\d{4})/);return x?x[1]:String(e.y)};
+let TMF={n:''},TMOPEN=null;
+function tmBase(){return M.filter(m=>m.team&&inSec(m.e))}
+function tmFill(){const B=tmBase();const keep=id=>$(id).value;const sv={s:keep('tm-s'),y:keep('tm-y'),e:keep('tm-e'),l:keep('tm-l'),z:keep('tm-z'),c:keep('tm-c')};
+ const subs=new Set(B.map(m=>m.sub));A.forEach(a=>{if(inSec(a.e)&&/団体/.test(a.sub))subs.add(a.sub)});
+ fillSel('tm-s',TSUB.filter(x=>subs.has(x[0])),'全種別');
+ const ys=[...new Set(B.map(m=>E[m.e].y).concat(A.filter(a=>inSec(a.e)&&/団体/.test(a.sub)).map(a=>E[a.e].y)))].sort((a,b)=>b-a);fillSel('tm-y',ys.map(y=>[y,y+'年']),'全期間');
+ const evs=[...new Set(B.filter(m=>!m.lg).map(m=>m.e).concat(A.filter(a=>inSec(a.e)&&/団体/.test(a.sub)&&!E[a.e].lg).map(a=>a.e)))].sort((a,b)=>(E[b].sk||'').localeCompare(E[a].sk||''));
+ fillSel('tm-e',evs.map(e=>[e,E[e].n]),'全大会');
+ const L=B.filter(m=>m.lg);const lgs=[...new Set(L.map(m=>E[m.e].c))].sort();fillSel('tm-l',lgs.map(c=>[c,c]),'全リーグ');
+ const ss=[...new Set(L.map(m=>seasonOf(E[m.e])))].sort().reverse();fillSel('tm-z',ss.map(s=>[s,s]),'全シーズン');
+ const cl=[...new Set(L.flatMap(m=>[m.jp,m.opp]).filter(c=>c&&c!=='不明'))].sort((a,b)=>a.localeCompare(b,'ja'));fillSel('tm-c',cl.map(c=>[c,c]),'全チーム');
+ Object.entries({s:'tm-s',y:'tm-y',e:'tm-e',l:'tm-l',z:'tm-z',c:'tm-c'}).forEach(([k,id])=>{if([...$(id).options].some(o=>o.value===sv[k]))$(id).value=sv[k]});
+ const hasI=B.some(m=>!m.lg)||SEC!=='league',hasL=L.length>0;document.querySelectorAll('.tm-lg').forEach(x=>x.hidden=!hasL);$('tm-e').parentNode.hidden=!hasI}
+function drawTeam(){const f={s:$('tm-s').value,y:$('tm-y').value,e:$('tm-e').value,l:$('tm-l').value,z:$('tm-z').value,c:$('tm-c').value,n:TMF.n};
+ const okE=(e,lg)=>{const E0=E[e];if(f.y&&String(E0.y)!==f.y)return false;if(lg){if(f.e)return false;if(f.l&&E0.c!==f.l)return false;if(f.z&&seasonOf(E0)!==f.z)return false}else{if(f.l||f.z||f.c)return false;if(f.e&&String(e)!==f.e)return false}return true};
+ const base=tmBase().filter(m=>(!f.s||m.sub===f.s)&&okE(m.e,m.lg));
+ const T=base.filter(m=>(!f.n||(!m.lg&&m.nat===f.n))&&(!f.c||m.jp===f.c||m.opp===f.c));
+ const RAs=A.filter(a=>inSec(a.e)&&/団体/.test(a.sub)&&(!f.s||a.sub===f.s)&&okE(a.e,E[a.e].lg)&&!M.some(m=>m.team&&m.e===a.e&&m.sub===a.sub));const RA=f.n||f.c?[]:A.filter(a=>inSec(a.e)&&/団体/.test(a.sub)&&(!f.s||a.sub===f.s)&&okE(a.e,E[a.e].lg)&&!M.some(m=>m.team&&m.e===a.e&&m.sub===a.sub));
+ // summary (intl)
+ const I=base.filter(m=>!m.lg&&!f.c);let sum='';
+ if(I.length||RAs.length){const cat={};const fin={};
+  I.forEach(m=>{const c=cat[m.sub]||(cat[m.sub]={w:0,l:0,g:0,s:0,b:0});if(!f.n||m.nat===f.n){if(m.res===1)c.w++;else if(m.res===0)c.l++}if(m.final)fin[m.e+'|'+m.sub]=m.final});
+  RAs.forEach(a=>{cat[a.sub]||(cat[a.sub]={w:0,l:0,g:0,s:0,b:0});fin[a.e+'|'+a.sub]=a.res});
+  Object.entries(fin).forEach(([k,v])=>{const c=cat[k.split('|')[1]];const md=medal(v);if(md==='gold')c.g++;else if(md==='silver')c.s++;else if(md==='bronze'&&/^3位/.test(v))c.b++});
+  const vs={};I.forEach(m=>{if(m.res!==0&&m.res!==1)return;const o=vs[m.nat]||(vs[m.nat]={w:0,l:0});m.res?o.w++:o.l++});
+  sum=`<div class="panel"><h3 style="margin:0 0 6px">日本の団体戦成績${f.n?'（対'+esc(cjN(f.n))+'）':''}</h3><div class="tablewrap"><table><tr><th class="l">種別</th><th>勝</th><th>敗</th><th>勝率</th><th>🥇</th><th>🥈</th><th>🥉</th></tr>${TSUB.filter(x=>cat[x[0]]).map(([k,l])=>{const c=cat[k];return `<tr><td class="l">${l}</td><td>${c.w}</td><td>${c.l}</td><td>${pct(c.w,c.w+c.l)}</td><td>${c.g}</td><td>${c.s}</td><td>${c.b}</td></tr>`}).join('')}</table></div>
+  <div class="nogd" style="text-align:left;margin-top:6px">国・地域別（日本から見た勝敗）・タップで絞り込み</div>${(()=>{const V=Object.entries(vs).sort((a,b)=>(b[1].w+b[1].l)-(a[1].w+a[1].l));const ch=([c,o])=>`<span class="chip tvc${f.n===c?' on':''}" data-n="${esc(c)}">${flagIOC(c)} 対${esc(cjN(c))} ${o.w}-${o.l}</span>`;return `<div class="tvs">${V.slice(0,8).map(ch).join('')}${f.n?'<span class="chip tvc" data-n="">✕ 解除</span>':''}</div>`+(V.length>8?`<details><summary style="font-size:12px;color:var(--sub)">ほか${V.length-8}か国・地域</summary><div class="tvs">${V.slice(8).map(ch).join('')}</div></details>`:'')})()}
+  <div class="nogd" style="text-align:left">メダルは各大会の最終成績（試合データのない大会の成績を含む${f.n?'。国で絞り込み中も全体の数':''}）。勝敗は団体戦の対戦（タイ）単位。</div></div>`}
+ // league clubs
+ const Lg=base.filter(m=>m.lg);
+ if(Lg.length){const cc={};Lg.forEach(m=>[m.jp,m.opp].forEach(c=>{if(!c||c==='不明')return;const o=cc[c]||(cc[c]={n:0,l:new Set(),p:new Set()});o.n++;o.l.add(evShort(E[m.e]));(m.rubs||[]).forEach(r=>{jpPlayers(r.jp).forEach(p=>c===m.jp&&o.p.add(p));jpPlayers(r.opp).forEach(p=>c===m.opp&&o.p.add(p))})}));
+  const CL=Object.entries(cc).sort((a,b)=>b[1].p.size-a[1].p.size||b[1].n-a[1].n);
+  sum+=`<details class="panel" id="tm-clubs"><summary><b>リーグのチーム（${CL.length}）</b>　<small style="color:var(--sub)">タップで一覧</small>${f.c?'　選択中：'+esc(f.c):''}</summary><div class="nogd" style="text-align:left">日本選手の所属チームを先に表示。タップでそのチームの対戦（日本選手出場分）</div><div class="clist">${(f.c?[[f.c,cc[f.c]||{n:0,l:new Set(),p:new Set()}]]:CL.slice(0,60)).map(([c,o])=>`<div class="crow tcl" data-c="${esc(c)}"><div class="cn"><div class="nm">${esc(c)}</div><div class="ro">${esc([...o.l].join('・'))}${o.p.size?'　日本選手: '+esc([...o.p].slice(0,4).join('、'))+(o.p.size>4?' 他':''):''}</div></div><div class="cs"><b>${o.n}</b>対戦</div></div>`).join('')}${f.c?'<div class="crow tcl" data-c=""><div class="cn"><div class="nm">✕ チーム選択を解除</div></div></div>':''}</div>${!f.c&&CL.length>60?`<div class="nogd">上位60チームを表示（他はチーム選択から）</div>`:''}</details>`}
+ $('tm-sum').innerHTML=sum;
+ $('tm-sum').querySelectorAll('.tvc').forEach(el=>el.onclick=()=>{TMF.n=TMF.n===el.dataset.n?'':el.dataset.n;drawTeam()});
+ $('tm-sum').querySelectorAll('.tcl').forEach(el=>el.onclick=()=>{$('tm-c').value=el.dataset.c;drawTeam()});
+ // groups by event
+ const G={};T.forEach(m=>{(G[m.e]||(G[m.e]={e:m.e,m:[],a:[]})).m.push(m)});RA.forEach(a=>{(G[a.e]||(G[a.e]={e:a.e,m:[],a:[]})).a.push(a)});
+ const GL2=Object.values(G).sort((a,b)=>(E[b.e].sk||'').localeCompare(E[a.e].sk||''));
+ const box=$('tm-list');box.innerHTML=GL2.length?'':'<div class="panel empty">該当する団体戦はありません</div>';
+ const many=f.n||f.c||f.e;
+ GL2.forEach((g,gi)=>{const e=E[g.e];const d=document.createElement('div');d.className='tour';
+  g.m.sort((x,y)=>(y.date||'').localeCompare(x.date||'')||y.rv-x.rv);
+  const fin={};g.m.forEach(m=>{if(m.final&&!m.lg)fin[m.sub]=m.final});g.a.forEach(a=>fin[a.sub]=a.res);
+  const chips=Object.entries(fin).sort((a,b)=>TSUB.findIndex(x=>x[0]===a[0])-TSUB.findIndex(x=>x[0]===b[0])).map(([s,v])=>`<span class="chip ${medal(v)}">${esc(s)}: ${esc(v)}</span>`).join('');
+  let wl='';if(e.lg){const sb=[...new Set(g.m.map(m=>m.sub.replace('リーグ戦','')))].join('・');wl=sb}
+  d.innerHTML=`<div class="th t${e.t+1}"><span class="arrow">▶</span><div class="nm">${flagE(e.hc)} ${esc(e.n)}</div><div class="inf">${esc(e.lg?seasonOf(e)+'シーズン｜'+wl:(e.d1&&e.d1!=='9999'?e.d1+'〜'+e.d2:e.y+'年'))}｜${g.m.length?g.m.length+'対戦':''}${g.a.length?'成績のみ':''}</div>${chips?`<div class="best">${chips}</div>`:''}</div><div class="tb"></div>`;
+  const tb=d.querySelector('.tb');let rd=0;
+  const render=()=>{const fr=document.createDocumentFragment();if(rd===0&&g.a.length){const w=document.createElement('div');w.innerHTML=g.a.map(resCard).join('')+'<div class="nogd">この大会の団体戦は試合単位の公式データがないため、最終成績のみ表示</div>';fr.appendChild(w)}
+   let ml=tb.querySelector(':scope>.mlist');if(!ml&&g.m.length){ml=document.createElement('div');ml.className='mlist';fr.appendChild(ml)}const n=Math.min(g.m.length,rd+40);for(let i=rd;i<n;i++)ml.appendChild(rowEl(itemOf(g.m[i],null,false)));
+   tb.querySelector('.more')?.remove();tb.appendChild(fr);rd=n;if(rd<g.m.length){const mb=document.createElement('div');mb.className='more';mb.innerHTML=`<button class="btn">さらに表示（残り${g.m.length-rd}対戦）</button>`;mb.firstChild.onclick=render;tb.appendChild(mb)}tb.dataset.r=1};
+  d.querySelector('.th').onclick=()=>{d.classList.toggle('open');if(d.classList.contains('open')&&!tb.dataset.r)render()};
+  if(gi<2||many&&gi<8){d.classList.add('open');render()}
+  box.appendChild(d)})}
+['tm-s','tm-y','tm-e','tm-l','tm-z','tm-c'].forEach(id=>$(id).onchange=drawTeam);
 function covHTML(){const C=D.COV;if(!C)return '';return `<details class="panel"><summary>リーグ戦の収録状況</summary><div class="tablewrap"><table class="cov"><tr><th class="l">リーグ</th><th>男女</th><th>シーズン</th><th>試合</th><th>ゲーム得点</th><th>日本対決</th><th>対戦数</th><th class="l">状況</th></tr>${C.cov.map(r=>`<tr><td class="l">${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td><td>${r[6]}</td><td class="l">${esc(r[7])}</td></tr>`).join('')}</table></div><ul style="font-size:12px;margin:6px 0 0;padding-left:18px">${C.gap.map(g=>`<li>${esc(g[0])}：${esc(g[3])}</li>`).join('')}</ul></details>`}
 // url hash for testing: #event=ID&player=X
 (function(){const h=new URLSearchParams(location.hash.slice(1));if(h.get('sec'))setSec(h.get('sec'));if(h.get('player'))$('f-player').value=h.get('player');if(h.get('event')){fillEvents();$('f-event').value=h.get('event')}apply();
  if(h.get('tab')==='player'&&h.get('c')){tab('player');openCountry(h.get('c'));if(h.get('fp'))openPlayer('F:'+h.get('fp'),h.get('pt')||'ms')}
- if(h.get('tab')==='player'&&h.get('player')){tab('player');openPlayer(h.get('player'),h.get('pt')||'ms')}if(h.get('tab')==='rank'){if(h.get('g'))RG=h.get('g');if(h.get('sort'))$('r-sort').value=h.get('sort');if(h.get('dbl'))$('r-dbl').value=h.get('dbl');if(h.get('yth'))$('r-yth').checked=true;document.querySelectorAll('#r-g button').forEach(x=>x.classList.toggle('on',x.dataset.g===RG));tab('rank')}})();
+ if(h.get('tab')==='player'&&h.get('player')){tab('player');openPlayer(h.get('player'),h.get('pt')||'ms')}if(h.get('tab')==='team'){tab('team');if(h.get('ts')){$('tm-s').value=h.get('ts');drawTeam()}}if(h.get('tab')==='rank'){if(h.get('g'))RG=h.get('g');if(h.get('sort'))$('r-sort').value=h.get('sort');if(h.get('dbl'))$('r-dbl').value=h.get('dbl');if(h.get('yth'))$('r-yth').checked=true;document.querySelectorAll('#r-g button').forEach(x=>x.classList.toggle('on',x.dataset.g===RG));tab('rank')}})();
 </script>
 </body>
 </html>
