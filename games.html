@@ -5,170 +5,192 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ゲームイベント予定</title>
 <style>
-:root{--bg:#fff;--ink:#1d2533;--sub:#6b7484;--line:#e2e6ec;--acc:#1f4e78;--chip:#eef2f7}
+:root{--ink:#1d2533;--sub:#6b7484;--line:#e2e6ec;--acc:#1f4e78;--red:#e03131}
 *{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.4}
-header{background:var(--acc);color:#fff;padding:10px 12px 8px;position:sticky;top:0;z-index:20}
-header h1{font-size:16px;margin:0;font-weight:700;display:flex;align-items:center;gap:8px}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;background:#fff;color:var(--ink);font-size:16px;line-height:1.45}
+header{background:var(--acc);color:#fff;padding:10px 12px 8px;position:sticky;top:0;z-index:30}
+header h1{font-size:17px;margin:0;font-weight:700;display:flex;align-items:center;gap:8px}
 header h1 small{font-weight:400;font-size:11px;opacity:.8;margin-left:auto}
 .tabs{display:flex;gap:6px;margin-top:8px}
-.tab{flex:1;background:rgba(255,255,255,.15);border:0;color:#fff;padding:7px 6px;border-radius:8px;font-size:14px;cursor:pointer}
+.tab{flex:1;background:rgba(255,255,255,.15);border:0;color:#fff;padding:8px 4px;border-radius:8px;font-size:15px;cursor:pointer}
 .tab.on{background:#fff;color:var(--acc);font-weight:700}
-.chips{display:flex;gap:6px;overflow-x:auto;padding:8px 10px;border-bottom:1px solid var(--line);background:#fff;position:sticky;top:84px;z-index:15;scrollbar-width:none}
-.chip{flex:none;border:1.5px solid var(--c);color:var(--c);background:#fff;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:8px 10px;border-bottom:1px solid var(--line);background:#fff;scrollbar-width:none}
+.chip{flex:none;border:1.5px solid var(--c);color:var(--c);background:#fff;border-radius:999px;padding:5px 11px;font-size:13px;font-weight:700;cursor:pointer}
 .chip.on{background:var(--c);color:#fff}
 .chip.pred{--c:#868e96;border-style:dashed}
-main{max-width:760px;margin:0 auto;padding:0 0 40px}
-h2{font-size:13px;margin:14px 12px 4px;color:var(--acc);display:flex;align-items:center;gap:6px}
-h2 .n{font-weight:400;color:var(--sub);font-size:12px}
-.row{display:flex;align-items:center;gap:8px;padding:7px 12px;border-bottom:1px solid var(--line);cursor:pointer;background:#fff}
-.row:active{background:#f4f6f9}
-.bar{width:4px;align-self:stretch;border-radius:2px;background:var(--c);flex:none}
-.body{flex:1;min-width:0}
-.ttl{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.meta{font-size:11.5px;color:var(--sub);display:flex;gap:6px;align-items:center;white-space:nowrap;overflow:hidden}
-.gt{color:var(--c);font-weight:700}
-.ty{background:var(--chip);border-radius:4px;padding:0 4px;font-size:10.5px}
-.cd{flex:none;font-size:12px;font-weight:700;color:#c92a2a;text-align:right;min-width:56px}
-.cd.up{color:var(--acc)}
-.cd small{display:block;font-weight:400;color:var(--sub);font-size:10px}
-.row.pr .ttl{color:#6b7484;font-weight:500}
-.row.pr .bar{background:repeating-linear-gradient(180deg,var(--c) 0 4px,transparent 4px 7px)}
-.badge{font-size:10px;border:1px dashed #868e96;color:#6b7484;border-radius:4px;padding:0 4px;flex:none}
-.empty{color:var(--sub);font-size:12px;padding:6px 12px}
-.foot{font-size:11px;color:var(--sub);padding:12px;line-height:1.6}
+main{max-width:760px;margin:0 auto;padding-bottom:30px}
+h2{font-size:16px;margin:16px 12px 6px;color:var(--acc)}
+h2 small{font-weight:400;color:var(--sub);font-size:12px;margin-left:4px}
+.card{display:flex;align-items:center;gap:10px;margin:0 10px 8px;padding:10px 12px;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:10px;cursor:pointer;background:#fff}
+.card.pr{border-style:dashed;border-left-style:dashed;background:#fafafa}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none;display:inline-block}
+.cb{flex:1;min-width:0}
+.cg{font-size:12.5px;font-weight:700;color:var(--c);display:flex;align-items:center;gap:5px}
+.ct{font-size:15.5px;font-weight:600;line-height:1.35;margin-top:1px}
+.card.pr .ct{color:#6b7484;font-weight:500}
+.cd2{font-size:12.5px;color:var(--sub);margin-top:2px}
+.big{flex:none;text-align:right;min-width:74px}
+.big b{display:block;font-size:22px;line-height:1.1;color:var(--acc)}
+.big b.r{color:var(--red)}
+.big span{font-size:11px;color:var(--sub)}
+.tag{font-size:11px;border:1px dashed #868e96;color:#6b7484;border-radius:4px;padding:0 4px;font-weight:400}
+.empty{color:var(--sub);font-size:14px;padding:4px 14px}
+.tl{overflow-x:auto;position:relative;-webkit-overflow-scrolling:touch}
+.tlin{position:relative}
+.axis{position:relative;z-index:12;background:#fff;border-bottom:1px solid var(--line);height:46px}
+.mlab{position:absolute;top:2px;font-size:12px;font-weight:700;color:var(--acc);white-space:nowrap;padding-left:3px;border-left:1px solid #adb5bd}
+.dlab{position:absolute;top:19px;font-size:12px;line-height:1.05;text-align:center;color:var(--ink);padding:1px 0}
+.dlab.su{color:#e03131}.dlab.sa{color:#1c7ed6}
+.dlab.td{background:var(--red);color:#fff;border-radius:6px;font-weight:700}
+.wkd{position:absolute;top:0;bottom:0;background:#f8f9fa}
+.vline{position:absolute;top:0;bottom:0;width:2px;background:var(--red);z-index:11;pointer-events:none}
+.gsec{position:relative;border-bottom:1px solid var(--line)}
+.ghead{position:relative;height:28px}
+.glab{position:sticky;left:0;display:inline-flex;align-items:center;gap:6px;height:24px;margin-top:4px;padding:0 12px 0 8px;background:var(--c);color:#fff;font-weight:700;font-size:14px;border-radius:0 12px 12px 0;z-index:9}
+.bar{position:absolute;height:22px;border-radius:5px;background:var(--c);color:#fff;font-size:12.5px;line-height:22px;padding:0 6px;white-space:nowrap;cursor:pointer;z-index:5;overflow:clip}
+.bar span{position:sticky;left:4px;font-weight:600}
+.bar.pr{background:repeating-linear-gradient(135deg,#f1f3f5 0 6px,#e9ecef 6px 12px);border:1.5px dashed #868e96;color:#495057;line-height:19px}
+.bar.lt{border-top-left-radius:0;border-bottom-left-radius:0}
+.lbl{position:absolute;white-space:nowrap;font-size:12.5px;line-height:22px;color:var(--ink);cursor:pointer;z-index:6;font-weight:600}
+.lbl.pr{color:#6b7484;font-weight:500}
+.dia{position:absolute;width:14px;height:14px;transform:rotate(45deg);background:var(--c);border:2px solid #fff;box-shadow:0 0 0 1px var(--c);cursor:pointer;z-index:7}
+.dia.pr{background:#fff;border:2px dashed #868e96;box-shadow:none}
+.dia.sm{width:10px;height:10px}
+.legend{font-size:12px;color:var(--sub);padding:6px 12px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.legend i{display:inline-block;vertical-align:middle;margin-right:3px}
+.todaybtn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:3px 10px;font-size:13px;margin-left:auto;cursor:pointer}
+.gl{margin:0 10px 6px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.gr{display:flex;gap:10px;padding:8px 12px;border-top:1px solid #f1f3f5;cursor:pointer;align-items:flex-start;border-left:4px solid var(--c)}
+.gr:first-child{border-top:0}
+.gr .dt{flex:none;width:96px;font-size:13px;color:var(--sub);line-height:1.35}
+.gr .dt b{color:var(--ink);font-size:14px}
+.gr .tt{flex:1;font-size:15px}
+.gr .tt small{display:block;font-size:12px;color:var(--sub)}
+.gr.past{opacity:.45}
+.gr.pr{border-left-style:dashed}.gr.pr .tt{color:#6b7484}
+.foot{font-size:12px;color:var(--sub);padding:14px 12px;line-height:1.6}
 .foot a{color:var(--acc)}
-/* calendar */
-.mnav{display:flex;align-items:center;justify-content:space-between;padding:8px 10px}
-.mnav b{font-size:15px}
-.mnav button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 12px;font-size:16px;cursor:pointer}
-.wd{display:grid;grid-template-columns:repeat(7,1fr);font-size:11px;color:var(--sub);text-align:center;border-bottom:1px solid var(--line)}
-.wd div:first-child{color:#c92a2a}.wd div:last-child{color:#1c7ed6}
-.week{position:relative;border-bottom:1px solid var(--line)}
-.days{display:grid;grid-template-columns:repeat(7,1fr)}
-.day{border-right:1px solid #f1f3f5;font-size:11px;padding:2px 3px;cursor:pointer}
-.day:last-child{border-right:0}
-.day.o{color:#ced4da}
-.day.t .dn{background:var(--acc);color:#fff;border-radius:50%;display:inline-block;width:18px;height:18px;text-align:center;line-height:18px}
-.day.sel{background:#e7f0fa}
-.more{position:absolute;font-size:9.5px;color:var(--sub);text-align:center}
-.cb{position:absolute;height:13px;font-size:9.5px;line-height:13px;color:#fff;background:var(--c);border-radius:3px;padding:0 3px;white-space:nowrap;overflow:hidden;text-overflow:clip;cursor:pointer}
-.cb.pr{background:#fff;color:#6b7484;border:1px dashed var(--c);line-height:11px}
-.cb.cl{border-top-left-radius:0;border-bottom-left-radius:0}.cb.cr{border-top-right-radius:0;border-bottom-right-radius:0}
-#daylist h2{margin-top:10px}
-/* sheet */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;z-index:50;align-items:flex-end;justify-content:center}
 .ov.show{display:flex}
 .sheet{background:#fff;width:100%;max-width:560px;border-radius:14px 14px 0 0;padding:14px 16px 22px;max-height:80vh;overflow:auto}
-.sheet .g{font-size:12px;font-weight:700;color:var(--c)}
-.sheet h3{margin:4px 0 8px;font-size:16px}
-.sheet table{font-size:13px;border-collapse:collapse;width:100%}
-.sheet td{padding:4px 0;vertical-align:top;border-bottom:1px solid #f1f3f5}
+.sheet .g{font-size:13px;font-weight:700;color:var(--c)}
+.sheet h3{margin:4px 0 8px;font-size:17px}
+.sheet table{font-size:14px;border-collapse:collapse;width:100%}
+.sheet td{padding:5px 0;vertical-align:top;border-bottom:1px solid #f1f3f5}
 .sheet td:first-child{color:var(--sub);width:72px;white-space:nowrap}
-.sheet a.src{display:block;margin-top:12px;text-align:center;background:var(--acc);color:#fff;border-radius:8px;padding:9px;text-decoration:none;font-weight:700}
-.sheet .x{float:right;border:0;background:none;font-size:20px;color:var(--sub);cursor:pointer}
+.sheet a.src{display:block;margin-top:12px;text-align:center;background:var(--acc);color:#fff;border-radius:8px;padding:10px;text-decoration:none;font-weight:700}
+.sheet .x{float:right;border:0;background:none;font-size:22px;color:var(--sub);cursor:pointer}
 .stat{font-weight:700}.stat.p{color:#6b7484}.stat.c{color:#2b8a3e}
 </style>
 </head>
 <body>
 <header>
   <h1>🎮 ゲームイベント予定 <small id="upd"></small></h1>
-  <div class="tabs"><button class="tab on" data-v="list">今日・今週・開催中</button><button class="tab" data-v="cal">カレンダー</button></div>
+  <div class="tabs"><button class="tab on" data-v="now">いま</button><button class="tab" data-v="tl">タイムライン</button><button class="tab" data-v="game">ゲーム別</button></div>
 </header>
 <div class="chips" id="chips"></div>
 <main>
-  <div id="list"></div>
-  <div id="cal" hidden>
-    <div class="mnav"><button id="prev">‹</button><b id="mt"></b><button id="next">›</button></div><div style="padding:0 10px 6px;display:flex;gap:6px;font-size:12px;align-items:center"><button class="chip on" id="major" style="--c:#1f4e78">主要のみ（バージョン・ガチャ・放送・コラボ）</button></div>
-    <div class="wd"><div>日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div>土</div></div>
-    <div id="grid"></div>
-    <div id="daylist"></div>
-  </div>
-  <div class="foot">時刻はすべて日本時間（JST）。鳴潮・スタレ・デナアビ・NTEはAsiaサーバー（鳴潮/スタレのサーバー時間はUTC+8＝JST−1時間、日次更新はJST 5:00）、パズドラは日本版。<br>点線・グレーは<b>予想</b>（通常周期からの推定、未発表）。正確な時刻はゲーム内告知で確認してください。<br>📅 カレンダー購読：<a href="games.ics">games.ics</a>（Googleカレンダー「URLで追加」/ iPhone「照会するカレンダーを追加」に<span id="icsurl"></span>を登録）<br><a href="index.html">← アプリ一覧へ</a></div>
+  <section id="v-now"></section>
+  <section id="v-tl" hidden>
+    <div class="legend"><span><i style="width:18px;height:10px;border-radius:3px;background:#1f4e78"></i>開催期間</span><span><i style="width:10px;height:10px;transform:rotate(45deg);background:#1f4e78"></i>アプデ・放送・更新</span><span><i style="width:18px;height:10px;border:1.5px dashed #868e96;background:#f1f3f5"></i>予想</span><button class="todaybtn" id="gotoday">今日へ</button></div>
+    <div class="tl" id="tlbox"></div>
+  </section>
+  <section id="v-game" hidden></section>
+  <div class="foot">時刻はすべて日本時間（JST）。鳴潮・スタレ・デナアビ・NTEはAsiaサーバー（鳴潮/スタレのサーバー時間はUTC+8＝JST−1時間、日次更新はJST 5:00）、パズドラは日本版。<br>点線・グレーは<b>予想</b>（通常周期からの推定、未発表）。正確な時刻はゲーム内告知で確認してください。<br>📅 カレンダー購読：<a href="games.ics">games.ics</a>（Googleカレンダー「URLで追加」/ iPhone「照会するカレンダーを追加」に https://inoryu0612-cmyk.github.io/tt-apps/games.ics を登録）<br><a href="index.html">← アプリ一覧へ</a></div>
 </main>
 <div class="ov" id="ov"><div class="sheet" id="sheet"></div></div>
 <script>
 const D={"meta": {"updated": "2026-10-11", "timezone": "Asia/Tokyo", "games": {"ww": {"name": "鳴潮", "color": "#0b8f8a", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, "hsr": {"name": "スタレ", "color": "#6741d9", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, "pad": {"name": "パズドラ", "color": "#e8590c", "server": "日本版（JST）"}, "dna": {"name": "デナアビ", "color": "#c2255c", "server": "Asiaサーバー（告知はJST表記）"}, "nte": {"name": "NTE", "color": "#1971c2", "server": "Asiaサーバー（告知はJST表記）"}}}, "events": [{"id": "ww-v37", "game": "鳴潮", "game_key": "ww", "title": "Ver.3.7「鏡に鎖す妄世、心で照らす紅塵」", "type": "version", "start": "2026-09-30T12:00:00+09:00", "end": "2026-11-12", "start_all_day": false, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/", "note": "9/30 5:00-12:00メンテ後に配信。期間は11/12のメンテナンス前まで。新エリア「夢枢天羅」、第四章第四幕。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-g37a", "game": "鳴潮", "game_key": "ww", "title": "前半ガチャ：心（新★5）／千咲・ユーノ復刻", "type": "gacha", "start": "2026-09-30T12:00:00+09:00", "end": "2026-10-22T10:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://game8.jp/meicho/816846", "note": "★5武器「玉殿に咲き満ちる玄華」。心=電導・増幅器（CV能登麻美子）。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-g37b", "game": "鳴潮", "game_key": "ww", "title": "後半ガチャ：鎖暝（新★5）／リンネー・ルシラー復刻", "type": "gacha", "start": "2026-10-22T11:00:00+09:00", "end": "2026-11-11", "start_all_day": false, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://game8.jp/meicho/816846", "note": "★5武器「沈冥」。鎖暝=電導・迅刀（CV大久保瑠美）。終了時刻はゲーム内告知で確認。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-e-dandan", "game": "鳴潮", "game_key": "ww", "title": "ミニイベント「勇者ダンダン大乱闘」", "type": "event", "start": "2026-09-30T12:00:00+09:00", "end": "2026-11-11", "start_all_day": false, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/", "note": "", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-e-hako", "game": "鳴潮", "game_key": "ww", "title": "エリア探索「匣の中の夢」", "type": "event", "start": "2026-09-30T12:00:00+09:00", "end": "2026-11-11", "start_all_day": false, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/", "note": "", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-login1", "game": "鳴潮", "game_key": "ww", "title": "7日間ログインボーナス「朝月のプレゼント」", "type": "login", "start": "2026-09-30T12:00:00+09:00", "end": "2026-11-11", "start_all_day": false, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/", "note": "", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-e-tenkou", "game": "鳴潮", "game_key": "ww", "title": "期間限定戦闘「天工の探し物」", "type": "event", "start": "2026-10-08T05:00:00+09:00", "end": "2026-10-26T04:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://x.com/WW_JP_Official/status/2107652130211549592", "note": "", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-e-gyogun", "game": "鳴潮", "game_key": "ww", "title": "WEBイベント「朝月の魚群」", "type": "event", "start": "2026-10-15", "end": "2026-11-01", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/", "note": "", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-e-musou", "game": "鳴潮", "game_key": "ww", "title": "ミニイベント「無音イレイサー」", "type": "event", "start": "2026-10-22", "end": "2026-11-09", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/", "note": "", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-login2", "game": "鳴潮", "game_key": "ww", "title": "ログボ「傍らに響く雨音のプレゼント」（金髄の波模様×10）", "type": "login", "start": "2026-10-22", "end": "2026-11-11", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://www.oricon.co.jp/pressrelease/3000605/", "note": "", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-e-shiosai", "game": "鳴潮", "game_key": "ww", "title": "探索依頼「潮騒探検・玄方地界」", "type": "event", "start": "2026-10-29", "end": "2026-11-11", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/", "note": "", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-live-stage", "game": "鳴潮", "game_key": "ww", "title": "「ソラリス・スターリーステージ Season 2」配信（YouTube）", "type": "live", "start": "2026-10-11T12:00:00+09:00", "end": null, "start_all_day": false, "end_all_day": null, "status": "confirmed", "confirmed": true, "source": "https://x.com/WW_JP_Official/status/2106640463188967787", "note": "二次創作特別番組。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-off-hw", "game": "鳴潮", "game_key": "ww", "title": "鳴潮 ハロウィン in 池袋 IKE・SUNPARK", "type": "offline", "start": "2026-10-31", "end": "2026-11-01", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://x.com/WW_JP_Official/status/2108512820731982168", "note": "企画詳細は後日公開予定。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-tower-1012", "game": "鳴潮", "game_key": "ww", "title": "逆境深塔 深層エリア シーズン更新", "type": "reset", "start": "2026-10-12T05:00:00+09:00", "end": null, "start_all_day": false, "end_all_day": null, "status": "confirmed", "confirmed": true, "source": "https://game8.jp/meicho/611841", "note": "前シーズン（9/14〜）は10/12 朝4:59まで。深層エリアの進捗・報酬がリセット。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-tower-1109", "game": "鳴潮", "game_key": "ww", "title": "逆境深塔 深層エリア 次回更新", "type": "reset", "start": "2026-11-09T05:00:00+09:00", "end": null, "start_all_day": false, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://game8.jp/meicho/611841", "note": "約4週間周期からの予想（9/14→10/12→11/9）。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-live38", "game": "鳴潮", "game_key": "ww", "title": "Ver.3.8 予告特別通信", "type": "live", "start": "2026-10-31", "end": null, "start_all_day": true, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://gamewith.jp/wutheringwaves/456100", "note": "日付未発表。Ver.3.7は配信11日前（9/19 20:00）に放送 → 10月末〜11月初め頃と予想。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-v38", "game": "鳴潮", "game_key": "ww", "title": "Ver.3.8 アップデート（メンテナンス）", "type": "version", "start": "2026-11-12", "end": null, "start_all_day": true, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/", "note": "Ver.3.7の期間が「11/12メンテナンス前まで」のため11/12配信の可能性が高い（公式の3.8日程は未発表）。新共鳴者「リリー」（回折・拳銃）のプレビューが公式Xで公開済み（実装時期は未発表）。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-g38b", "game": "鳴潮", "game_key": "ww", "title": "Ver.3.8 後半ガチャ切替", "type": "gacha", "start": "2026-12-03", "end": null, "start_all_day": true, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/", "note": "前半約3週間の通常周期からの予想。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "ww-v39", "game": "鳴潮", "game_key": "ww", "title": "次バージョン（3.8の次）", "type": "version", "start": "2026-12-24", "end": null, "start_all_day": true, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://mediadogs.jp/2026/09/30/wuthering-waves-ver37-update/", "note": "約6週間周期からの予想。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-v46", "game": "スタレ", "game_key": "hsr", "title": "Ver.4.6「月立つ前に獣と踊れ」", "type": "version", "start": "2026-09-28T12:00:00+09:00", "end": "2026-11-11T04:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://prtimes.jp/main/html/rd/p/000000451.000096124.html", "note": "今回は月曜アプデ。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-g-pearl", "game": "スタレ", "game_key": "hsr", "title": "跳躍「海より出づる真珠」パール（新★5・氷/愉悦）", "type": "gacha", "start": "2026-09-28T12:00:00+09:00", "end": "2026-11-10T16:00:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://prtimes.jp/main/html/rd/p/000000451.000096124.html", "note": "Ver.4.6期間中ずっと開催。光円錐「明日に捧げる色」。サーバー時間 11/10 15:00。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-g-hiei", "game": "スタレ", "game_key": "hsr", "title": "前半跳躍：緋英 復刻", "type": "gacha", "start": "2026-09-28T12:00:00+09:00", "end": "2026-10-21T12:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://prtimes.jp/main/html/rd/p/000000451.000096124.html", "note": "「花盛りの裁き手」。光円錐「再び花が咲く季節に」。サーバー時間 10/21 11:59。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-g-jin", "game": "スタレ", "game_key": "hsr", "title": "後半跳躍：千冶・刃 復刻", "type": "gacha", "start": "2026-10-21T13:00:00+09:00", "end": "2026-11-10T16:00:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://game8.jp/houkaistarrail/525736", "note": "光円錐「煉獄に焼かれし新身」。★4：青雀・雪衣・ミーシャ。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-e-ghost", "game": "スタレ", "game_key": "hsr", "title": "イベント「愛、幽霊とロボット」", "type": "event", "start": "2026-09-28T12:00:00+09:00", "end": "2026-11-11T04:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://prtimes.jp/main/html/rd/p/000000451.000096124.html", "note": "パズル系メインイベント（星玉）。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-login", "game": "スタレ", "game_key": "hsr", "title": "ログボ「巡星の礼」（星軌専用チケット×10）", "type": "login", "start": "2026-09-28T12:00:00+09:00", "end": "2026-11-10T04:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://prtimes.jp/main/html/rd/p/000000451.000096124.html", "note": "", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-2x", "game": "スタレ", "game_key": "hsr", "title": "次元界分裂（次元界オーナメント2倍）", "type": "event", "start": "2026-10-12T05:00:00+09:00", "end": "2026-10-25T04:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://x.com/houkaistarrail/status/2109116780467610037", "note": "サーバー時間 10/12 04:00〜10/25 03:59。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-yoko", "game": "スタレ", "game_key": "hsr", "title": "『崩壊：スターレイル』×横浜市 コラボ開始", "type": "collab", "start": "2026-10-31", "end": null, "start_all_day": true, "end_all_day": null, "status": "confirmed", "confirmed": true, "source": "https://x.com/houkaistarrail/status/2108754393306677582", "note": "詳細は10月下旬発表予定。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-fic-1026", "game": "スタレ", "game_key": "hsr", "title": "虚構叙事 シーズン更新", "type": "reset", "start": "2026-10-26T05:00:00+09:00", "end": null, "start_all_day": false, "end_all_day": null, "status": "confirmed", "confirmed": true, "source": "https://game8.jp/houkaistarrail/583174", "note": "現シーズン 9/14 5:00〜10/26 4:59。6週間周期。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-apoc-1012", "game": "スタレ", "game_key": "hsr", "title": "末日の幻影 シーズン更新", "type": "reset", "start": "2026-10-12T05:00:00+09:00", "end": null, "start_all_day": false, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://wikiwiki.jp/star-rail/%E6%9C%AB%E6%97%A5%E3%81%AE%E5%B9%BB%E5%BD%B1", "note": "末日→虚構→混沌が2週間おきに更新される周期からの予想。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-moc-1109", "game": "スタレ", "game_key": "hsr", "title": "忘却の庭（混沌の記憶）シーズン更新", "type": "reset", "start": "2026-11-09T05:00:00+09:00", "end": null, "start_all_day": false, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://wikiwiki.jp/star-rail/%E6%9C%AB%E6%97%A5%E3%81%AE%E5%B9%BB%E5%BD%B1", "note": "2週間ローテーション周期からの予想。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-apoc-1123", "game": "スタレ", "game_key": "hsr", "title": "末日の幻影 シーズン更新", "type": "reset", "start": "2026-11-23T05:00:00+09:00", "end": null, "start_all_day": false, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://wikiwiki.jp/star-rail/%E6%9C%AB%E6%97%A5%E3%81%AE%E5%B9%BB%E5%BD%B1", "note": "周期からの予想。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-live47", "game": "スタレ", "game_key": "hsr", "title": "Ver.4.7 予告番組", "type": "live", "start": "2026-10-30", "end": null, "start_all_day": true, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://gamewith.jp/houkaistarrail/article/show/402987", "note": "日付未発表。4.6は配信8日前（9/20 20:30）に放送 → 10月末〜11月初め頃と予想。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-v47", "game": "スタレ", "game_key": "hsr", "title": "Ver.4.7 アップデート（星神★アッハ実装予定）", "type": "version", "start": "2026-11-11", "end": null, "start_all_day": true, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://gamewith.jp/houkaistarrail/article/show/396229", "note": "4.6のガチャが11/10 16:00、イベントが11/11 4:59まで → 11/11配信と予想（公式日程は未発表）。星神★アッハの4.7実装は予告番組で発表済み。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "hsr-v48", "game": "スタレ", "game_key": "hsr", "title": "Ver.4.8 アップデート（ゼンゼロコラボ予定）", "type": "version", "start": "2026-12-23", "end": null, "start_all_day": true, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://gamewith.jp/houkaistarrail/article/show/402987", "note": "日付は6週間周期からの予想。ゼンゼロコラボ（エレン・ジョー、アストラ・ヤオ）が4.8で実施されることは発表済み。", "server": "Asiaサーバー（サーバー時間UTC+8・日次更新 JST5:00）"}, {"id": "pad-hw", "game": "パズドラ", "game_key": "pad", "title": "ハロウィンイベント（降臨・コロシアム・ログインスタンプ等）", "type": "event", "start": "2026-10-05T10:00:00+09:00", "end": "2026-10-31T23:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://pad.gungho.jp/member/event/halloween/2610/", "note": "仮装祭のリンシア降臨、ワングレン＆ベイツール降臨、ハロウィンコロシアム、「悪戯」称号チャレンジ、ハロウィンログインスタンプ。", "server": "日本版（JST）"}, {"id": "pad-hw-gacha", "game": "パズドラ", "game_key": "pad", "title": "ハロウィンガチャ／★7以上ハロウィンガチャ", "type": "gacha", "start": "2026-10-05T10:00:00+09:00", "end": "2026-10-31T23:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://pad.gungho.jp/member/event/halloween/2610/", "note": "", "server": "日本版（JST）"}, {"id": "pad-imo", "game": "パズドラ", "game_key": "pad", "title": "ミニゲーム「イモホリットの大収穫祭」", "type": "event", "start": "2026-10-05T10:00:00+09:00", "end": "2026-11-01T23:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://pad.gungho.jp/member/event/halloween/2610/game/", "note": "", "server": "日本版（JST）"}, {"id": "pad-hwq", "game": "パズドラ", "game_key": "pad", "title": "ハロウィンクエスト（魔法石など）", "type": "event", "start": "2026-09-29T20:00:00+09:00", "end": "2026-10-31T23:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://pad.gungho.jp/member/event/2609_2/", "note": "", "server": "日本版（JST）"}, {"id": "pad-exrush", "game": "パズドラ", "game_key": "pad", "title": "10月の決戦！EXラッシュ！", "type": "event", "start": "2026-10-03T12:00:00+09:00", "end": "2026-10-31T23:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://pad.gungho.jp/member/event/2609_2/", "note": "", "server": "日本版（JST）"}, {"id": "pad-pvp", "game": "パズドラ", "game_key": "pad", "title": "4人でガチ【対戦】シーズン10 2nd", "type": "event", "start": "2026-10-01T04:00:00+09:00", "end": "2026-11-01T03:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://pad.gungho.jp/member/event/2609_2/", "note": "オートマッチは10/1 12:00〜10/31 23:59。", "server": "日本版（JST）"}, {"id": "pad-godfes", "game": "パズドラ", "game_key": "pad", "title": "スーパーゴッドフェス（鳳凰機・Gフェニックス等）＋モンスター交換所", "type": "gacha", "start": "2026-10-09T12:00:00+09:00", "end": "2026-10-13T11:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://pad.gungho.jp/member/raregacha/godfes/2610/", "note": "魔法石10個。", "server": "日本版（JST）"}, {"id": "pad-fire", "game": "パズドラ", "game_key": "pad", "title": "レアガチャ ～ファイアカーニバル～", "type": "gacha", "start": "2026-10-09T12:00:00+09:00", "end": "2026-10-16T11:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://pad.gungho.jp/member/raregacha/fire/2610/", "note": "", "server": "日本版（JST）"}, {"id": "pad-carn-1016", "game": "パズドラ", "game_key": "pad", "title": "次のレアガチャ属性カーニバル", "type": "gacha", "start": "2026-10-16T12:00:00+09:00", "end": "2026-10-23T11:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "predicted", "confirmed": false, "source": "https://pad.gungho.jp/member/", "note": "毎週金曜12:00切替の通常周期からの予想（属性未発表）。", "server": "日本版（JST）"}, {"id": "pad-houou", "game": "パズドラ", "game_key": "pad", "title": "「鳳凰」チャレンジ！【制限時間60分】", "type": "event", "start": "2026-09-29T20:00:00+09:00", "end": "2026-10-25T23:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://pad.gungho.jp/member/dungeon/2609/", "note": "10/10 12:00〜緩和版フロアをステージダンジョンに追加。", "server": "日本版（JST）"}, {"id": "pad-trick", "game": "パズドラ", "game_key": "pad", "title": "2択！トリックオアトリート", "type": "event", "start": "2026-10-30T00:00:00+09:00", "end": "2026-10-31T23:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://pad.gungho.jp/member/event/halloween/2610/", "note": "", "server": "日本版（JST）"}, {"id": "pad-live-kyoto", "game": "パズドラ", "game_key": "pad", "title": "出張！パズドラ公式放送（京都会場・13:00〜放送）", "type": "live", "start": "2026-10-25T13:00:00+09:00", "end": "2026-10-25T18:00:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://pad.gungho.jp/member/live/2604/", "note": "会場 イオンモールKYOTO 12:00〜18:00予定。公式放送はYouTubeライブ。", "server": "日本版（JST）"}, {"id": "pad-live-tokyo", "game": "パズドラ", "game_key": "pad", "title": "出張！パズドラ公式放送（東京・池袋サンシャインシティ）", "type": "live", "start": "2026-12-20", "end": null, "start_all_day": true, "end_all_day": null, "status": "confirmed", "confirmed": true, "source": "https://pad.gungho.jp/member/live/2604/", "note": "", "server": "日本版（JST）"}, {"id": "dna-v16", "game": "デナアビ", "game_key": "dna", "title": "「22匹目の楽園の白ウサギ」バージョン", "type": "version", "start": "2026-09-08T16:00:00+09:00", "end": "2026-10-19T18:00:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://prtimes.jp/main/html/rd/p/000000041.000160794.html", "note": "新キャラ フォルス（火）、新エリア「アルカノの町」。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "dna-g-falsi", "game": "デナアビ", "game_key": "dna", "title": "限定万華「長き道の行く先」フォルス限定スキン「漆黒のアルテミス」", "type": "gacha", "start": "2026-09-08T16:00:00+09:00", "end": "2026-10-19T18:00:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://prtimes.jp/main/html/rd/p/000000041.000160794.html", "note": "", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "dna-g-shiryu", "game": "デナアビ", "game_key": "dna", "title": "復刻万華「語り尽くせぬ夜の宴」シリュウ限定スキン", "type": "gacha", "start": "2026-09-08T16:00:00+09:00", "end": "2026-10-19T18:00:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://prtimes.jp/main/html/rd/p/000000041.000160794.html", "note": "", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "dna-g-gensou", "game": "デナアビ", "game_key": "dna", "title": "スキンガチャ「幻想曲」（ゼンマイロイド・サイキ／ベレニカ）", "type": "gacha", "start": "2026-09-29", "end": "2026-11-09", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://game8.jp/duetnightabyss", "note": "", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "dna-login", "game": "デナアビ", "game_key": "dna", "title": "累計ログボ「罪人の帰途」", "type": "login", "start": "2026-09-08T16:00:00+09:00", "end": "2026-10-19T18:00:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://prtimes.jp/main/html/rd/p/000000041.000160794.html", "note": "", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "dna-e-fes", "game": "デナアビ", "game_key": "dna", "title": "フェスティバルガイド", "type": "event", "start": "2026-09-08T16:00:00+09:00", "end": "2026-10-19T18:00:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://game8.jp/duetnightabyss", "note": "", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "dna-e-irodori", "game": "デナアビ", "game_key": "dna", "title": "彩りの絵とき", "type": "event", "start": "2026-09-08T16:00:00+09:00", "end": "2026-10-19T18:00:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://prtimes.jp/main/html/rd/p/000000041.000160794.html", "note": "", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "dna-e-hihou", "game": "デナアビ", "game_key": "dna", "title": "秘宝探索演習", "type": "event", "start": "2026-09-08T16:00:00+09:00", "end": "2026-10-20", "start_all_day": false, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://game8.jp/duetnightabyss", "note": "", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "dna-e-gekijo", "game": "デナアビ", "game_key": "dna", "title": "体験型劇場・華麗なる共演", "type": "event", "start": "2026-09-17", "end": "2026-10-18", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://game8.jp/duetnightabyss", "note": "", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "dna-e-star", "game": "デナアビ", "game_key": "dna", "title": "スターメモリアルⅠ", "type": "event", "start": "2026-09-24", "end": "2026-10-11", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://game8.jp/duetnightabyss", "note": "", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "dna-e-kasuka", "game": "デナアビ", "game_key": "dna", "title": "かすかな秘蔵", "type": "event", "start": "2026-10-01", "end": "2026-10-13", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://game8.jp/duetnightabyss", "note": "", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "dna-e-kaidan", "game": "デナアビ", "game_key": "dna", "title": "月狩り人の階段", "type": "event", "start": "2026-10-07", "end": "2026-10-16", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://game8.jp/duetnightabyss", "note": "", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "dna-v-next", "game": "デナアビ", "game_key": "dna", "title": "次バージョン アップデート", "type": "version", "start": "2026-10-20", "end": null, "start_all_day": true, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://automaton-media.com/articles/interviewsjp/20260912-466954/", "note": "42日周期（9/8+42日）と現行万華の10/19 18:00終了からの予想。内容・日時は未発表。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "dna-anniv", "game": "デナアビ", "game_key": "dna", "title": "正式サービス1周年（2025/10/28リリース）", "type": "event", "start": "2026-10-28", "end": null, "start_all_day": true, "end_all_day": null, "status": "confirmed", "confirmed": true, "source": "https://prtimes.jp/main/html/rd/p/000000020.000160794.html", "note": "記念日。1周年記念施策の内容は未発表。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "dna-v-next2", "game": "デナアビ", "game_key": "dna", "title": "次々バージョン アップデート", "type": "version", "start": "2026-12-01", "end": null, "start_all_day": true, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://automaton-media.com/articles/interviewsjp/20260912-466954/", "note": "42日周期からの予想。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-v14", "game": "NTE", "game_key": "nte", "title": "Ver.1.4「名もなき祈歌」", "type": "version", "start": "2026-09-30T12:00:00+09:00", "end": "2026-11-11T06:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/", "note": "9/30 7:00-12:00メンテ後に配信。新エリア「プカランド」「セントアルボ村」。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-g-kurobane", "game": "NTE", "game_key": "nte", "title": "限定ボード「終局のオラクル」クロバネ（新Sランク・魂）", "type": "gacha", "start": "2026-09-30T12:00:00+09:00", "end": "2026-10-21T06:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/", "note": "弧盤研究「黒羽特別号」同時開催。CV能登麻美子。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-g-requiem", "game": "NTE", "game_key": "nte", "title": "限定ボード「永き夢の目覚め」レクイエム復刻", "type": "gacha", "start": "2026-09-30T12:00:00+09:00", "end": "2026-10-21T06:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/", "note": "", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-upd-1021", "game": "NTE", "game_key": "nte", "title": "Ver.1.4 後半アップデート", "type": "maintenance", "start": "2026-10-21", "end": null, "start_all_day": true, "end_all_day": null, "status": "confirmed", "confirmed": true, "source": "https://overworldgg.com/news/nte-ver1-4-kurobane/", "note": "メンテ時間は公式告知で確認。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-g-akane", "game": "NTE", "game_key": "nte", "title": "後半限定ボード：明音凛（新Sランク・相）", "type": "gacha", "start": "2026-10-21", "end": "2026-11-11T06:59:00+09:00", "start_all_day": true, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://overworldgg.com/news/nte-ver1-4-kurobane/", "note": "10/21アップデート後〜。CV長谷川育美。弧盤研募「日月星特別号」。ボード名は未確認。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-porsche", "game": "NTE", "game_key": "nte", "title": "Porscheコラボ第2弾「ファントムラン」＋第1弾復刻", "type": "collab", "start": "2026-09-30T12:00:00+09:00", "end": "2026-11-11T06:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/", "note": "", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-web", "game": "NTE", "game_key": "nte", "title": "Webイベント「クロバネの招待状」", "type": "event", "start": "2026-09-30T12:00:00+09:00", "end": "2026-11-11T06:59:00+09:00", "start_all_day": false, "end_all_day": false, "status": "confirmed", "confirmed": true, "source": "https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/", "note": "", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-e-puka", "game": "NTE", "game_key": "nte", "title": "Pukaland Travelogue（英語名・参考）", "type": "event", "start": "2026-09-30", "end": "2026-11-11", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://ntegame.net/ja/guides/version-1-4-preview/", "note": "予告番組のグローバル日程。日本語名・時刻はゲーム内で確認。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-e-stamina", "game": "NTE", "game_key": "nte", "title": "Stamina Recharge（英語名・参考）", "type": "event", "start": "2026-10-05", "end": "2026-10-19", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://ntegame.net/ja/guides/version-1-4-preview/", "note": "予告番組のグローバル日程。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-e-coal", "game": "NTE", "game_key": "nte", "title": "Coal Lump's Treasure（英語名・参考）", "type": "event", "start": "2026-10-08", "end": "2026-11-11", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://ntegame.net/ja/guides/version-1-4-preview/", "note": "予告番組のグローバル日程。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-e-rails", "game": "NTE", "game_key": "nte", "title": "Beyond the Rails: Sunset Circle（英語名・参考）", "type": "event", "start": "2026-10-08", "end": "2026-10-22", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://ntegame.net/ja/guides/version-1-4-preview/", "note": "予告番組のグローバル日程。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-e-pixel", "game": "NTE", "game_key": "nte", "title": "Pixel Surge（英語名・参考）", "type": "event", "start": "2026-10-19", "end": "2026-10-26", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://ntegame.net/ja/guides/version-1-4-preview/", "note": "予告番組のグローバル日程。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-e-snap", "game": "NTE", "game_key": "nte", "title": "Snap! Golden Crackshot（英語名・参考）", "type": "event", "start": "2026-10-21", "end": "2026-11-11", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://ntegame.net/ja/guides/version-1-4-preview/", "note": "予告番組のグローバル日程。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-e-gold", "game": "NTE", "game_key": "nte", "title": "Gold Crash（英語名・参考）", "type": "event", "start": "2026-10-26", "end": "2026-11-09", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://ntegame.net/ja/guides/version-1-4-preview/", "note": "予告番組のグローバル日程。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-e-flip", "game": "NTE", "game_key": "nte", "title": "Puka Lucky Flip（英語名・参考）", "type": "event", "start": "2026-10-29", "end": "2026-11-11", "start_all_day": true, "end_all_day": true, "status": "confirmed", "confirmed": true, "source": "https://ntegame.net/ja/guides/version-1-4-preview/", "note": "予告番組のグローバル日程。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-live15", "game": "NTE", "game_key": "nte", "title": "Ver.1.5 予告番組", "type": "live", "start": "2026-10-28", "end": null, "start_all_day": true, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://ntegame.net/ja/guides/version-1-4-preview/", "note": "日付未発表。1.4は配信2週間前（9/16）に放送 → 10月下旬と予想。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-v15", "game": "NTE", "game_key": "nte", "title": "Ver.1.5 アップデート", "type": "version", "start": "2026-11-11", "end": null, "start_all_day": true, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/", "note": "1.4の各ガチャ・イベントが11/11 6:59終了 → 11/11配信と予想（未発表）。", "server": "Asiaサーバー（告知はJST表記）"}, {"id": "nte-v16", "game": "NTE", "game_key": "nte", "title": "Ver.1.6 アップデート", "type": "version", "start": "2026-12-23", "end": null, "start_all_day": true, "end_all_day": null, "status": "predicted", "confirmed": false, "source": "https://www.iza.ne.jp/pressrelease/prtimes/PX2DWNBNLFNWXESIKX4KLTKGF4/", "note": "6週間周期からの予想。", "server": "Asiaサーバー（告知はJST表記）"}]};
-const G=D.meta.games, EV=D.events;
-document.getElementById('upd').textContent='更新 '+D.meta.updated;
-document.getElementById('icsurl').textContent=' '+new URL('games.ics',location.href).href.replace(/^http:\/\/(localhost|127\.0\.0\.1)[^/]*\//,'https://inoryu0612-cmyk.github.io/tt-apps/');
+const G=D.meta.games,EV=D.events,DAY=864e5,WD='日月火水木金土';
+const ICON={ww:'🌊',hsr:'🚂',pad:'🐉',dna:'🌙',nte:'🏙️'};
 const TY={version:'バージョン',gacha:'ガチャ',event:'イベント',login:'ログボ',maintenance:'メンテ',live:'生放送',reset:'更新',collab:'コラボ',offline:'リアル'};
-const WD='日月火水木金土';
-const DAY=864e5;
-// parse: date-only → JST midnight; end date-only → next day 00:00 (inclusive day)
+document.getElementById('upd').textContent='更新 '+D.meta.updated;
 function pd(s){return new Date(s.length===10?s+'T00:00:00+09:00':s)}
-EV.forEach(e=>{e.s=pd(e.start);e.e=e.end?(e.end_all_day?new Date(pd(e.end).getTime()+DAY):pd(e.end)):null;e.c=G[e.game_key].color;
-  e.sd=jd(e.s); e.ed=e.e?jd(new Date(e.e.getTime()-(e.end_all_day?DAY:0))):e.sd;});
-function jst(d){return new Date(d.getTime()+9*36e5)} // shifted for UTC getters
-function jd(d){const j=jst(d);return Date.UTC(j.getUTCFullYear(),j.getUTCMonth(),j.getUTCDate())/DAY} // JST day number
+function jst(d){return new Date(d.getTime()+9*36e5)}
+function jd(d){const j=jst(d);return Date.UTC(j.getUTCFullYear(),j.getUTCMonth(),j.getUTCDate())/DAY}
+EV.forEach(e=>{e.s=pd(e.start);e.e=e.end?(e.end_all_day?new Date(pd(e.end).getTime()+DAY):pd(e.end)):null;e.c=G[e.game_key].color;e.pr=e.status==='predicted';
+  e.sd=jd(e.s);e.ed=e.e?jd(new Date(e.e.getTime()-1)):e.sd;
+  e.point=!e.e||['version','live','reset','maintenance'].includes(e.type);});
 function fmt(d,allday){const j=jst(d);let s=(j.getUTCMonth()+1)+'/'+j.getUTCDate()+'('+WD[j.getUTCDay()]+')';if(!allday)s+=' '+j.getUTCHours()+':'+String(j.getUTCMinutes()).padStart(2,'0');return s}
-function range(e){let s=fmt(e.s,e.start_all_day);if(e.end){s+=' 〜 '+fmt(new Date(e.e.getTime()-(e.end_all_day?DAY:0)),e.end_all_day)}return s}
-function left(ms){if(ms<0)return'';const d=Math.floor(ms/DAY);if(d>=1)return'あと'+d+'日';const h=Math.floor(ms/36e5);if(h>=1)return'あと'+h+'時間';return'あと'+Math.max(1,Math.floor(ms/6e4))+'分'}
-function until(ms){const d=Math.floor(ms/DAY);if(d>=1)return d+'日後';const h=Math.floor(ms/36e5);return h>=1?h+'時間後':'まもなく'}
-let on=new Set(Object.keys(G)),showPred=true,view='list';
-// chips
+function endTxt(e){return fmt(new Date(e.e.getTime()-(e.end_all_day?DAY:0)),e.end_all_day)}
+function range(e){return fmt(e.s,e.start_all_day)+(e.end?' 〜 '+endTxt(e):'')}
+function cnt(ms){const d=Math.floor(ms/DAY);if(d>=1)return d+'日';const h=Math.floor(ms/36e5);if(h>=1)return h+'時間';return Math.max(1,Math.floor(ms/6e4))+'分'}
+let on=new Set(Object.keys(G)),showPred=true,view='now';
 const ch=document.getElementById('chips');
-for(const k in G){const b=document.createElement('button');b.className='chip on';b.style.setProperty('--c',G[k].color);b.textContent=G[k].name;b.onclick=()=>{on.has(k)?on.delete(k):on.add(k);b.classList.toggle('on');render()};ch.appendChild(b)}
+for(const k in G){const b=document.createElement('button');b.className='chip on';b.style.setProperty('--c',G[k].color);b.textContent=ICON[k]+' '+G[k].name;b.onclick=()=>{on.has(k)?on.delete(k):on.add(k);b.classList.toggle('on');render()};ch.appendChild(b)}
 const pb=document.createElement('button');pb.className='chip pred on';pb.textContent='予想を表示';pb.onclick=()=>{showPred=!showPred;pb.classList.toggle('on');render()};ch.appendChild(pb);
-function vis(){return EV.filter(e=>on.has(e.game_key)&&(showPred||e.status!=='predicted'))}
-function row(e,now,mode){
-  const pr=e.status==='predicted';let cd='',cls='cd';
-  if(e.s>now){cd=until(e.s-now)+'<small>開始</small>';cls+=' up'}
-  else if(e.e&&e.e>now){cd=left(e.e-now)+'<small>で終了</small>'}
-  else if(!e.e&&e.sd===jd(now)){cd='今日';cls+=' up'}
-  return `<div class="row${pr?' pr':''}" style="--c:${e.c}" data-id="${e.id}"><div class="bar"></div><div class="body"><div class="ttl">${e.title}</div><div class="meta"><span class="gt">${e.game}</span><span class="ty">${TY[e.type]||e.type}</span>${pr?'<span class="badge">予想</span>':''}<span>${range(e)}</span></div></div><div class="${cls}">${cd}</div></div>`}
-function sec(t,arr,now,empty){return `<h2>${t} <span class="n">${arr.length}件</span></h2>`+(arr.length?arr.map(e=>row(e,now)).join(''):`<div class="empty">${empty||'なし'}</div>`)}
-function renderList(){
-  const now=new Date(),td=jd(now),ev=vis();
-  const today=ev.filter(e=>e.sd===td||(e.e&&e.ed===td&&e.e>now));
-  const week=ev.filter(e=>!today.includes(e)&&((e.s>now&&e.sd<=td+7)||(e.e&&e.e>now&&e.ed<=td+7)));
-  const ongoing=ev.filter(e=>e.s<=now&&e.e&&e.e>now&&!today.includes(e)&&!week.includes(e)).sort((a,b)=>a.e-b.e);
-  const upcoming=ev.filter(e=>e.s>now&&e.sd>td+7).sort((a,b)=>a.s-b.s);
-  week.sort((a,b)=>Math.min(a.s>now?a.s:Infinity,a.e&&a.e>now?a.e:Infinity)-Math.min(b.s>now?b.s:Infinity,b.e&&b.e>now?b.e:Infinity));
-  document.getElementById('list').innerHTML=sec('📌 今日（開始・終了）',today,now)+sec('🗓 今週（7日以内に開始・終了）',week,now)+sec('🔥 開催中（上記以外・終了が近い順）',ongoing,now)+sec('⏭ これから（8日目以降）',upcoming,now);
+function vis(){return EV.filter(e=>on.has(e.game_key)&&(showPred||!e.pr))}
+function gtag(e){return `<span class="cg"><span class="dot"></span>${G[e.game_key].name}・${TY[e.type]||e.type}${e.pr?' <span class="tag">予想</span>':''}</span>`}
+function renderNow(){
+  const now=new Date(),ev=vis();
+  const doing=ev.filter(e=>e.e&&e.s<=now&&e.e>now&&e.type!=='version').sort((a,b)=>a.e-b.e);
+  const soon=ev.filter(e=>e.s>now&&e.s-now<=14*DAY).sort((a,b)=>a.s-b.s);
+  let h=`<h2>🔥 いまやること<small>終了が近い順・${doing.length}件</small></h2>`;
+  h+=doing.length?doing.map(e=>{const ms=e.e-now;return `<div class="card${e.pr?' pr':''}" style="--c:${e.c}" data-id="${e.id}"><div class="cb">${gtag(e)}<div class="ct">${e.title}</div><div class="cd2">終了 ${endTxt(e)}</div></div><div class="big"><span>あと</span><b class="${ms<=3*DAY?'r':''}">${cnt(ms)}</b></div></div>`}).join(''):'<div class="empty">なし</div>';
+  h+=`<h2>⏭ もうすぐ始まる<small>14日以内・${soon.length}件</small></h2>`;
+  h+=soon.length?soon.map(e=>`<div class="card${e.pr?' pr':''}" style="--c:${e.c}" data-id="${e.id}"><div class="cb">${gtag(e)}<div class="ct">${e.pr?'（予想）':''}${e.title}</div><div class="cd2">開始 ${fmt(e.s,e.start_all_day)}${e.end?' 〜 '+endTxt(e):''}</div></div><div class="big"><b>${cnt(e.s-now)}</b><span>後に開始</span></div></div>`).join(''):'<div class="empty">なし</div>';
+  document.getElementById('v-now').innerHTML=h;
 }
-let cm,cy,sel=null,major=true;const PRI={version:0,gacha:1,live:2,collab:2,maintenance:2,offline:3,reset:4,login:5,event:5};{const j=jst(new Date());cy=j.getUTCFullYear();cm=j.getUTCMonth()}
-function renderCal(){
-  document.getElementById('mt').textContent=cy+'年'+(cm+1)+'月';
-  const first=Date.UTC(cy,cm,1)/DAY,dow=new Date(first*DAY).getUTCDay(),start=first-dow;
-  const last=Date.UTC(cy,cm+1,0)/DAY,weeks=Math.ceil((last-start+1)/7),td=jd(new Date()),ev=vis().filter(e=>!major||PRI[e.type]<=2).sort((a,b)=>(PRI[a.type]-PRI[b.type])||a.sd-b.sd||(b.ed-b.sd)-(a.ed-a.sd));
-  const LANES=7,LH=15,TOP=18;let h='';
-  for(let w=0;w<weeks;w++){
-    const ws=start+w*7,we=ws+6;const lanes=[];const segs=[];const over=Array(7).fill(0);
-    for(const e of ev){if(e.ed<ws||e.sd>we)continue;const a=Math.max(e.sd,ws),b=Math.min(e.ed,we);
-      let l=0;while(lanes[l]&&lanes[l].some(x=>!(b<x[0]||a>x[1])))l++;
-      if(l>=LANES){for(let d=a;d<=b;d++)over[d-ws]++;continue}
-      (lanes[l]=lanes[l]||[]).push([a,b]);segs.push({e,a,b,l})}
-    const H=TOP+LANES*LH+14;
-    h+=`<div class="week" style="height:${H}px"><div class="days" style="height:100%">`;
-    for(let d=0;d<7;d++){const n=ws+d,dt=new Date(n*DAY),o=dt.getUTCMonth()!==cm;h+=`<div class="day${o?' o':''}${n===td?' t':''}${n===sel?' sel':''}" data-d="${n}"><span class="dn">${dt.getUTCDate()}</span></div>`}
-    h+='</div>';
-    for(const s of segs){const L=(s.a-ws)/7*100,W=(s.b-s.a+1)/7*100;const pr=s.e.status==='predicted';
-      h+=`<div class="cb${pr?' pr':''}${s.a>s.e.sd?' cl':''}${s.b<s.e.ed?' cr':''}" data-id="${s.e.id}" style="--c:${s.e.c};left:calc(${L}% + 1px);width:calc(${W}% - 2px);top:${TOP+s.l*LH}px">${s.a===s.e.sd||s.a===ws?s.e.title:''}</div>`}
-    over.forEach((c,d)=>{if(c)h+=`<div class="more" style="left:${d/7*100}%;width:${100/7}%;top:${TOP+LANES*LH-1}px">+${c}</div>`});
+const DW=30,LH=28,BACK=14;
+let tlFirst=true;
+function tw(t){let w=0;for(const c of t)w+=/[\x00-\x7f]/.test(c)?7.3:12.8;return w}
+function renderTL(){
+  const now=new Date(),td=jd(now),from=td-BACK,to=td+70,days=to-from+1,W=days*DW;
+  const x=d=>(d-from)*DW;
+  let ax='',bg='';
+  for(let d=from;d<=to;d++){const dt=new Date(d*DAY),wd=dt.getUTCDay(),md=dt.getUTCDate();
+    if(md===1||d===from)ax+=`<div class="mlab" style="left:${x(d)}px">${dt.getUTCFullYear()}年${dt.getUTCMonth()+1}月</div>`;
+    ax+=`<div class="dlab ${wd===0?'su':wd===6?'sa':''}${d===td?' td':''}" style="left:${x(d)+2}px;width:${DW-4}px">${md}<br><span style="font-size:10px">${WD[wd]}</span></div>`;
+    if(wd===0||wd===6)bg+=`<div class="wkd" style="left:${x(d)}px;width:${DW}px"></div>`;}
+  let body='';
+  for(const k in G){if(!on.has(k))continue;
+    const cur=vis().find(e=>e.game_key===k&&e.type==='version'&&e.e&&e.s<=now&&e.e>now);const curl=cur?(cur.title.match(/Ver\.[\d.]+/)||[cur.title.replace(/バージョン$/,'')])[0]+' 開催中（〜'+endTxt(cur).replace(/\(.\).*/,'')+'）':'';
+    const ev=vis().filter(e=>e.game_key===k&&e.ed>=from&&e.sd<=to&&!(e.point&&e.sd<td-3)).sort((a,b)=>(a.point-b.point)||a.sd-b.sd||(b.ed-b.sd)-(a.ed-a.sd));
+    const lanes=[];let items='';
+    for(const e of ev){
+      const txt=(e.pr?'（予想）':'')+e.title;let x1,x2,inside=false,a,b;
+      if(e.point){x1=x(e.sd)+DW/2-9;x2=x(e.sd)+DW/2+12+tw(txt)}
+      else{a=Math.max(x(e.sd),0);b=x(e.ed)+DW;const va=Math.max(a,x(td)-3*DW);inside=tw(txt)+14<=b-va;x1=a;x2=inside?b:b+4+tw(txt)}
+      let l=0;while(lanes[l]&&lanes[l].some(r=>!(x2+6<=r[0]||x1>=r[1]+6)))l++;(lanes[l]=lanes[l]||[]).push([x1,x2]);
+      const top=28+l*LH+3;
+      if(e.point){const sm=e.type==='reset';items+=`<div class="dia${e.pr?' pr':''}${sm?' sm':''}" style="--c:${e.c};left:${x(e.sd)+DW/2-(sm?5:7)}px;top:${top+(sm?6:4)}px" data-id="${e.id}"></div><div class="lbl${e.pr?' pr':''}" style="left:${x(e.sd)+DW/2+12}px;top:${top}px" data-id="${e.id}">${txt}</div>`}
+      else{items+=`<div class="bar${e.pr?' pr':''}${e.sd<from?' lt':''}" style="--c:${e.c};left:${a}px;width:${b-a-2}px;top:${top}px" data-id="${e.id}">${inside?'<span>'+txt+'</span>':''}</div>`;
+        if(!inside)items+=`<div class="lbl${e.pr?' pr':''}" style="left:${b+3}px;top:${top}px" data-id="${e.id}">${txt}</div>`}
+    }
+    const H=28+Math.max(1,lanes.length)*LH+8;
+    body+=`<div class="gsec" style="--c:${G[k].color};height:${H}px;width:${W}px"><div class="ghead"><span class="glab">${ICON[k]} ${G[k].name}${curl?'<span style="font-weight:400;font-size:12.5px;opacity:.95">｜'+curl+'</span>':''}</span></div>${items}</div>`;
+  }
+  const el=document.getElementById('tlbox'),sl=el.scrollLeft;
+  const nowx=x(td)+((now-new Date(td*DAY-9*36e5))/DAY)*DW;
+  el.innerHTML=`<div class="tlin" style="width:${W}px"><div class="axis">${ax}</div><div style="position:relative">${bg}${body}<div class="vline" style="left:${nowx-1}px"></div></div></div>`;
+  if(tlFirst){el.scrollLeft=x(td)-DW*3;tlFirst=false}else el.scrollLeft=sl;
+}
+document.getElementById('gotoday').onclick=()=>document.getElementById('tlbox').scrollTo({left:(BACK-3)*DW,behavior:'smooth'});
+function renderGame(){
+  const now=new Date();let h='';
+  for(const k in G){if(!on.has(k))continue;const ev=vis().filter(e=>e.game_key===k).sort((a,b)=>a.s-b.s||a.e-b.e);
+    h+=`<h2 style="color:${G[k].color}">${ICON[k]} ${G[k].name}<small>${G[k].server}</small></h2><div class="gl" style="--c:${G[k].color}">`;
+    h+=ev.map(e=>{const past=e.e?e.e<=now:e.sd<jd(now);let st;if(e.s>now)st=cnt(e.s-now)+'後に開始';else if(e.e&&e.e>now)st='開催中・あと'+cnt(e.e-now);else if(past)st='終了';else st='今日';
+      return `<div class="gr${past?' past':''}${e.pr?' pr':''}" data-id="${e.id}"><div class="dt"><b>${fmt(e.s,e.start_all_day)}</b>${e.end?'<br>〜'+endTxt(e):''}</div><div class="tt">${e.pr?'<span class="tag">予想</span> ':''}${e.title}<small>${TY[e.type]||e.type}・${st}</small></div></div>`}).join('');
     h+='</div>'}
-  document.getElementById('grid').innerHTML=h;
-  const dl=document.getElementById('daylist');
-  if(sel!==null){const now=new Date(),arr=vis().filter(e=>e.sd<=sel&&e.ed>=sel).sort((a,b)=>a.s-b.s);const dt=new Date(sel*DAY);
-    dl.innerHTML=sec((dt.getUTCMonth()+1)+'/'+dt.getUTCDate()+'('+WD[dt.getUTCDay()]+') の予定',arr,now)}else dl.innerHTML='<div class="empty">日付をタップするとその日の予定一覧を表示します。</div>';
+  document.getElementById('v-game').innerHTML=h||'<div class="empty">ゲームが選択されていません</div>';
 }
-function render(){view==='list'?renderList():renderCal()}
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');view=t.dataset.v;document.getElementById('list').hidden=view!=='list';document.getElementById('cal').hidden=view!=='cal';render()});
-document.getElementById('major').onclick=function(){major=!major;this.classList.toggle('on');renderCal()};
-document.getElementById('prev').onclick=()=>{cm--;if(cm<0){cm=11;cy--}render()};
-document.getElementById('next').onclick=()=>{cm++;if(cm>11){cm=0;cy++}render()};
-document.body.addEventListener('click',ev=>{const r=ev.target.closest('[data-id]');if(r){show(r.dataset.id);return}const d=ev.target.closest('[data-d]');if(d){sel=+d.dataset.d;renderCal()}});
-function show(id){const e=EV.find(x=>x.id===id),pr=e.status==='predicted';const s=document.getElementById('sheet');s.style.setProperty('--c',e.c);
-  s.innerHTML=`<button class="x" onclick="hide()">×</button><div class="g">${e.game}・${TY[e.type]||e.type}</div><h3>${pr?'（予想）':''}${e.title}</h3><table>
+function render(){({now:renderNow,tl:renderTL,game:renderGame})[view]()}
+function setView(v){view=v;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.v===v));for(const s of['now','tl','game'])document.getElementById('v-'+s).hidden=s!==v;render()}
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>setView(t.dataset.v));
+document.body.addEventListener('click',ev=>{const r=ev.target.closest('[data-id]');if(r)show(r.dataset.id)});
+function show(id){const e=EV.find(x=>x.id===id),n=new Date();const s=document.getElementById('sheet');s.style.setProperty('--c',e.c);
+  s.innerHTML=`<button class="x" onclick="hide()">×</button><div class="g">${G[e.game_key].name}・${TY[e.type]||e.type}</div><h3>${e.pr?'（予想）':''}${e.title}</h3><table>
   <tr><td>期間</td><td>${range(e)}（JST）</td></tr>
-  <tr><td>状態</td><td><span class="stat ${pr?'p':'c'}">${pr?'予想（未発表・周期からの推定）':'確定（公式/攻略サイト発表）'}</span></td></tr>
-  <tr><td>残り</td><td>${(()=>{const n=new Date();return e.s>n?until(e.s-n)+'に開始':(e.e&&e.e>n?left(e.e-n)+'で終了':(e.e?'終了済み':'—'))})()}</td></tr>
+  <tr><td>状態</td><td><span class="stat ${e.pr?'p':'c'}">${e.pr?'予想（未発表・周期からの推定）':'確定（公式/攻略サイト発表）'}</span></td></tr>
+  <tr><td>残り</td><td>${e.s>n?cnt(e.s-n)+'後に開始':(e.e&&e.e>n?'あと'+cnt(e.e-n)+'で終了':(e.e?'終了済み':'—'))}</td></tr>
   <tr><td>サーバー</td><td>${e.server}</td></tr>${e.note?`<tr><td>メモ</td><td>${e.note}</td></tr>`:''}</table>
   <a class="src" href="${e.source}" target="_blank" rel="noopener">出典を開く ↗</a>`;
   document.getElementById('ov').classList.add('show')}
 function hide(){document.getElementById('ov').classList.remove('show')}
 document.getElementById('ov').addEventListener('click',e=>{if(e.target.id==='ov')hide()});
-if(location.hash==="#cal")document.querySelector('.tab[data-v=cal]').click();else render();setInterval(()=>{if(view==='list')renderList()},60000);
+setView({'#tl':'tl','#game':'game'}[location.hash]||'now');
+setInterval(()=>{if(view!=='tl')render()},60000);
 </script>
 </body>
 </html>
