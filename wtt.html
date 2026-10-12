@@ -101,6 +101,7 @@ h2{font-size:17px;margin:4px 0 8px}h3{font-size:14px;margin:12px 0 6px;color:var
 .tmcount{font-size:11px;color:#8b919b;margin:2px 2px 0}
 #tv-body .mr.tie .mem{display:none}#tv-body .mr.tie>.ml .fin{display:none}
 #tv{position:fixed;inset:0;background:#eef1f5;z-index:55;overflow-y:auto;-webkit-overflow-scrolling:touch}#tv-body{max-width:760px;margin:0 auto;padding:8px}#tv-tabs[hidden]{display:none}
+.tgl{background:#fff;border-radius:8px;overflow:hidden;margin-top:4px}.tgr{border-bottom:1px solid #edf0f4}.tgh{display:flex;align-items:center;padding:7px 10px;cursor:pointer}.tgh:active{background:#f3f6fb}.tgr.op>.tgh{background:#eef4fc}.tgb{padding:2px 4px 6px;background:#f6f8fb}.tgb[hidden]{display:none}.tgsum{font-size:12.5px;color:#33475b;margin:6px 2px;line-height:1.5}.tgsum b{font-size:14px}.mr.rb.hl{background:#fff6d6;box-shadow:inset 3px 0 0 #f0b400}.tmch{position:static!important;background:transparent!important;border:0!important;padding:4px 0!important}.tmch button.on{background:#1f5fbf;color:#fff;border-color:#1f5fbf}.tmpl{font-size:12px;color:#7a828e;margin:2px 2px 0}
 .tvl{background:#fff;border-radius:8px;overflow:hidden}.tvr{display:flex;align-items:center;padding:7px 10px;border-bottom:1px solid #edf0f4;cursor:pointer}.tvr:active{background:#f3f6fb}.tvm{flex:1;min-width:0}.tvn{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tvs{font-size:11.5px;color:#7a828e;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tvc{color:#b0b7c2;font-size:20px;padding-left:8px}
 .mr.tres{cursor:default}.mr.tres .msc.tr b{font-size:14px}.mr.tres .msc.tr b.gold{color:#b8860b}.mr.tres .msc.tr b.silver{color:#6b7280}.mr.tres .msc.tr b.bronze{color:#a0522d}.mr.tres .rline{font-size:13px;display:flex;align-items:baseline;justify-content:center;gap:3px;flex-wrap:wrap}.mr.tres .rr{font-size:11px;color:#8b919b}.mr.tres .rline .pn{font-size:14px}.mr.tres .rline .fl{font-size:13px}
 .th.t5{border-left-color:#0f7fa8}.lgties{display:flex;flex-direction:column;gap:1px;margin-top:4px;font-size:12px;color:#4b5563}.lgties b{font-variant-numeric:tabular-nums}.lgties i{font-style:normal;color:#8b919b;font-size:11px}.ms .mem.cb{font-size:10px;color:#8b919b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -231,7 +232,8 @@ body{background:#eef1f5}
  <div id="p-list" class="panel"></div><div id="p-body"></div>
 </section>
 <section id="v-team" hidden>
- <div class="tmf" id="tmf-i"><select id="tm-s"></select><select id="tm-y"></select><select id="tm-n"></select></div>
+ <div class="tmpl" id="tm-pl"></div><div class="ych tmch" id="tm-cc"></div><div class="ych tmch" id="tm-yc"></div>
+ <div class="tmf" id="tmf-i"><select id="tm-s"></select><select id="tm-y" style="display:none"></select><select id="tm-n"></select></div>
  <div class="tmf" id="tmf-l"><select id="tm-l"></select><select id="tm-z"></select><select id="tm-c"></select></div>
  <div id="tm-sum"></div><div id="tm-list"></div>
 </section>
@@ -251,7 +253,7 @@ body{background:#eef1f5}
 <datalist id="plist"></datalist>
 <div id="tv" hidden><div class="pbar"><button id="tv-back">‹ 戻る</button><div class="pt" id="tv-name"></div><span></span></div><div class="ptabs" id="tv-tabs"></div><div id="tv-body"></div></div>
 <div id="pp" hidden><div class="pbar"><button id="pp-back">‹ 戻る</button><div class="pt" id="pp-name"></div><span></span></div>
-<div class="ptabs"><div class="pg"><button data-pt="info">ⓘ 情報</button><button data-pt="ms" class="on">🏓 試合(<span id="pp-n">0</span>)</button><button data-pt="st">📊 成績・集計</button><button data-pt="rec">🏆 優勝・記録</button></div></div>
+<div class="ptabs"><div class="pg"><button data-pt="info">ⓘ 情報</button><button data-pt="ms" class="on">🏓 試合(<span id="pp-n">0</span>)</button><button data-pt="st">📊 成績・集計</button><button data-pt="rec">🏆 優勝・記録</button><button data-pt="tm">👥 団体戦</button></div></div>
 <div id="pp-body"></div></div>
 <div class="foot">出典: WTT公式記録（worldtabletennis.com の大会結果データ）。アジア競技大会・アジア選手権・アジアカップは試合データがないため、Wikipedia・国内報道で確認したベスト4以上の成績のみ表示。個人戦は勝者を左に表示、団体戦は対象チーム（日本＞中国＞注目選手の国）を左に表示。対象選手：日本選手全員・中国選手全員（シニア＋U19）・注目海外選手（A.ルブラン、F.ルブラン、モレゴード、カルデラノ、林昀儒、ファラジ）。データは2026-10-11 JST時点。</div>
 </main>
@@ -489,7 +491,7 @@ function rubNo(ri,idx){const m=(ri.m.rnd||'').match(/第(\d+)(試合|マッチ)/
  const E0=E[ri.e];if(E0&&E0.lg&&(E0.c||'').startsWith('Tリーグ')&&m&&m[2]==='マッチ'&&n==='5')return 'VM';
  const dbl=ri.L.ps.length>1||ri.R.ps.length>1||/ダブルス/.test(ri.m.sub||'');return (dbl?'W':'')+n}
 function scoreH(x,it){return x?`${x.a} - ${x.b}`:esc(it.sc||'—')}
-function rubEl(ri,idx){const d=document.createElement('div');d.className='mr rb';const x=scParts(ri.sc);
+function rubEl(ri,idx){const d=document.createElement('div');d.className='mr rb';d.dataset.pn='|'+ri.L.ps.concat(ri.R.ps).map(x=>strip(x.n)).join('|')+'|';const x=scParts(ri.sc);
  d.innerHTML=`<div class="rbg"><div class="rbn">${esc(rubNo(ri,idx))}${UTAG(ri.m)}${WOT(ri)}</div><div class="mg">${sideH(ri.L,'L'+(ri.res===1||ri.res===3?' win':''))}<div class="msc">${scoreH(x,ri)}${x&&x.note?`<small>${esc(x.note.slice(0,8))}</small>`:''}</div>${sideH(ri.R,'R'+(ri.res===0||ri.res===4?' win':''))}</div></div>`;
  d.addEventListener('click',ev=>{ev.stopPropagation();const inMd=ev.target.closest('.md');if(inMd){const pl=ev.target.closest('[data-pp]');if(pl)openPlayer(pl.dataset.pp);return}
   let b=d.querySelector(':scope>.md');if(b){b.remove();return}b=document.createElement('div');b.className='md';b.innerHTML=detailH(ri,true);d.appendChild(b)});
@@ -526,15 +528,16 @@ document.addEventListener('click',ev=>{const a=ev.target.closest('.mr [data-pp],
 let TMJ=[];
 function teamJump(v){const st={tab:[...document.querySelectorAll('.tab')].find(b=>b.classList.contains('on')).dataset.tab,tv:$('tv').hidden?null:TVO,pp:$('pp').hidden?null:PP,f:{}};['tm-s','tm-y','tm-n','tm-l','tm-z','tm-c'].forEach(id=>st.f[id]=$(id).value);TMJ.push(st);
  if(!$('pp').hidden){$('pp').hidden=true;PP=null}if(!$('tv').hidden){$('tv').hidden=true;TVO=null}document.body.style.overflow='';
- tab('team');['tm-s','tm-y','tm-n','tm-l','tm-z','tm-c'].forEach(id=>$(id).value='');const [k,val]=[v.slice(0,1),v.slice(2)];const sel=$(k==='n'?'tm-n':'tm-c');if(![...sel.options].some(o=>o.value===val)){const o=document.createElement('option');o.value=val;o.textContent=k==='n'?cjN(val):val;sel.appendChild(o)}sel.value=val;drawTeam();history.pushState({tmj:1},'');window.scrollTo(0,0)}
+ tab('team');TMC='';['tm-s','tm-y','tm-n','tm-l','tm-z','tm-c'].forEach(id=>$(id).value='');const [k,val]=[v.slice(0,1),v.slice(2)];const sel=$(k==='n'?'tm-n':'tm-c');if(![...sel.options].some(o=>o.value===val)){const o=document.createElement('option');o.value=val;o.textContent=k==='n'?cjN(val):val;sel.appendChild(o)}sel.value=val;drawTeam();history.pushState({tmj:1},'');window.scrollTo(0,0)}
 function teamBack(){const st=TMJ.pop();if(!st)return;tab(st.tab);Object.entries(st.f).forEach(([id,v])=>$(id).value=v);if(st.tab==='team')drawTeam();if(st.tv!=null){$('tv').hidden=false;TVO=st.tv;document.body.style.overflow='hidden';drawTV()}if(st.pp){openPlayer(st.pp)}}
 $('pp-back').onclick=()=>{if(history.state&&history.state.pp)history.back();else closePlayer()};
 window.addEventListener('popstate',()=>{if(TMJ.length&&!(history.state&&history.state.tmj)&&$('pp').hidden&&$('tv').hidden){teamBack();return}if(!$('pp').hidden)closePlayer();else if(!$('tv').hidden)closeTV();else if(PV&&!(history.state&&history.state.pc)&&!$('v-player').hidden)closeCountry()});
 document.querySelectorAll('.ptabs button').forEach(b=>b.onclick=()=>{PPT=b.dataset.pt;drawPP();$('pp').scrollTop=0});
 let PFG=0;
-function drawPP(){const isF=String(PP).startsWith('F:');document.querySelector('.ptabs button[data-pt=rec]').hidden=isF;if(isF)return drawFP();const p=PP,s=PS[p];if(!s){$('pp-body').innerHTML='<div class="empty">この区分の試合はありません</div>';return}
+function drawPP(){const isF=String(PP).startsWith('F:');document.querySelector('.ptabs button[data-pt=rec]').hidden=isF;document.querySelector('.ptabs button[data-pt=tm]').hidden=isF;if(isF&&PPT==='tm')PPT='ms';if(isF)return drawFP();const p=PP,s=PS[p];if(!s){$('pp-body').innerHTML='<div class="empty">この区分の試合はありません</div>';return}
  const IT=playerItems(p);$('pp-n').textContent=IT.length;document.querySelectorAll('.ptabs button').forEach(b=>b.classList.toggle('on',b.dataset.pt===PPT));
  const box=$('pp-body');box.innerHTML='';
+ if(PPT==='tm'){drawPlayerTeams(p,box);return}
  if(PPT==='ms'){const oc=i=>{const c=[...new Set(i.R.ps.map(x=>x.c))];return c.length===1?c[0]:''};const MC=pcOf(p),TG=MC==='CHN'?'JPN':'CHN';const cc={};IT.forEach(i=>{const c=oc(i);if(c&&c!==MC)cc[c]=(cc[c]||0)+1});const cns=Object.keys(cc).sort((a,b)=>(a===TG?-1:b===TG?1:cc[b]-cc[a]));const subs=[...new Set(IT.map(i=>i.sub.replace('（個別試合）','')))];const ys=[...new Set(IT.map(i=>(i.date||'').slice(0,4)).filter(Boolean))];
   box.innerHTML=`<div class="ych" id="pf-ych" style="top:${(document.querySelector('.pbar')?.offsetHeight||46)+(document.querySelector('.ptabs')?.offsetHeight||40)}px"><button data-y="" class="on">全期間</button>${ys.slice().sort((a,b)=>b-a).map(y=>`<button data-y="${y}">${y}</button>`).join('')}</div><div class="pfil"><select id="pf-s"><option value="">全種目</option>${subs.map(x=>`<option>${esc(x)}</option>`).join('')}</select><select id="pf-y"><option value="">全期間</option>${ys.map(y=>`<option value="${y}">${y}年</option>`).join('')}</select><select id="pf-r"><option value="">勝敗</option><option value="1">勝ち</option><option value="0">負け</option></select><select id="pf-c"><option value="">対戦国</option>${cns.map(c=>`<option value="${c}">${flagIOC(c)} ${cjN(c)}</option>`).join('')}</select><select id="pf-k"><option value="">S/D</option><option value="S">シングルス</option><option value="D">ダブルス</option></select><select id="pf-u"><option value="">ユース含む</option><option value="n">ユース除く</option></select></div><div class="psum" id="pf-sum"></div><div class="mlist" id="pf-list"></div><div class="more" id="pf-more"></div>`;
   const draw=()=>{const fs=$('pf-s').value,fy=$('pf-y').value,fr=$('pf-r').value,fc=$('pf-c').value,fk=$('pf-k').value,fu=$('pf-u').value;if(YT<0)YT=T.indexOf('(4)ユース（U19）');const L=IT.filter(i=>(fu!=='n'||!isY(E[i.e].t))&&(!fs||i.sub.replace('（個別試合）','')===fs)&&(!fy||(i.date||'').startsWith(fy))&&(fr===''||i.res==fr)&&(!fc||oc(i)===fc)&&(!fk||((i.L.ps.length>1||i.R.ps.length>1)?'D':'S')===fk));
@@ -630,11 +633,11 @@ function drawPlist(){const q=$('p-input').value.trim().toLowerCase();const box=$
   `<div class="crow" data-c="FEAT"><div class="cn"><div class="nm big">⭐ 注目海外選手</div><div class="ro">${nF.map(p=>flagIOC(pcOf(p))+esc(shortN(p))).join('・')}（全成績）</div></div><div class="cs"><b>${nF.length}</b>人</div></div>`+
   C.map(c=>`<div class="crow" data-c="${esc(c.c)}"><div class="cn"><div class="nm big">${flagIOC(c.c)} ${esc(cjN(c.c))}</div><div class="ro">対日本 ${c.m}試合　日本の${c.l}勝${c.w}敗</div></div><div class="cs"><b>${c.ps.length}</b>人</div></div>`).join('')+'</div>';bind();return}
  const jp=PV==='JPN'||PV==='CHN'||PV==='FEAT';const TL=PLAYERS.filter(p=>PV==='FEAT'?GRP(pcOf(p))===4:pcOf(p)===PV);const all=TL.map(p=>({p,g:GD[p]||'',m:PS[p].n})).concat(jp?[]:(FC[PV]?FC[PV].ps:[]).filter(k=>!trF(FX[k])).map(k=>({k,g:FX[k].gd,m:FX[k].m})));all.sort((a,b)=>(!!b.p-!!a.p)||b.m-a.m);
- const cnt={M:0,F:0,'':0};all.forEach(x=>cnt[x.g]++);const L=PVG?all.filter(x=>x.g===PVG):all;
+ const cnt={M:0,F:0,'':0};all.forEach(x=>cnt[x.g]++);const CT=countryTies(PV);const L=PVG&&PVG!=='T'?all.filter(x=>x.g===PVG):all;
  const rows=xs=>xs.map(x=>x.p?jpRow(x.p):fxRow(FX[x.k])).join('');
- let body='';if(PVG)body=rows(L);else[['M','男子'],['F','女子'],['','性別不明（混合種目のみ等）']].forEach(([g,l])=>{const xs=L.filter(x=>x.g===g);if(xs.length)body+=`<div class="chd">${l}（${xs.length}人）</div>`+rows(xs)});
- box.innerHTML=`<div class="cbar"><button id="pc-back" class="btn">‹ 国一覧</button><div class="nm big">${PV==='FEAT'?'⭐ 注目海外選手':flagIOC(PV)+' '+esc(cjN(PV))}</div></div><div class="seg" id="pc-g">${[['','すべて'],['M','男子'],['F','女子']].map(([g,l])=>`<button data-g="${g}" class="${PVG===g?'on':''}">${l} ${g?cnt[g]:all.length}</button>`).join('')}</div>`+
-  `<div class="nogd" style="text-align:left">${jp?'試合数順。勝敗は全成績（国際大会/リーグ戦の切替に連動）':(TL.length?'⭐注目選手（全成績）を先頭に表示。以下は':'')+'日本選手との対戦数順。「対日本」はこの選手から見た日本選手との勝敗'}</div><div class="clist">${body||'<div class="empty">該当なし</div>'}</div>`;bind()}
+ let body='';if(PVG==='T')body='<div id="pc-tm"></div>';else if(PVG)body=rows(L);else[['M','男子'],['F','女子'],['','性別不明（混合種目のみ等）']].forEach(([g,l])=>{const xs=L.filter(x=>x.g===g);if(xs.length)body+=`<div class="chd">${l}（${xs.length}人）</div>`+rows(xs)});
+ box.innerHTML=`<div class="cbar"><button id="pc-back" class="btn">‹ 国一覧</button><div class="nm big">${PV==='FEAT'?'⭐ 注目海外選手':flagIOC(PV)+' '+esc(cjN(PV))}</div></div><div class="seg" id="pc-g">${[['','すべて'],['M','男子'],['F','女子']].map(([g,l])=>`<button data-g="${g}" class="${PVG===g?'on':''}">${l} ${g?cnt[g]:all.length}</button>`).join('')}${CT.length?`<button data-g="T" class="${PVG==='T'?'on':''}">団体戦 ${CT.length}</button>`:''}</div>`+
+  `${PVG==='T'?'':`<div class="nogd" style="text-align:left">${jp?'試合数順。勝敗は全成績（国際大会/リーグ戦の切替に連動）':(TL.length?'⭐注目選手（全成績）を先頭に表示。以下は':'')+'日本選手との対戦数順。「対日本」はこの選手から見た日本選手との勝敗'}</div>`}<div class="clist">${body||'<div class="empty">該当なし</div>'}</div>`;bind();if(PVG==='T')drawCountryTeams(PV,CT,$('pc-tm'))}
 buildForeign(true);FXA=FX;buildForeign();try{apply()}catch(e){}
 function openCountry(c){PV=c;PVG='';history.pushState({pc:1},'');drawPlist();window.scrollTo(0,0)}
 function closeCountry(){PV=null;drawPlist();window.scrollTo(0,0)}
@@ -705,6 +708,9 @@ const CJR=()=>{const r={};Object.entries(CJ).forEach(([c,n])=>r[n]=c);r['台湾'
 let TMF={n:''};
 const tmA=()=>A.filter(a=>(PMASK[POOL]&1)&&inSec(a.e)&&/団体/.test(a.sub)&&!M.some(m=>m.team&&m.e===a.e&&m.sub===a.sub));
 function tmBase(){return M.filter(m=>m.team&&inSec(m.e)&&(m.g&PMASK[POOL]))}
+let TMC='';
+function tvSides(m){if(m.lg)return ['jp'];const pm=PMASK[POOL];const t=tmS(m.jp);const o=[];if(!t||(GRP(t.c)&pm))o.push('jp');if(m.flag&&(GRP(m.nat)&pm))o.push('opp');return o.length?o:['jp']}
+function tvv(m){if(TMC&&!m.lg)return tieView(m,tieSideC(m,TMC)||'jp');return tvw(m)}
 function tvw(m){const pm=PMASK[POOL];const t=tmS(m.jp);const a=m.lg||!t||!!(GRP(t.c)&pm);if(a)return {res:m.res,fin:ownFinal(m,'jp')};return {res:m.res===1?0:m.res===0?1:m.res,fin:ownFinal(m,'opp')}}
 function tmFill(){const B=tmBase();const RA=tmA();const sv={};['tm-s','tm-y','tm-n','tm-l','tm-z','tm-c'].forEach(id=>sv[id]=$(id).value);
  const subs=new Set(B.map(m=>m.sub));RA.forEach(a=>subs.add(a.sub));fillSel('tm-s',TSUB.filter(x=>subs.has(x[0])),'全種別');
@@ -718,17 +724,17 @@ function tmFill(){const B=tmBase();const RA=tmA();const sv={};['tm-s','tm-y','tm
 function tmRes(a){const e=E[a.e];const d=document.createElement('div');d.className='mr tres';
  const o=(a.opp||'').match(/^(.*?):\s*(.*?)(?:（(\d+-\d+)）)?$/);const cr=CJR();let rt='';if(o){const c=cr[o[2]];rt=`<span class="rr">${esc(o[1])}</span><span class="fl">${c?flagIOC(c):''}</span><span class="pn">${esc(o[2])}</span>${o[3]?`<span class="rr">${esc(o[3].replace('-',' - '))}</span>`:''}`}
  d.innerHTML=`<div class="ml">${e.y}年${esc(evShort(e))}${flagE(e.hc)}<span class="rk"> ${esc(subShort(a.sub))}</span> <span class="rr">成績のみ</span></div><div class="mg"><div class="ms L"><div class="fl">${flagIOC('JPN')}</div><div class="pn">日本</div></div><div class="msc tr"><b class="${medal(a.res)}">${esc(a.res.replace(/（.*$/,''))}</b></div><div class="ms R">${rt?`<div class="rline">${rt}</div>`:'<div class="pn" style="color:#9aa3b0">—</div>'}</div></div>`;return d}
-function drawTeam(){const f={};['s','y','n','l','z','c'].forEach(k=>f[k]=$('tm-'+k).value);
+function drawTeam(){if(TMC&&!tmBase().some(m=>!m.lg&&tvSides(m).some(z=>(z==='jp'?((tmS(m.jp)||{}).c||'JPN'):m.nat)===TMC)))TMC='';const f={};['s','y','n','l','z','c'].forEach(k=>f[k]=$('tm-'+k).value);
  const okE=(e,lg)=>{const E0=E[e];if(f.y&&String(E0.y)!==f.y)return false;if(lg){if(f.n)return false;if(f.l&&E0.c!==f.l)return false;if(f.z&&seasonOf(E0)!==f.z)return false}else if(f.l||f.z||f.c)return false;return true};
- const T=tmBase().filter(m=>(!f.s||m.sub===f.s)&&okE(m.e,m.lg)&&(!f.n||m.nat===f.n)&&(!f.c||m.jp===f.c||m.opp===f.c));
- const RA=f.n||f.c?[]:tmA().filter(a=>(!f.s||a.sub===f.s)&&okE(a.e,E[a.e].lg));
+ const T=tmBase().filter(m=>(!TMC||(!m.lg&&tieSideC(m,TMC)))&&(!f.s||m.sub===f.s)&&okE(m.e,m.lg)&&(!f.n||m.nat===f.n)&&(!f.c||m.jp===f.c||m.opp===f.c));
+ const RA=f.n||f.c||(TMC&&TMC!=='JPN')?[]:tmA().filter(a=>(!f.s||a.sub===f.s)&&okE(a.e,E[a.e].lg));
  // collapsed summary
- const I=tmBase().filter(m=>!m.lg&&(!f.s||m.sub===f.s)&&okE(m.e,0));const RS=tmA().filter(a=>(!f.s||a.sub===f.s)&&okE(a.e,0));let sum='';
+ const I=tmBase().filter(m=>!m.lg&&(!TMC||tieSideC(m,TMC))&&(!f.s||m.sub===f.s)&&okE(m.e,0));const RS=tmA().filter(a=>(!f.s||a.sub===f.s)&&okE(a.e,0));let sum='';
  if((I.length||RS.length)&&!f.l&&!f.z&&!f.c){const cat={};const fin={};const C=k=>cat[k]||(cat[k]={w:0,l:0,g:0,s:0,b:0});
-  I.forEach(m=>{const c=C(m.sub);const v=tvw(m);if(!f.n||m.nat===f.n){if(v.res===1)c.w++;else if(v.res===0)c.l++}if(v.fin)fin[m.e+'|'+m.sub]=v.fin});RS.forEach(a=>{C(a.sub);fin[a.e+'|'+a.sub]=a.res});
+  I.forEach(m=>{const c=C(m.sub);const v=tvv(m);if(!f.n||m.nat===f.n){if(v.res===1)c.w++;else if(v.res===0)c.l++}if(v.fin)fin[m.e+'|'+m.sub]=v.fin});RS.forEach(a=>{C(a.sub);fin[a.e+'|'+a.sub]=a.res});
   Object.entries(fin).forEach(([k,v])=>{const c=cat[k.split('|')[1]];const md=medal(v);if(md==='gold')c.g++;else if(md==='silver')c.s++;else if(md==='bronze'&&/^3位/.test(v))c.b++});
-  sum=`<details class="tmsum"><summary>${PLAB[POOL]}の団体戦成績${f.n?'（勝敗は対'+esc(cjN(f.n))+'）':''}</summary><table><tr><th class="l"></th><th>勝敗</th><th>勝率</th><th>🥇</th><th>🥈</th><th>🥉</th></tr>${TSUB.filter(x=>cat[x[0]]).map(([k,l])=>{const c=cat[k];return `<tr><td class="l">${l}</td><td>${c.w}-${c.l}</td><td>${pct(c.w,c.w+c.l)}</td><td>${c.g}</td><td>${c.s}</td><td>${c.b}</td></tr>`}).join('')}</table><div class="nogd" style="text-align:left">勝敗は対戦単位。メダルは最終成績（成績のみの大会を含む）。</div></details>`}
- $('tm-sum').innerHTML=sum;
+  sum=`<details class="tmsum"><summary>${TMC?flagIOC(TMC)+esc(cjN(TMC)):PLAB[POOL]}の団体戦成績${f.n?'（勝敗は対'+esc(cjN(f.n))+'）':''}</summary><table><tr><th class="l"></th><th>勝敗</th><th>勝率</th><th>🥇</th><th>🥈</th><th>🥉</th></tr>${TSUB.filter(x=>cat[x[0]]).map(([k,l])=>{const c=cat[k];return `<tr><td class="l">${l}</td><td>${c.w}-${c.l}</td><td>${pct(c.w,c.w+c.l)}</td><td>${c.g}</td><td>${c.s}</td><td>${c.b}</td></tr>`}).join('')}</table><div class="nogd" style="text-align:left">勝敗は対戦単位。メダルは最終成績（成績のみの大会を含む）。</div></details>`}
+ $('tm-sum').innerHTML=sum;tmChips(f);
  const key=x=>x.r?(E[x.r.e].d2&&E[x.r.e].d2!=='0000'?E[x.r.e].d2:E[x.r.e].sk||String(E[x.r.e].y)):(x.m.date||E[x.m.e].sk||'');
  const L=T.map(m=>({m})).concat(RA.map(r=>({r}))).sort((a,b)=>key(b).localeCompare(key(a))||(b.m?b.m.rv:0)-(a.m?a.m.rv:0));
  // group by tournament / league season
@@ -743,8 +749,11 @@ let TMG=[],TVO=null,TVS='';
 function tvTitle(e){if(e.lg){const m=(e.n||'').match(/^(.*?) (男子|女子) (\d{4})-(\d{4})$/);const es=evShort(e);return m?`${es} ${m[3]}-${m[4].slice(2)}${/[男女]$/.test(es)?'':' '+m[2]}`:e.n}const n=e.n||'';return /20\d\d/.test(n)?n.replace(/（.*?開催中）/,''):n+' '+e.y}
 const MDL={gold:'（金）',silver:'（銀）',bronze:'（銅）'};
 function tvSub(g){const e=E[g.e];if(e.lg){const ds=g.L.map(x=>x.m.date).filter(Boolean).sort();return `${g.L.length}対戦（${PLAB[POOL]}選手出場）${ds.length?'｜'+ds[0].slice(5).replace('-','/')+'〜'+ds[ds.length-1].slice(5).replace('-','/'):''}`}
- const R={};g.L.forEach(x=>{if(x.r){R[x.r.sub]=x.r.res;return}const m=x.m;const v=tvw(m);if(!(m.sub in R)||v.fin)R[m.sub]=v.fin||R[m.sub]||''});
- return TSUB.filter(t=>t[0] in R).map(([k])=>{const v=(R[k]||'').replace(/（.*$/,'');const md=medal(R[k]||'');return `${esc(subShort(k))} ${esc(v||'—')}${md&&(md!=='bronze'||/^(3位|ベスト4)/.test(v))?MDL[md]:''}`}).join('・')}
+ const R={};let w=0,l=0,n=0;g.L.forEach(x=>{if(x.r){R['JPN|'+x.r.sub]=x.r.res;return}const m=x.m;n++;const sd=TMC?[tieSideC(m,TMC)||'jp']:tvSides(m);
+  sd.forEach(z=>{const v=tieView(m,z);const c=z==='jp'?((tmS(m.jp)||{}).c||'JPN'):m.nat;const k=c+'|'+m.sub;if(!(k in R)||v.fin)R[k]=v.fin||R[k]||''});const v=tvv(m);if(v.res===1)w++;else if(v.res===0)l++});
+ return finTxt(R)+(n?`｜${n}対戦 ${w}勝${l}敗`:'')}
+function finTxt(R){const ks=Object.keys(R);const multi=new Set(ks.map(k=>k.split('|')[0])).size>1;const so=k=>{const [c,sb]=k.split('|');return (c==='JPN'?0:c==='CHN'?1:2)*10+TSUB.findIndex(t=>t[0]===sb)};
+ return ks.sort((a,b)=>so(a)-so(b)).map(k=>{const [c,sb]=k.split('|');const v=(R[k]||'').replace(/（.*$/,'');const md=medal(R[k]||'');return `${multi?flagIOC(c):''}${esc(subShort(sb))} ${esc(v||'—')}${md&&(md!=='bronze'||/^(3位|ベスト4)/.test(v))?MDL[md]:''}`}).join('・')}
 function openTV(i){TVO=i;TVS='';const g=TMG[i];$('tv-name').textContent=tvTitle(E[g.e]);$('tv').hidden=false;document.body.style.overflow='hidden';history.pushState({tv:1},'');drawTV();$('tv').scrollTop=0}
 function closeTV(){$('tv').hidden=true;TVO=null;if($('pp').hidden)document.body.style.overflow=''}
 function drawTV(){const g=TMG[TVO];if(!g){closeTV();return}const subs=TSUB.map(t=>t[0]).filter(k=>g.L.some(x=>(x.m||x.r).sub===k));
@@ -753,6 +762,44 @@ function drawTV(){const g=TMG[TVO];if(!g){closeTV();return}const subs=TSUB.map(t
  $('tv-tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{TVS=b.dataset.s;drawTV()});
  const X=g.L.filter(x=>!TVS||(x.m||x.r).sub===TVS);const b=$('tv-body');b.innerHTML=`<div class="psum">${tvSub(g)}｜${X.length}件</div>`;
  const ml=document.createElement('div');ml.className='mlist';b.appendChild(ml);const fr=document.createDocumentFragment();X.forEach(x=>fr.appendChild(x.r?tmRes(x.r):rowEl(itemOf(x.m,null,false))));ml.appendChild(fr)}
+
+function tmChips(f){const B=tmBase().filter(m=>!m.lg);const cc={};B.forEach(m=>tvSides(m).forEach(z=>{const c=z==='jp'?((tmS(m.jp)||{}).c||'JPN'):m.nat;cc[c]=(cc[c]||0)+1}));
+ const cs=Object.keys(cc).sort((a,b)=>(a==='JPN'?-1:b==='JPN'?1:a==='CHN'?-1:b==='CHN'?1:cc[b]-cc[a]));if(TMC&&!cc[TMC])TMC='';
+ $('tm-pl').textContent=`表示中：${POOL==='A'?'全員':PLAB[POOL]}（上部の🇯🇵/🇨🇳/⭐/全員に連動）`;
+ const cb=$('tm-cc');cb.hidden=cs.length<2;cb.innerHTML=cs.length<2?'':`<button data-c="" class="${TMC?'':'on'}">全チーム</button>`+cs.map(c=>`<button data-c="${c}" class="${TMC===c?'on':''}">${flagIOC(c)}${esc(cjN(c).replace('チャイニーズタイペイ','台湾'))} ${cc[c]}</button>`).join('');
+ cb.querySelectorAll('button').forEach(b=>b.onclick=()=>{TMC=b.dataset.c;if(TMC){$('tm-l').value='';$('tm-z').value='';$('tm-c').value=''}drawTeam()});
+ const yo=[...$('tm-y').options].map(o=>o.value).filter(Boolean);const yb=$('tm-yc');yb.hidden=yo.length<2;yb.innerHTML=yo.length<2?'':`<button data-y="" class="${f.y?'':'on'}">全期間</button>`+yo.map(y=>`<button data-y="${y}" class="${f.y===y?'on':''}">${y}</button>`).join('');
+ yb.querySelectorAll('button').forEach(b=>b.onclick=()=>{$('tm-y').value=b.dataset.y;drawTeam()})}
+// ===== shared: national-team ties of a country / a player, grouped by tournament
+function tieSideC(m,c){const t=tmS(m.jp);if(t?t.c===c:(c==='JPN'&&/^日本/.test(m.jp)))return 'jp';if(m.nat===c)return 'opp';return ''}
+function tieView(m,side){return side==='opp'?{res:m.res===1?0:m.res===0?1:m.res,fin:ownFinal(m,'opp')}:{res:m.res,fin:ownFinal(m,'jp')}}
+let FEATC=null;const featC=()=>FEATC||(FEATC=new Set(PLAYERS.filter(p=>GRP(pcOf(p))===4).map(p=>pcOf(p))));
+function countryTies(c){if(!c)return [];const cs=c==='FEAT'?[...featC()]:[c];const out=[];
+ M.forEach(m=>{if(!m.team||m.lg||!inSec(m.e))return;for(const x of cs){const sd=tieSideC(m,x);if(sd&&(c!=='FEAT'||(m.g&4))){out.push({m,side:sd,c:x});break}}});return out}
+function tgGroups(X){const G={};X.forEach(x=>{const g=G[x.m.e]||(G[x.m.e]={e:x.m.e,L:[],k:''});g.L.push(x);const k=x.m.date||E[x.m.e].sk||'';if(k>g.k)g.k=k});
+ const A=Object.values(G).sort((a,b)=>b.k.localeCompare(a.k));A.forEach(g=>g.L.sort((a,b)=>(b.m.date||'').localeCompare(a.m.date||'')||b.m.rv-a.m.rv));return A}
+function tgWL(L){let w=0,l=0;L.forEach(x=>{const v=tieView(x.m,x.side);if(v.res===1)w++;else if(v.res===0)l++});return [w,l]}
+function tgList(box,X,hl){const G=tgGroups(X);const wrap=document.createElement('div');wrap.className='tgl';
+ if(!G.length){box.innerHTML+='<div class="empty">該当する団体戦はありません</div>';return}
+ G.forEach(g=>{const e=E[g.e];const d=document.createElement('div');d.className='tgr';const R={};g.L.forEach(x=>{const k=x.c+'|'+x.m.sub;const v=tieView(x.m,x.side);if(!(k in R)||v.fin)R[k]=v.fin||R[k]||''});
+  const [w,l]=tgWL(g.L);const ft=e.lg?esc(g.L[0].club||''):finTxt(R);
+  d.innerHTML=`<div class="tgh"><div class="tvm"><div class="tvn">${flagE(e.hc)} ${esc(tvTitle(e))}</div><div class="tvs">${ft}${ft?'｜':''}${g.L.length}対戦 ${w}勝${l}敗${hl&&g.rw!=null?'':''}</div></div><div class="tvc">▼</div></div><div class="tgb" hidden></div>`;
+  const b=d.querySelector('.tgb');d.querySelector('.tgh').onclick=()=>{const op=b.hidden;b.hidden=!op;d.classList.toggle('op',op);d.querySelector('.tvc').textContent=op?'▲':'▼';
+   if(op&&!b.childElementCount){const ml=document.createElement('div');ml.className='mlist';g.L.forEach(x=>ml.appendChild(rowEl(itemOf(x.m,null,false))));b.appendChild(ml);
+    if(hl){b.addEventListener('click',()=>setTimeout(()=>b.querySelectorAll('.mr.rb').forEach(r=>r.classList.toggle('hl',(r.dataset.pn||'').includes('|'+hl+'|'))),0),true)}}};
+  wrap.appendChild(d)});box.appendChild(wrap)}
+function drawCountryTeams(c,X,box){if(!box)return;const [w,l]=tgWL(X);const subs={};X.forEach(x=>{const s=subs[x.m.sub]||(subs[x.m.sub]=[0,0]);const v=tieView(x.m,x.side);if(v.res===1)s[0]++;else if(v.res===0)s[1]++});
+ box.innerHTML=`<div class="tgsum"><b>${c==='FEAT'?'⭐ 注目選手の国':flagIOC(c)+' '+esc(cjN(c))}の代表団体戦</b>　${X.length}対戦 ${w}勝${l}敗（勝率${pct(w,w+l)}）<br>${TSUB.filter(t=>subs[t[0]]).map(([k,lb])=>`${esc(lb)} ${subs[k][0]}-${subs[k][1]}`).join('　')}<br><span style="color:#7a828e;font-size:11.5px">大会をタップで対戦一覧、対戦をタップで個別試合（ゲームスコア）。チームの並びは公式記録どおり。</span></div>`;
+ tgList(box,X,null)}
+function playerTies(p){const out=[];M.forEach(m=>{if(!m.team||!inSec(m.e))return;let side='',rw=0,rl=0;
+  (m.rubs||[]).forEach(r=>{const a=jpPlayers(r.jp).includes(p),b=!a&&jpPlayers(r.opp).includes(p);if(!a&&!b)return;side=side||(a?'jp':'opp');const rr=a?r.res:INVR(r.res);if(rr===1||rr===3)rw++;else if(rr===0||rr===4)rl++});
+  if(side){let c=pcOf(p);if(m.lg)c=side==='jp'?m.jp:m.opp;out.push({m,side,c:m.lg?'':(side==='jp'?((tmS(m.jp)||{}).c||c):m.nat),rw,rl,club:m.lg?c:''})}});return out}
+function drawPlayerTeams(p,box){const X=playerTies(p);$('pp-n').textContent=playerItems(p).length;
+ const I=X.filter(x=>!x.m.lg),Lg=X.filter(x=>x.m.lg);const [w,l]=tgWL(I),[w2,l2]=tgWL(Lg);let rw=0,rl=0;X.forEach(x=>{rw+=x.rw;rl+=x.rl});
+ box.innerHTML=`<div class="tgsum"><b>${esc(p)}の団体戦</b>　${X.length}対戦<br>代表：${I.length}対戦 チーム${w}勝${l}敗${Lg.length?`　リーグ（クラブ）：${Lg.length}対戦 チーム${w2}勝${l2}敗`:''}<br>本人の個別試合 ${rw}勝${rl}敗（勝率${pct(rw,rw+rl)}）<br><span style="color:#7a828e;font-size:11.5px">本人が出場した試合を黄色で強調。大会→対戦→個別試合の順にタップで展開。</span></div>`;
+ if(I.length){box.insertAdjacentHTML('beforeend','<div class="chd">代表・国際大会</div>');tgList(box,I,p)}
+ if(Lg.length){box.insertAdjacentHTML('beforeend','<div class="chd">リーグ戦（クラブ）</div>');tgList(box,Lg,p)}
+ if(!X.length)box.insertAdjacentHTML('beforeend','<div class="empty">団体戦の出場記録はありません</div>')}
 $('tv-back').onclick=()=>{if(history.state&&history.state.tv)history.back();else closeTV()};
 ['tm-s','tm-y','tm-n','tm-l','tm-z','tm-c'].forEach(id=>$(id).onchange=drawTeam);
 function covHTML(){const C=D.COV;if(!C)return '';return `<details class="panel"><summary>リーグ戦の収録状況</summary><div class="tablewrap"><table class="cov"><tr><th class="l">リーグ</th><th>男女</th><th>シーズン</th><th>試合</th><th>ゲーム得点</th><th>日本対決</th><th>対戦数</th><th class="l">状況</th></tr>${C.cov.map(r=>`<tr><td class="l">${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td><td>${r[6]}</td><td class="l">${esc(r[7])}</td></tr>`).join('')}</table></div><ul style="font-size:12px;margin:6px 0 0;padding-left:18px">${C.gap.map(g=>`<li>${esc(g[0])}：${esc(g[3])}</li>`).join('')}</ul></details>`}
