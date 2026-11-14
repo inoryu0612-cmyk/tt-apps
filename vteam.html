@@ -6,114 +6,160 @@
 <title>【仮想】WTT団体戦</title>
 <link rel="icon" href="data:,">
 <style>
-:root{--bg:#f3f5f8;--card:#fff;--ink:#1d2533;--sub:#6b7484;--line:#e2e6ec;--acc:#c8102e;--acc2:#1f4e78;--win:#c8102e;--winbg:#fff1f2;--chip:#eef2f7;--v:#7a3fb0}
-*{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.45}
-header{background:var(--acc2);color:#fff;padding:10px 12px;position:sticky;top:0;z-index:20}
-header h1{font-size:16px;margin:0 0 4px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-header h1 a{color:#cfe0f5;font-size:12px;font-weight:400;margin-left:auto;text-decoration:none;border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:2px 8px}
-.vbadge{background:var(--v);color:#fff;border-radius:6px;padding:1px 6px;font-size:12px;font-weight:700}
-.hsub{font-size:11.5px;color:#cfe0f5;margin:0 0 8px}
-.tabs{display:flex;gap:5px}
-.tab{flex:1;white-space:nowrap;background:rgba(255,255,255,.15);border:0;color:#fff;padding:8px 2px;border-radius:8px;font-size:13.5px;cursor:pointer}
+:root{--bg:#f2f4f8;--card:#fff;--ink:#1a2230;--sub:#667085;--line:#e3e7ee;--acc:#c8102e;--acc2:#1f4e78;--win:#c8102e;--winbg:#fff0f2;--lose:#4a6fa5;--losebg:#eef3fa;--chip:#eef2f7;--v:#7a3fb0;--jp:#fff5f6}
+*{box-sizing:border-box;-webkit-tap-highlight-color:rgba(31,78,120,.12)}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.5}
+button{font-family:inherit}
+header{background:var(--acc2);color:#fff;padding:8px 10px 8px;position:sticky;top:0;z-index:20;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+header h1{font-size:16px;margin:0;font-weight:700;display:flex;align-items:center;gap:6px}
+header h1 .ttl{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+header h1 a{color:#e3eefb;font-size:12px;font-weight:400;text-decoration:none;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.vbadge{background:var(--v);color:#fff;border-radius:6px;padding:1px 6px;font-size:12px;font-weight:700;flex:none}
+.hsub{font-size:11px;color:#cfe0f5;margin:3px 0 7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}
+.tab{flex:1 0 auto;min-width:52px;min-height:40px;white-space:nowrap;background:rgba(255,255,255,.14);border:0;color:#fff;padding:6px 6px;border-radius:9px;font-size:14px;cursor:pointer}
 .tab.on{background:#fff;color:var(--acc2);font-weight:700}
 main{max-width:980px;margin:0 auto;padding:10px}
-.panel{background:var(--card);border-radius:12px;padding:10px;margin-bottom:10px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.panel{background:var(--card);border-radius:14px;padding:12px;margin-bottom:10px;box-shadow:0 1px 3px rgba(16,24,40,.07)}
 .filters{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.filters label{display:flex;flex-direction:column;font-size:11px;color:var(--sub);gap:2px}
-.filters .wide{grid-column:span 2}
-select,input[type=search],input[type=number]{width:100%;padding:7px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:#fff;color:var(--ink)}
-.summary{font-size:13px;color:var(--sub);margin:4px 2px 8px}
-.tour{background:var(--card);border-radius:12px;margin-bottom:8px;box-shadow:0 1px 2px rgba(0,0,0,.06);overflow:hidden;cursor:pointer}
-.th{padding:8px 12px;border-left:5px solid var(--acc2)}
+.filters label{display:flex;flex-direction:column;font-size:11.5px;color:var(--sub);gap:3px;min-width:0}
+.filters .wide{grid-column:1/-1}
+select,input[type=search],input[type=number]{width:100%;min-height:42px;padding:8px 10px;border:1px solid #cfd6e0;border-radius:10px;font-size:16px;background:#fff;color:var(--ink)}
+.summary{font-size:12.5px;color:var(--sub);margin:4px 4px 8px}
+.tour{background:var(--card);border-radius:14px;margin-bottom:8px;box-shadow:0 1px 3px rgba(16,24,40,.07);overflow:hidden;cursor:pointer}
+.tour:active{background:#f7f9fc}
+.th{padding:10px 12px;border-left:5px solid var(--acc2)}
 .k-feeder{border-left-color:#8a96a8}.k-contender{border-left-color:#2a8f5b}.k-star{border-left-color:#e08a00}.k-smash{border-left-color:#c8102e}.k-champions{border-left-color:#6a4fb3}.k-finals,.k-cupfinals{border-left-color:#000}.k-worldcup{border-left-color:#0b7fa8}.k-worlds,.k-worldsteam{border-left-color:#b8860b}.k-mixedteam{border-left-color:#d1477a}
-.th .nm{font-weight:700;font-size:15px}
-.th .inf{font-size:12px;color:var(--sub);margin-top:1px}
-.best{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
-.chip{background:var(--chip);border-radius:999px;padding:2px 8px;font-size:11.5px;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;display:inline-block}
-.chip.gold{background:#fff4cc}.chip.silver{background:#e9ecf1}.chip.bronze{background:#f8e6d8}.chip.jp{background:#fde8ea;color:#9b0d22}.chip.live{background:#e3f4ea;color:#17703f}.chip.up{background:#eef0f3;color:#6b7484}.chip.v{background:#f1e8fa;color:var(--v)}
-.ych{display:flex;gap:5px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none}.ych::-webkit-scrollbar{display:none}
-.ych button{flex:1 0 auto;min-width:46px;border:1px solid #c9d1dc;background:#fff;border-radius:999px;padding:5px 8px;font-size:13px;font-weight:600;color:#33475b}.ych button.on{background:#2f6fd6;border-color:#2f6fd6;color:#fff}
+.th .nm{font-weight:700;font-size:15.5px;line-height:1.35}
+.th .inf{font-size:12px;color:var(--sub);margin-top:2px}
+.best{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.chip{background:var(--chip);border-radius:999px;padding:3px 9px;font-size:12px;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;display:inline-block}
+.chip.gold{background:#fff2c2;color:#6b4e00}.chip.silver{background:#e7ebf1}.chip.bronze{background:#f8e4d4;color:#7a3f12}.chip.jp{background:#fde6ea;color:#9b0d22}.chip.live{background:#dff3e7;color:#17703f;font-weight:700}.chip.up{background:#eef0f3;color:#6b7484}.chip.v{background:#f1e8fa;color:var(--v);font-weight:700}
+.ych{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}.ych::-webkit-scrollbar{display:none}
+.ych button{flex:1 0 auto;min-width:52px;min-height:36px;border:1px solid #c9d1dc;background:#fff;border-radius:999px;padding:5px 10px;font-size:13.5px;font-weight:600;color:#33475b}.ych button.on{background:#2f6fd6;border-color:#2f6fd6;color:#fff}
 table{border-collapse:collapse;width:100%}
-.tbl{font-size:13px}.tbl th{font-size:11px;color:var(--sub);font-weight:600;text-align:right;padding:4px 4px;border-bottom:1px solid var(--line);white-space:nowrap}.tbl td{padding:5px 4px;border-bottom:1px solid #f0f2f5;text-align:right;white-space:nowrap}
-.tbl td.l,.tbl th.l{text-align:left;white-space:normal}.tbl tr.q td{background:#f2f8ff}.tbl tr.me td{background:#fff5f6}
-.tbl tr.click{cursor:pointer}
-.big{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center}.big div{background:var(--chip);border-radius:10px;padding:6px 2px}.big b{display:block;font-size:20px}.big span{font-size:11px;color:var(--sub)}
-h2{font-size:15px;margin:4px 2px 8px}h3{font-size:14px;margin:12px 2px 6px;color:var(--acc2)}
+.tbl{font-size:14px}.tbl th{font-size:11.5px;color:var(--sub);font-weight:600;text-align:right;padding:6px 5px;border-bottom:1px solid var(--line);white-space:nowrap}.tbl td{padding:9px 5px;border-bottom:1px solid #eef1f5;text-align:right;white-space:nowrap}
+.tbl td.l,.tbl th.l{text-align:left;white-space:normal}.tbl tr.q td{background:#f0f7ff}.tbl tr.me td{background:var(--jp)}
+.tbl tr.click{cursor:pointer}.tbl tr.click:active td{background:#eef3fa}
+.tbl td b{font-size:15px}
+.big{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center}.big div{background:var(--chip);border-radius:12px;padding:8px 2px}.big b{display:block;font-size:20px;line-height:1.2}.big span{font-size:11px;color:var(--sub)}
+h2{font-size:16px;margin:2px 2px 10px}h3{font-size:14.5px;margin:4px 2px 8px;color:var(--acc2)}
 .muted{color:var(--sub);font-size:12px}
-#ev{position:fixed;inset:0;background:var(--bg);z-index:50;overflow-y:auto;display:none}
-#ev.on{display:block}
-#evh{position:sticky;top:0;background:var(--acc2);color:#fff;padding:8px 10px;z-index:5}
-#evh .bk{background:rgba(255,255,255,.2);border:0;color:#fff;border-radius:8px;padding:5px 10px;font-size:14px;margin-right:6px}
-#evh .t{font-weight:700;font-size:15px}
-#evtabs{display:flex;gap:5px;margin-top:6px}#evtabs button{flex:1;background:rgba(255,255,255,.15);border:0;color:#fff;border-radius:8px;padding:6px 2px;font-size:13px}#evtabs button.on{background:#fff;color:var(--acc2);font-weight:700}
-.tie{border:1px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;overflow:hidden}
-.tie .hd{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center;padding:7px 8px;cursor:pointer}
-.tie .hd .h{text-align:right}.tie .sc{font-weight:700;font-size:16px;min-width:44px;text-align:center}
-.tie .w{font-weight:700;color:var(--win)}
-.tie .lab{font-size:11px;color:var(--sub);padding:5px 8px 0}
-.tie .rbs{display:none;border-top:1px dashed var(--line);padding:4px 8px 8px;font-size:13px}.tie.open .rbs{display:block}
-.rb{display:grid;grid-template-columns:34px 1fr 34px 1fr;gap:4px;padding:3px 0;border-bottom:1px solid #f4f5f8;align-items:center}
-.rb .o{font-size:11px;color:var(--sub)}.rb .g{grid-column:2/5;font-size:11.5px;color:var(--sub);margin-top:-2px}.rb .gw{text-align:center;font-weight:700}
-.rb .r{text-align:left}
-.tie.jp{border-color:#f3b2bb}
+.ovl{position:fixed;inset:0;background:var(--bg);overflow-y:auto;display:none;-webkit-overflow-scrolling:touch}
+.ovl.on{display:block}
+#ev{z-index:50}#pl{z-index:60}
+.oh{position:sticky;top:0;background:var(--acc2);color:#fff;padding:8px 10px;z-index:5;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.oh .row{display:flex;align-items:center;gap:8px}
+.bk{background:rgba(255,255,255,.2);border:0;color:#fff;border-radius:9px;padding:0 12px;min-height:40px;font-size:14px;flex:none}
+.oh .t{font-weight:700;font-size:15px;line-height:1.3;min-width:0}
+#pl .oh{background:#2d3a4f}
+#evtabs{display:flex;gap:5px;margin-top:7px}#evtabs button{flex:1;min-height:38px;background:rgba(255,255,255,.14);border:0;color:#fff;border-radius:9px;padding:6px 2px;font-size:13.5px}#evtabs button.on{background:#fff;color:var(--acc2);font-weight:700}
+.tie{border:1px solid var(--line);border-radius:12px;margin:8px 0;background:#fff;overflow:hidden}
+.tie .hd{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center;padding:8px 10px 10px;cursor:pointer;min-height:44px}
+.tie .hd>div{min-width:0}
+.tie .hd .h{text-align:right}.tie .sc{font-weight:800;font-size:18px;min-width:52px;text-align:center;letter-spacing:.5px}
+.tie .hd .tw{font-weight:700;color:var(--win)}
+.tie .hd .tl{color:#55606f}
+.tie .lab{font-size:11.5px;color:var(--sub);padding:6px 10px 0;display:flex;justify-content:space-between}
+.tie .lab .tg::after{content:'▼ 詳細';font-size:11px;color:#8a95a5}.tie.open .lab .tg::after{content:'▲ 閉じる'}
+.tie .rbs{display:none;border-top:1px dashed var(--line);padding:6px 10px 10px;font-size:13.5px;background:#fbfcfe}.tie.open .rbs{display:block}
+.rb{display:grid;grid-template-columns:30px 1fr 40px 1fr;gap:4px;padding:6px 0;border-bottom:1px solid #eef1f5;align-items:center}
+.rb .o{font-size:11px;color:var(--sub)}.rb .g{grid-column:2/5;font-size:12px;color:var(--sub);text-align:center}.rb .gw{text-align:center;font-weight:800}
+.rb .w{font-weight:700;color:var(--win)}
+.rb .r{text-align:left}.rb .h{text-align:right}
+.tie.jp{border-color:#f0a5b0;box-shadow:inset 4px 0 0 #e8475f}
 .u{color:var(--sub);font-size:13px}
-.lu{font-size:11.5px;color:var(--sub);padding:2px 0 4px}
-.roster{font-size:13px;padding:6px 0;border-bottom:1px solid #f0f2f5}.roster b{font-size:14px}.roster .pl{color:var(--ink);font-size:12.5px;margin-top:2px}
-.foot{font-size:11px;color:var(--sub);text-align:center;padding:10px 0 30px}
-.flag{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-.pdet td{background:#fafbfc;font-size:12px;color:var(--sub);text-align:left!important;white-space:normal!important}
-@media(min-width:700px){.filters{grid-template-columns:repeat(4,1fr)}}
+.lu{font-size:12px;color:var(--sub);padding:2px 0 6px;line-height:1.7}
+.roster{font-size:13.5px;padding:10px 0;border-bottom:1px solid #eef1f5}.roster b{font-size:14.5px}.roster .pl{color:var(--ink);font-size:13.5px;margin-top:4px;line-height:2}
+.click{cursor:pointer}
+.foot{font-size:11px;color:var(--sub);text-align:center;padding:12px 0 36px}
+.flag{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;margin-right:2px}
+.pn{color:#1f56a8;text-decoration:underline;text-decoration-color:rgba(31,86,168,.35);text-underline-offset:3px;cursor:pointer;padding:2px 0}
+.w .pn,.tw .pn{color:var(--win)}
+.pn:active{background:#e6eefb;border-radius:4px}
+.btn{display:inline-block;border:1px solid #c9d1dc;background:#fff;border-radius:10px;padding:0 14px;min-height:40px;font-size:14px;color:#33475b;cursor:pointer}
+.btn.full{width:100%;margin-top:8px}
+.wl{display:inline-block;min-width:22px;text-align:center;border-radius:6px;font-weight:800;font-size:12px;padding:1px 4px}
+.wl.W{background:var(--winbg);color:var(--win)}.wl.L{background:var(--losebg);color:var(--lose)}
+.ml{padding:9px 0;border-bottom:1px solid #eef1f5;display:grid;grid-template-columns:30px 1fr auto;gap:8px;align-items:start}
+.ml .mx{min-width:0}.ml .ev{font-size:12px;color:var(--sub)}.ml .op{font-size:14.5px;margin:1px 0}.ml .gs{font-size:12px;color:var(--sub)}
+.ml .sc{font-weight:800;font-size:16px;text-align:right}.ml .sc.W{color:var(--win)}.ml .sc.L{color:var(--lose)}
+.bar{height:6px;border-radius:3px;background:var(--losebg);overflow:hidden;margin-top:3px}.bar i{display:block;height:100%;background:var(--win)}
+.pcard{padding:10px 0;border-bottom:1px solid #eef1f5;display:flex;align-items:center;gap:10px;cursor:pointer;min-height:48px}
+.pcard .nm{flex:1;min-width:0;font-weight:600}.pcard .st{font-size:12.5px;color:var(--sub);text-align:right}
+.ph{display:flex;align-items:center;gap:10px}.ph .fl{font-size:34px;line-height:1}.ph .nm{font-size:20px;font-weight:800}.ph .ct{font-size:12.5px;color:var(--sub)}
+@media(min-width:700px){.filters{grid-template-columns:repeat(4,1fr)}.big{grid-template-columns:repeat(8,1fr)}}
 </style>
 </head>
 <body>
 <header>
- <h1><span class="vbadge">仮想</span>WTT団体戦（男子3人制）<a href="wtt.html">← 戦績アプリ</a></h1>
+ <h1><span class="vbadge">仮想</span><span class=ttl>WTT団体戦（男子3人制）</span><a href="wtt.html">← 戦績アプリ</a></h1>
  <div class="hsub" id="hsub">読み込み中…</div>
  <div class="tabs">
   <button class="tab on" data-t="ev">大会</button>
   <button class="tab" data-t="jp">日本</button>
   <button class="tab" data-t="wr">勝率</button>
+  <button class="tab" data-t="pl">選手</button>
   <button class="tab" data-t="ct">国別</button>
   <button class="tab" data-t="live">進行中</button>
  </div>
 </header>
 <main id="main"></main>
-<div id="ev"><div id="evh"></div><main id="evb"></main></div>
+<div id="ev" class="ovl"><div id="evh" class="oh"></div><main id="evb"></main></div>
+<div id="pl" class="ovl"><div id="plh" class="oh"></div><main id="plb"></main></div>
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const KIND={feeder:'フィーダー',contender:'コンテンダー',star:'スターコンテンダー',smash:'グランドスマッシュ',champions:'チャンピオンズ',finals:'ファイナルズ',cupfinals:'カップファイナルズ',worldcup:'ワールドカップ',worlds:'世界卓球（個人戦）',worldsteam:'世界卓球（団体戦）',mixedteam:'混合団体W杯'};
 const TIER=[['','すべて'],['feeder','フィーダー'],['contender','コンテンダー'],['star','スターコンテンダー'],['smash','グランドスマッシュ'],['champions','チャンピオンズ'],['finals','ファイナルズ'],['worldcup','ワールドカップ'],['worlds','世界卓球'],['mixedteam','混合団体W杯']];
+const TIERN=Object.fromEntries(TIER);
 const tierOf=k=>k==='cupfinals'?'finals':k==='worldsteam'?'worlds':k;
-let D=null,ST={tab:'ev',y:'',tier:'',q:'',jy:'',jt:'',wy:'',wt:'',wn:'JPN',wmin:10,wsort:'pct',cy:'',ctier:'',wopen:null};
-const evCache={};
+let D=null,PIDX=new Map(),ST={tab:'ev',y:'',tier:'',q:'',jy:'',jt:'',wy:'',wt:'',wn:'JPN',wmin:10,wsort:'pct',cy:'',ctier:'',pq:'',pn:'',copen:null};
+const evCache={},plCache={};
 function md(d){return d?(+d.slice(5,7))+'/'+(+d.slice(8)):''}
 function tn(t){return t?`<span class=flag>${t[2]}</span>${esc(t[1])}`:''}
+function pct(w,l){return w+l?(100*w/(w+l)):0}
+function pkey(name,nat){return name+'|'+nat}
+// 選手名（タップで詳細）。データにない名前は普通の文字
+function pn(name,nat){if(name==null)return '';return PIDX.has(pkey(name,nat))?`<span class=pn data-pn="${esc(pkey(name,nat))}">${esc(name)}</span>`:esc(name)}
 function finCls(f){return f==='優勝'?'gold':f==='準優勝'?'silver':/ベスト4|3位|4位/.test(f)?'bronze':(f==='進行中'?'live':(f==='未実施'?'up':''))}
 function stChip(s){return s.status==='live'?'<span class="chip live">進行中</span>':s.status==='upcoming'?'<span class="chip up">開催前</span>':''}
 async function init(){
  try{const r=await fetch('vteam/index.json?v='+Date.now());D=await r.json();}catch(e){$('main').innerHTML='<div class=panel>データを読み込めませんでした</div>';return}
  D.events.forEach((e,i)=>e.i=i);
+ D.players.forEach((p,i)=>PIDX.set(pkey(p[0],p[1]),i));
  const nd=D.events.filter(e=>e.status==='done').length;
- $('hsub').textContent=`2021〜2026 全${D.events.length}大会（終了${nd}）・シミュレーション結果／進行中は${md(D.revealed)}公開分まで・更新 ${D.built}`;
- document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{ST.tab=b.dataset.t;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===b));render();window.scrollTo(0,0)});
- window.addEventListener('popstate',()=>{if(!location.hash.startsWith('#e='))closeEv(true);else openEv(decodeURIComponent(location.hash.slice(3)),true)});
- render();
- if(location.hash.startsWith('#e='))openEv(decodeURIComponent(location.hash.slice(3)),true);
+ $('hsub').textContent=`【仮想】2021〜2026 全${D.events.length}大会（終了${nd}）・進行中は${md(D.revealed)}公開分まで・更新 ${D.built}`;
+ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>setTab(b.dataset.t));
+ // 選手名タップ → 詳細（どの画面からでも）
+ document.addEventListener('click',ev=>{const x=ev.target.closest('[data-pn]');if(!x)return;ev.preventDefault();ev.stopPropagation();openPl(x.dataset.pn)},true);
+ window.addEventListener('popstate',()=>route(true));
+ render();route(true);
 }
+function setTab(t){ST.tab=t;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.t===t));render();window.scrollTo(0,0)}
+// ハッシュ：#e=大会キー / #p=選手名|協会   （戻るボタン対応）
+function route(){
+ const h=location.hash;
+ if(h.startsWith('#p=')){drawPl(decodeURIComponent(h.slice(3)));return}
+ closePl();
+ if(h.startsWith('#e=')){const k=decodeURIComponent(h.slice(3));if(!(EVK===k&&$('ev').classList.contains('on')))openEv(k,true)}
+ else closeEv();
+}
+function lockBody(){document.body.style.overflow=($('ev').classList.contains('on')||$('pl').classList.contains('on'))?'hidden':''}
 function years(){return [...new Set(D.events.map(e=>e.year))].sort()}
-function ych(cur,key){return `<div class=ych>`+[['','全期間'],...years().map(y=>[String(y),y])].map(([v,l])=>`<button data-k="${key}" data-v="${v}" class="${cur===v?'on':''}">${l}</button>`).join('')+`</div>`}
+function ych(cur,key,ys){return `<div class=ych>`+[['','全期間'],...(ys||years()).map(y=>[String(y),y])].map(([v,l])=>`<button data-k="${key}" data-v="${v}" class="${cur===v?'on':''}">${l}</button>`).join('')+`</div>`}
 function tierSel(cur,key){return `<label>大会グレード<select data-k="${key}">`+TIER.map(([v,l])=>`<option value="${v}"${cur===v?' selected':''}>${l}</option>`).join('')+`</select></label>`}
-function bind(){
- document.querySelectorAll('#main [data-k]').forEach(el=>{
+function natSel(cur,key,label,all){const nats=Object.entries(D.countries).sort((a,b)=>a[1][0].localeCompare(b[1][0],'ja'));return `<label>${label}<select data-k="${key}"><option value="">${all}</option>${nats.map(([k,v])=>`<option value="${k}"${cur===k?' selected':''}>${v[1]} ${esc(v[0])}</option>`).join('')}</select></label>`}
+function bindIn(root,S,redraw){
+ root.querySelectorAll('[data-k]').forEach(el=>{
   const k=el.dataset.k;
-  if(el.tagName==='BUTTON')el.onclick=()=>{ST[k]=el.dataset.v;render()};
-  else if(el.tagName==='SELECT')el.onchange=()=>{ST[k]=el.value;render()};
-  else el.oninput=()=>{ST[k]=el.type==='number'?(+el.value||0):el.value;clearTimeout(bind.t);bind.t=setTimeout(()=>{render();const x=document.querySelector(`#main [data-k="${k}"]`);if(x){x.focus();try{x.setSelectionRange(x.value.length,x.value.length)}catch(_){}}},250)};
+  if(el.tagName==='BUTTON')el.onclick=()=>{S[k]=el.dataset.v;redraw()};
+  else if(el.tagName==='SELECT')el.onchange=()=>{S[k]=el.value;redraw()};
+  else el.oninput=()=>{S[k]=el.type==='number'?(+el.value||0):el.value;clearTimeout(bindIn.t);bindIn.t=setTimeout(()=>{redraw();const x=root.querySelector(`[data-k="${k}"]`);if(x){x.focus();try{x.setSelectionRange(x.value.length,x.value.length)}catch(_){}}},250)};
  });
- document.querySelectorAll('#main [data-ev]').forEach(el=>el.onclick=()=>openEv(el.dataset.ev));
+ root.querySelectorAll('[data-ev]').forEach(el=>el.onclick=()=>openEv(el.dataset.ev));
 }
 function evMatch(e,y,t){return (!y||String(e.year)===y)&&(!t||tierOf(e.kind)===t)}
 function evCard(e){
@@ -131,6 +177,17 @@ function rEv(){
  <div class=summary>${L.length}大会（新しい順）・タップで組み合わせと全試合</div>`+L.map(evCard).join('');
 }
 const FINORD=['優勝','準優勝','3位','4位','ベスト4','ベスト8'];
+function aggregate(y,t,nat){
+ const P={};
+ for(const r of D.agg){
+  if(y&&String(r[1])!==y)continue;if(t&&tierOf(r[2])!==t)continue;
+  const p=D.players[r[0]];if(nat&&p[1]!==nat)continue;
+  const a=P[r[0]]||(P[r[0]]={p:r[0],v:[0,0,0,0,0,0,0,0]});for(let i=0;i<8;i++)a.v[i]+=r[3+i];
+ }
+ return Object.values(P);
+}
+function pRow(a,extra){const p=D.players[a.p],c=D.countries[p[1]]||['',''];const m=a.v[0]+a.v[1],q=pct(a.v[0],a.v[1]);
+ return `<div class=pcard data-pn="${esc(pkey(p[0],p[1]))}"><span class=flag>${c[1]}</span><div class=nm>${esc(p[0])}<div class=bar><i style="width:${q.toFixed(0)}%"></i></div></div><div class=st><b style="color:var(--ink);font-size:15px">${a.v[0]}-${a.v[1]}</b>（${q.toFixed(1)}%）<br>${extra||(m+'試合'+(a.v[6]?'・優勝'+a.v[6]:''))}</div></div>`}
 function rJp(){
  const L=D.events.filter(e=>evMatch(e,ST.jy,ST.jt));
  const withJ=L.filter(e=>e.jp.length);
@@ -143,40 +200,39 @@ function rJp(){
  const cl=Object.entries(byC).sort((a,b)=>(b[1].w+b[1].l)-(a[1].w+a[1].l));
  const tw=jt.filter(t=>t[7]>t[8]).length;
  const titles=withJ.filter(e=>best(e)===0).reverse();
+ const jp=aggregate(ST.jy,ST.jt,'JPN').filter(a=>a.v[0]+a.v[1]>0).sort((a,b)=>(b.v[0]+b.v[1])-(a.v[0]+a.v[1])).slice(0,12);
  return `<div class=panel>${ych(ST.jy,'jy')}<div class=filters>${tierSel(ST.jt,'jt')}</div></div>
  <div class=panel><h2>🇯🇵 日本の成績 <span class="chip v">仮想</span></h2><div class=big><div><b>${t1}</b><span>優勝</span></div><div><b>${t2}</b><span>準優勝</span></div><div><b>${t4}</b><span>ベスト4</span></div><div><b>${t8}</b><span>ベスト8</span></div></div>
- <div class="muted" style="margin-top:6px">出場 ${withJ.length}大会／対象 ${L.length}大会（日本チームは協会の男子シングルス出場者が3人以上の大会のみ）・タイ ${tw}勝${jt.length-tw}敗</div></div>
- <div class=panel><h3>🏆 優勝（${titles.length}）</h3>${titles.length?titles.map(e=>{const j=e.jp.find(x=>x[2]==='優勝');return `<div class="roster click" data-ev="${e.k}" style="cursor:pointer"><b>${e.year} ${esc(e.title)}</b> <span class=muted>${esc(j?j[1]:'')}・決勝 ${e.fs?e.fs.join('-'):''} ${e.ru?tn(e.ru):''}</span></div>`}).join(''):'<div class=muted>なし</div>'}</div>
- <div class=panel><h3>相手国別 タイ勝敗</h3><table class=tbl><tr><th class=l>相手</th><th>勝</th><th>敗</th><th>勝率</th></tr>${cl.map(([k,v])=>`<tr><td class=l><span class=flag>${v.n?v.n[1]:''}</span>${esc(v.n?v.n[0]:k)}</td><td>${v.w}</td><td>${v.l}</td><td>${(100*v.w/(v.w+v.l)).toFixed(0)}%</td></tr>`).join('')}</table></div>
- <div class=panel><h3>大会ごとの成績</h3>${withJ.slice().reverse().map(e=>`<div class=roster data-ev="${e.k}" style="cursor:pointer"><b>${e.year} ${esc(e.title)}</b> <span class=muted>${esc(e.dates)}</span><div class=best>${e.jp.map(j=>`<span class="chip ${finCls(j[2])}">${esc(j[1])}：${esc(j[2])}</span>`).join('')}${e.ch&&e.ch[3]!=='JPN'?`<span class=chip>🏆${tn(e.ch)}</span>`:''}</div></div>`).join('')}</div>`;
-}
-function aggregate(y,t,nat){
- const P={};
- for(const r of D.agg){
-  if(y&&String(r[1])!==y)continue;if(t&&tierOf(r[2])!==t)continue;
-  const p=D.players[r[0]];if(nat&&p[1]!==nat)continue;
-  const a=P[r[0]]||(P[r[0]]={p:r[0],v:[0,0,0,0,0,0,0,0]});for(let i=0;i<8;i++)a.v[i]+=r[3+i];
- }
- return Object.values(P);
+ <div class="muted" style="margin-top:8px">出場 ${withJ.length}大会／対象 ${L.length}大会（日本チームは協会の男子シングルス出場者が3人以上の大会のみ）・タイ ${tw}勝${jt.length-tw}敗</div></div>
+ <div class=panel><h3>🇯🇵 主な選手（試合数順）</h3><div class=muted>名前をタップで選手詳細</div>${jp.map(a=>pRow(a)).join('')}<button class="btn full" id=jpall>日本の全選手の勝率を見る →</button></div>
+ <div class=panel><h3>🏆 優勝（${titles.length}）</h3>${titles.length?titles.map(e=>{const j=e.jp.find(x=>x[2]==='優勝');return `<div class="roster click" data-ev="${e.k}"><b>${e.year} ${esc(e.title)}</b> <span class=muted>${esc(j?j[1]:'')}・決勝 ${e.fs?e.fs.join('-'):''} ${e.ru?tn(e.ru):''}</span></div>`}).join(''):'<div class=muted>なし</div>'}</div>
+ <div class=panel><h3>相手国別 タイ勝敗</h3><table class=tbl><tr><th class=l>相手</th><th>勝</th><th>敗</th><th>勝率</th></tr>${cl.map(([k,v])=>`<tr><td class=l><span class=flag>${v.n?v.n[1]:''}</span>${esc(v.n?v.n[0]:k)}</td><td>${v.w}</td><td>${v.l}</td><td>${pct(v.w,v.l).toFixed(0)}%</td></tr>`).join('')}</table></div>
+ <div class=panel><h3>大会ごとの成績</h3>${withJ.slice().reverse().map(e=>`<div class="roster click" data-ev="${e.k}"><b>${e.year} ${esc(e.title)}</b> <span class=muted>${esc(e.dates)}</span><div class=best>${e.jp.map(j=>`<span class="chip ${finCls(j[2])}">${esc(j[1])}：${esc(j[2])}</span>`).join('')}${e.ch&&e.ch[3]!=='JPN'?`<span class=chip>🏆${tn(e.ch)}</span>`:''}</div></div>`).join('')}</div>`;
 }
 function rWr(){
- const nats=Object.entries(D.countries).sort((a,b)=>a[1][0].localeCompare(b[1][0],'ja'));
  let L=aggregate(ST.wy,ST.wt,ST.wn).filter(a=>a.v[0]+a.v[1]>0);
- const pct=a=>a.v[0]/(a.v[0]+a.v[1]);
+ const pc=a=>a.v[0]/(a.v[0]+a.v[1]);
  const main=L.filter(a=>a.v[0]+a.v[1]>=ST.wmin),sub=L.filter(a=>a.v[0]+a.v[1]<ST.wmin);
- const so={pct:(a,b)=>pct(b)-pct(a)||(b.v[0]-a.v[0]),w:(a,b)=>b.v[0]-a.v[0]||pct(b)-pct(a),m:(a,b)=>(b.v[0]+b.v[1])-(a.v[0]+a.v[1]),t:(a,b)=>b.v[6]-a.v[6]||pct(b)-pct(a)}[ST.wsort];
+ const so={pct:(a,b)=>pc(b)-pc(a)||(b.v[0]-a.v[0]),w:(a,b)=>b.v[0]-a.v[0]||pc(b)-pc(a),m:(a,b)=>(b.v[0]+b.v[1])-(a.v[0]+a.v[1]),t:(a,b)=>b.v[6]-a.v[6]||pc(b)-pc(a)}[ST.wsort];
  main.sort(so);sub.sort(so);
  const row=(a,i)=>{const p=D.players[a.p],c=D.countries[p[1]]||['',''];const m=a.v[0]+a.v[1];
-  let h=`<tr class=click data-p="${a.p}"><td>${i}</td><td class=l>${ST.wn?'':`<span class=flag>${c[1]}</span>`}${esc(p[0])}</td><td>${m}</td><td>${a.v[0]}-${a.v[1]}</td><td><b>${(100*pct(a)).toFixed(1)}</b></td><td>${a.v[4]+a.v[5]?a.v[4]+'-'+a.v[5]:'–'}</td><td>${a.v[6]||''}</td></tr>`;
-  if(ST.wopen===a.p){const ys={};for(const r of D.agg){if(r[0]!==a.p)continue;if(ST.wt&&tierOf(r[2])!==ST.wt)continue;if(ST.wy&&String(r[1])!==ST.wy)continue;const z=ys[r[1]]||(ys[r[1]]=[0,0,0,0]);z[0]+=r[3];z[1]+=r[4];z[2]+=r[9];z[3]+=r[10]}
-   h+=`<tr class=pdet><td></td><td colspan=6>${Object.entries(ys).map(([y,z])=>`${y}年：${z[0]}-${z[1]}（${(100*z[0]/Math.max(1,z[0]+z[1])).toFixed(0)}%）・${z[3]}大会${z[2]?'・優勝'+z[2]:''}`).join('<br>')}<br>ゲーム ${a.v[2]}-${a.v[3]}</td></tr>`}
-  return h};
+  return `<tr class="click${p[1]==='JPN'&&!ST.wn?' me':''}" data-pn="${esc(pkey(p[0],p[1]))}"><td>${i}</td><td class=l>${ST.wn?'':`<span class=flag>${c[1]}</span>`}<span class=pn>${esc(p[0])}</span></td><td>${m}</td><td>${a.v[0]}-${a.v[1]}</td><td><b>${(100*pc(a)).toFixed(1)}</b></td><td>${a.v[4]+a.v[5]?a.v[4]+'-'+a.v[5]:'–'}</td><td>${a.v[6]||''}</td></tr>`};
  const hd=`<tr><th>#</th><th class=l>選手</th><th>試合</th><th>勝-敗</th><th>勝率%</th><th>対中国</th><th>優勝</th></tr>`;
- return `<div class=panel>${ych(ST.wy,'wy')}<div class=filters>${tierSel(ST.wt,'wt')}<label>協会<select data-k=wn><option value="">全選手</option>${nats.map(([k,v])=>`<option value="${k}"${ST.wn===k?' selected':''}>${v[1]} ${esc(v[0])}</option>`).join('')}</select></label>
+ return `<div class=panel>${ych(ST.wy,'wy')}<div class=filters>${tierSel(ST.wt,'wt')}${natSel(ST.wn,'wn','協会','全選手')}
  <label>最低試合数<input type=number min=0 data-k=wmin value="${ST.wmin}"></label><label>並び順<select data-k=wsort>${[['pct','勝率'],['w','勝利数'],['m','試合数'],['t','優勝回数']].map(([v,l])=>`<option value="${v}"${ST.wsort===v?' selected':''}>${l}</option>`).join('')}</select></label></div></div>
- <div class=summary>【仮想】団体戦のシングルス（実施された試合のみ）。優勝＝優勝チームの登録メンバー。行をタップで年別。※は推定表記。</div>
+ <div class=summary>【仮想】団体戦のシングルス（実施された試合のみ）。優勝＝優勝チームの登録メンバー。<b>行をタップで選手詳細</b>。※は推定表記。</div>
  <div class=panel><h3>${ST.wmin}試合以上 ${main.length}人</h3><table class=tbl>${hd}${main.slice(0,300).map((a,i)=>row(a,i+1)).join('')}</table>${main.length>300?'<div class=muted>上位300人まで表示</div>':''}</div>
  ${sub.length&&ST.wn?`<div class=panel><h3>${ST.wmin}試合未満（参考）${sub.length}人</h3><table class=tbl>${hd}${sub.slice(0,200).map((a,i)=>row(a,'–')).join('')}</table></div>`:''}`;
+}
+function rPlList(){
+ const q=ST.pq.trim();
+ let L=aggregate('','',ST.pn).filter(a=>a.v[0]+a.v[1]>0);
+ if(q)L=L.filter(a=>D.players[a.p][0].replace(/※/g,'').includes(q.replace(/[\s・]/g,''))||D.players[a.p][0].includes(q));
+ L.sort((a,b)=>(b.v[0]+b.v[1])-(a.v[0]+a.v[1]));
+ const n=L.length;
+ return `<div class=panel><div class=filters><label class=wide>選手名で検索<input type=search data-k=pq value="${esc(ST.pq)}" placeholder="例：張本、ファルク"></label>${natSel(ST.pn,'pn','協会','すべての協会')}</div></div>
+ <div class=summary>${q||ST.pn?`${n}人`:'全'+n+'人'}（試合数順・最大150人）。タップで選手詳細。</div>
+ <div class=panel>${L.slice(0,150).map(a=>pRow(a)).join('')||'<div class=muted>見つかりません</div>'}</div>`;
 }
 function rCt(){
  const L=D.events.filter(e=>evMatch(e,ST.cy,ST.ctier)&&e.status==='done');
@@ -185,7 +241,7 @@ function rCt(){
  const rows=Object.entries(C).sort((a,b)=>b[1].t-a[1].t||b[1].r-a[1].r||b[1].b-a[1].b);
  return `<div class=panel>${ych(ST.cy,'cy')}<div class=filters>${tierSel(ST.ctier,'ctier')}</div></div>
  <div class=summary>終了した${L.length}大会。協会ごと（A・Bチームは合算）。国名をタップで優勝大会。</div>
- <div class=panel><table class=tbl><tr><th class=l>協会</th><th>優勝</th><th>準優勝</th><th>4強</th><th>決勝</th></tr>${rows.map(([k,v])=>{const c=D.countries[k]||[k,''];return `<tr class="click${k==='JPN'?' me':''}" data-c="${k}"><td class=l><span class=flag>${c[1]}</span>${esc(c[0])}</td><td><b>${v.t}</b></td><td>${v.r}</td><td>${v.b}</td><td>${v.t+v.r}</td></tr>`+(ST.copen===k?`<tr class=pdet><td colspan=5>${v.list.slice().reverse().map(e=>`<div data-ev="${e.k}" style="cursor:pointer;padding:2px 0">🏆 ${e.year} ${esc(e.title)}（${esc(e.ch[1])}）</div>`).join('')||'優勝なし'}</td></tr>`:'')}).join('')}</table></div>`;
+ <div class=panel><table class=tbl><tr><th class=l>協会</th><th>優勝</th><th>準優勝</th><th>4強</th><th>決勝</th></tr>${rows.map(([k,v])=>{const c=D.countries[k]||[k,''];return `<tr class="click${k==='JPN'?' me':''}" data-c="${k}"><td class=l><span class=flag>${c[1]}</span>${esc(c[0])}</td><td><b>${v.t}</b></td><td>${v.r}</td><td>${v.b}</td><td>${v.t+v.r}</td></tr>`+(ST.copen===k?`<tr><td colspan=5 class=l style="background:#fafbfc">${v.list.slice().reverse().map(e=>`<div data-ev="${e.k}" class=click style="padding:6px 0">🏆 ${e.year} ${esc(e.title)}（${esc(e.ch[1])}）</div>`).join('')||'優勝なし'}</td></tr>`:'')}).join('')}</table></div>`;
 }
 function rLive(){
  const L=D.events.filter(e=>e.src==='sim'||e.status!=='done');
@@ -193,32 +249,36 @@ function rLive(){
  return `<div class=summary>シミュレーションは実際の大会日程に合わせて毎日20時ごろ公開。公開前の試合は「未実施」と表示します（現在 ${md(D.revealed)} 分まで公開）。</div>`+L.map(evCard).join('')+`<h3>最近終わった大会</h3>`+last.map(evCard).join('');
 }
 function render(){
- const f={ev:rEv,jp:rJp,wr:rWr,ct:rCt,live:rLive}[ST.tab];
+ const f={ev:rEv,jp:rJp,wr:rWr,pl:rPlList,ct:rCt,live:rLive}[ST.tab];
  $('main').innerHTML=f()+`<div class=foot>【仮想】このアプリの団体戦はすべて架空のシミュレーションです（実在の大会結果ではありません）。チームは各大会の男子シングルス出場者から協会ごとに3人ずつ編成。</div>`;
- bind();
- document.querySelectorAll('#main tr[data-p]').forEach(tr=>tr.onclick=()=>{const p=+tr.dataset.p;ST.wopen=ST.wopen===p?null:p;render()});
+ bindIn($('main'),ST,render);
  document.querySelectorAll('#main tr[data-c]').forEach(tr=>tr.onclick=()=>{ST.copen=ST.copen===tr.dataset.c?null:tr.dataset.c;render()});
+ const ja=$('jpall');if(ja)ja.onclick=()=>{ST.wn='JPN';ST.wy=ST.jy;ST.wt=ST.jt;setTab('wr')};
 }
 // ---- event detail ----
-let EV=null,EVT='sum';
+let EV=null,EVK=null,EVT='sum';
 async function openEv(k,fromPop){
- if(!fromPop)history.pushState(null,'','#e='+encodeURIComponent(k));
+ if(!fromPop){history.pushState(null,'','#e='+encodeURIComponent(k));BACKOK=true}
  const s=D.events.find(e=>e.k===k);if(!s)return;
- $('ev').classList.add('on');document.body.style.overflow='hidden';
- $('evh').innerHTML=`<button class=bk id=bk>← 戻る</button><span class=t>${esc(s.host)} 【仮想】${esc(s.title)}</span>`;$('bk').onclick=()=>history.back();
+ closePl();
+ EVK=k;$('ev').classList.add('on');lockBody();
+ $('evh').innerHTML=`<div class=row><button class=bk id=bk>← 戻る</button><span class=t>${esc(s.host)} 【仮想】${esc(s.title)}</span></div>`;$('bk').onclick=()=>goBack();
  $('evb').innerHTML='<div class=panel>読み込み中…</div>';
  try{EV=evCache[k]||(evCache[k]=await (await fetch('vteam/ev/'+k+'.json?v='+encodeURIComponent(D.built))).json())}catch(e){$('evb').innerHTML='<div class=panel>読み込めませんでした</div>';return}
  EVT='sum';drawEv();$('ev').scrollTop=0;
 }
-function closeEv(){ $('ev').classList.remove('on');document.body.style.overflow='';}
+function goBack(){if(history.length>1&&BACKOK)history.back();else{history.replaceState(null,'',location.pathname);route()}}
+let BACKOK=false;
+function closeEv(){$('ev').classList.remove('on');EVK=null;lockBody()}
 function T(c){const t=EV.teams[c];return t?[c,t[0],t[1],t[2]]:null}
 function tieHtml(m,lab){
  const h=T(m.h),a=T(m.a);const jp=(h&&h[3]==='JPN')||(a&&a[3]==='JPN');
- if(m.u){return `<div class="tie${jp?' jp':''}"><div class=lab>${esc(lab)}　${md(m.d)}</div><div class=hd><div class=h>${h?tn(h):'<span class=u>未定</span>'}</div><div class="sc u">未実施</div><div>${a?tn(a):'<span class=u>未定</span>'}</div></div></div>`}
- const hw=m.w===m.h;
- const rbs=m.rb.map(r=>`<div class=rb><span class=o>${esc(r[0])}</span><span class="h${r[5]===0?' w':''}" style="text-align:right">${esc(r[1])}</span><span class=gw>${r[3][0]}-${r[3][1]}</span><span class="r${r[5]===1?' w':''}">${esc(r[2])}</span><span class=g>${esc(r[4])}</span></div>`).join('');
- return `<div class="tie${jp?' jp':''}"><div class=lab>${esc(lab)}　${md(m.d)}</div><div class=hd><div class="h${hw?' w':''}">${tn(h)}</div><div class=sc>${m.s[0]}-${m.s[1]}</div><div class="${hw?'':'w'}">${tn(a)}</div></div><div class=rbs><div class=lu>オーダー：${esc(m.lu[0].join('／'))} − ${esc(m.lu[1].join('／'))}</div>${rbs}${m.n?`<div class=muted>${esc(m.n.join('／'))}</div>`:''}</div></div>`;
+ if(m.u){return `<div class="tie${jp?' jp':''}"><div class=lab><span>${esc(lab)}　${md(m.d)}</span></div><div class=hd><div class=h>${h?tn(h):'<span class=u>未定</span>'}</div><div class="sc u">未実施</div><div>${a?tn(a):'<span class=u>未定</span>'}</div></div></div>`}
+ const hw=m.w===m.h,hn=h[3],an=a[3];
+ const rbs=m.rb.map(r=>`<div class=rb><span class=o>${esc(r[0])}</span><span class="h${r[5]===0?' w':''}">${pn(r[1],hn)}</span><span class=gw>${r[3][0]}-${r[3][1]}</span><span class="r${r[5]===1?' w':''}">${pn(r[2],an)}</span><span class=g>${esc(r[4])}</span></div>`).join('');
+ return `<div class="tie${jp?' jp':''}"><div class=lab><span>${esc(lab)}　${md(m.d)}</span><span class=tg></span></div><div class=hd><div class="h ${hw?'tw':'tl'}">${hw?'🏅':''}${tn(h)}</div><div class=sc>${m.s[0]}-${m.s[1]}</div><div class="${hw?'tl':'tw'}">${tn(a)}${hw?'':'🏅'}</div></div><div class=rbs><div class=lu>オーダー：${m.lu[0].map(x=>pn(x,hn)).join('／')} − ${m.lu[1].map(x=>pn(x,an)).join('／')}</div>${rbs}${m.n?`<div class=muted>${esc(m.n.join('／'))}</div>`:''}</div></div>`;
 }
+const openAll=()=>`<div style="text-align:right;margin:-2px 0 8px"><button class=btn id=opall>すべての試合を開く／閉じる</button></div>`;
 function drawEv(){
  const tabs=[['sum','概要'],['grp','グループ'],['ko','決勝T'],['tm','チーム']];
  if(!document.getElementById('evtabs'))$('evh').insertAdjacentHTML('beforeend','<div id=evtabs></div>');
@@ -229,25 +289,88 @@ function drawEv(){
   h+=`<div class=panel><div><span class="chip v">仮想</span> ${esc(KIND[e.kind]||'')}　${esc(e.dates)}　${e.n}チーム</div>${e.note?`<div class=muted style="margin-top:4px">${esc(e.note)}</div>`:''}${e.sim?`<div class=muted style="margin-top:4px">毎日20時ごろ公開・${md(e.revealed)}分まで表示</div>`:''}
   <div class=best style="margin-top:8px">${e.ch?`<span class="chip gold">🏆 優勝 ${tn(e.ch)}</span><span class="chip silver">準優勝 ${tn(e.ru)}（決勝 ${e.fs.join('-')}）</span>`:stChip(e)}${e.b4.map(b=>`<span class="chip bronze">${esc(e.fin[b[0]])} ${tn(b)}</span>`).join('')}</div></div>`;
   const order=Object.keys(e.teams).sort((x,y)=>(e.teams[x][3]||99)-(e.teams[y][3]||99));
-  h+=`<div class=panel><h3>最終成績</h3><table class=tbl><tr><th>シード</th><th class=l>チーム</th><th class=l>成績</th></tr>${order.map(c=>`<tr class="${e.teams[c][2]==='JPN'?'me':''}"><td>${e.teams[c][3]||''}</td><td class=l>${tn(T(c))}</td><td class=l>${esc(e.fin[c])}</td></tr>`).join('')}</table></div>`;
+  h+=`<div class=panel><h3>最終成績</h3><table class=tbl><tr><th>シード</th><th class=l>チーム</th><th class=l>成績</th></tr>${order.map(c=>`<tr class="${e.teams[c][2]==='JPN'?'me':''}"><td>${e.teams[c][3]||''}</td><td class=l>${tn(T(c))}</td><td class=l><span class="chip ${finCls(e.fin[c])}">${esc(e.fin[c])}</span></td></tr>`).join('')}</table></div>`;
   const days=Object.entries(e.days||{});
   if(days.length)h+=`<div class=panel><h3>日程</h3>${days.map(([d,it])=>`<div class=muted>${md(d)}　${it.map(x=>/^G\d+$/.test(x)?'グループ第'+x.slice(1)+'戦':x).join('・')}${e.sim&&d>e.revealed?'（未公開）':''}</div>`).join('')}</div>`;
  }else if(EVT==='grp'){
   if(!e.groups.length)h+='<div class=panel>グループリーグなし（決勝のみ）</div>';
+  else h+=openAll();
   for(const g of e.groups){
    h+=`<div class=panel><h3>${g.g}組${g.done?'':'（途中）'}</h3><table class=tbl><tr><th>#</th><th class=l>チーム</th><th>勝敗</th><th>試合</th><th>ゲーム</th></tr>${g.st.map((r,i)=>`<tr class="${g.done&&i<2&&e.ko.length&&e.groups.length>1?'q':''}${e.teams[r[0]][2]==='JPN'?' me':''}"><td>${i+1}</td><td class=l>${tn(T(r[0]))}</td><td>${r[1]}-${r[2]}</td><td>${r[3]}-${r[4]}</td><td>${r[5]}-${r[6]}</td></tr>`).join('')}</table>`;
    h+=g.ms.map(m=>tieHtml(m,`${g.g}組 第${m.r||''}戦`)).join('')+`</div>`;
   }
-  h+='<div class=muted>スコアをタップで各シングルスのゲームスコア</div>';
+  h+='<div class=muted>スコアをタップで各シングルスのゲームスコア・選手名タップで選手詳細</div>';
  }else if(EVT==='ko'){
+  h+=openAll();
   for(const r of e.ko){h+=`<div class=panel><h3>${esc(r.name)}　${md(r.date)}</h3>${r.ms.map(m=>tieHtml(m,r.name)).join('')}</div>`}
   if(e.slots&&e.ko.length&&e.ko[0].ms.some(m=>m.u&&!m.h))h+=`<div class=muted>組み合わせ：${e.slots.map((s,i)=>(i%2?'−':(i?'、':''))+s[0]+'組'+s[1]+'位').join('')}</div>`;
  }else{
   const order=Object.keys(e.teams).sort((x,y)=>(e.teams[x][3]||99)-(e.teams[y][3]||99));
-  h+=`<div class=panel>${order.map(c=>{const t=e.teams[c];return `<div class=roster><b>${tn(T(c))}</b> <span class=muted>シード${t[3]||'-'}・上位3人の世界ランク計 ${t[4]==null?'-':t[4]}</span><div class=pl>${t[5].map(p=>`${esc(p[0])}<span class=muted>（${p[1]==null?'ランクなし':p[1]+'位'}）</span>`).join('、')}</div></div>`}).join('')}<div class=muted style="margin-top:6px">世界ランクは大会時点。※は推定表記。</div></div>`;
+  h+=`<div class=panel>${order.map(c=>{const t=e.teams[c];return `<div class=roster><b>${tn(T(c))}</b> <span class=muted>シード${t[3]||'-'}・上位3人の世界ランク計 ${t[4]==null?'-':t[4]}</span><div class=pl>${t[5].map(p=>`${pn(p[0],t[2])}<span class=muted>（${p[1]==null?'ランクなし':p[1]+'位'}）</span>`).join('、')}</div></div>`}).join('')}<div class=muted style="margin-top:6px">世界ランクは大会時点。※は推定表記。選手名タップで詳細。</div></div>`;
  }
  $('evb').innerHTML=h+`<div class=foot>【仮想】架空のシミュレーションです</div>`;
  $('evb').querySelectorAll('.tie .hd').forEach(x=>x.onclick=()=>x.parentNode.classList.toggle('open'));
+ const oa=$('opall');if(oa)oa.onclick=()=>{const ts=[...$('evb').querySelectorAll('.tie')].filter(t=>t.querySelector('.rbs'));const any=ts.some(t=>!t.classList.contains('open'));ts.forEach(t=>t.classList.toggle('open',any))};
+}
+// ---- player detail（#p=名前|協会）----
+let PL=null,PLF={y:'',t:'',c:'',r:'',n:50,hn:15};
+function openPl(key){if(PL&&$('pl').classList.contains('on'))PL.sc=$('pl').scrollTop;history.pushState(null,'','#p='+encodeURIComponent(key));BACKOK=true;drawPl(key)}
+function closePl(){$('pl').classList.remove('on');lockBody()}
+async function loadPl(pid){const sh=pid%(D.nsh||64);if(!plCache[sh])plCache[sh]=await (await fetch('vteam/pl/'+sh+'.json?v='+encodeURIComponent(D.built))).json();const d=plCache[sh];return {tm:d.tm,...(d[pid]||{t:[],m:[]})}}
+async function drawPl(key){
+ const pid=PIDX.get(key);
+ $('pl').classList.add('on');lockBody();
+ const p=pid==null?key.split('|'):D.players[pid];const c=D.countries[p[1]]||[p[1],''];
+ $('plh').innerHTML=`<div class=row><button class=bk id=plbk>← 戻る</button><span class=t><span class=flag>${c[1]}</span>${esc(p[0])} <span class=vbadge>仮想</span></span></div>`;$('plbk').onclick=()=>goBack();
+ if(pid==null){$('plb').innerHTML='<div class=panel>この選手のデータはありません</div>';return}
+ if(!PL||PL.pid!==pid){PLF={y:'',t:'',c:'',r:'',n:50,hn:15};$('plb').innerHTML='<div class=panel>読み込み中…</div>';$('pl').scrollTop=0;
+  try{const d=await loadPl(pid);PL={pid,p,c,...d}}catch(e){$('plb').innerHTML='<div class=panel>読み込めませんでした</div>';return}}
+ else $('pl').scrollTop=PL.sc||0;
+ drawPlBody();
+}
+function wlTbl(rows,head){return `<table class=tbl><tr><th class=l>${head}</th><th>試合</th><th>勝-敗</th><th>勝率</th></tr>${rows.map(r=>`<tr class="${r.cls||''}"${r.attr||''}><td class=l>${r.l}</td><td>${r.w+r.lo}</td><td>${r.w}-${r.lo}</td><td><b>${pct(r.w,r.lo).toFixed(0)}%</b></td></tr>`).join('')}</table>`}
+function drawPlBody(){
+ const P=PL,F=PLF,TM=(ei,c)=>P.tm[ei+'|'+c]||[c,'',''];
+ const all=P.m;
+ const W=all.filter(m=>m[9]).length,L=all.length-W;
+ const gW=all.reduce((s,m)=>s+m[6],0),gL=all.reduce((s,m)=>s+m[7],0);
+ const tit=P.t.filter(t=>t[2]==='優勝'),fin=P.t.filter(t=>t[2]==='準優勝');
+ const played=new Set(all.map(m=>m[0]));
+ const teams={};P.t.forEach(t=>{const n=TM(t[0],t[1])[0];teams[n]=(teams[n]||0)+1});
+ // フィルター
+ const ev=ei=>D.events[ei];
+ const ok=m=>(!F.y||String(ev(m[0]).year)===F.y)&&(!F.t||tierOf(ev(m[0]).kind)===F.t)&&(!F.c||TM(m[0],m[4])[2]===F.c)&&(!F.r||(F.r==='W')===!!m[9]);
+ const M=all.filter(ok);
+ const grp=(f)=>{const o={};M.forEach(m=>{const k=f(m);const z=o[k]||(o[k]={w:0,lo:0,g:[0,0],e:new Set()});m[9]?z.w++:z.lo++;z.g[0]+=m[6];z.g[1]+=m[7];z.e.add(m[0])});return o};
+ const byY=grp(m=>ev(m[0]).year),byT=grp(m=>tierOf(ev(m[0]).kind)),byC=grp(m=>TM(m[0],m[4])[2]),byO=grp(m=>m[5]);
+ const ys=[...new Set(all.map(m=>ev(m[0]).year))].sort();
+ const oppNats=[...new Set(all.map(m=>TM(m[0],m[4])[2]))].sort((a,b)=>(D.countries[a]||[a])[0].localeCompare((D.countries[b]||[b])[0],'ja'));
+ const fW=M.filter(m=>m[9]).length,fL=M.length-fW,filt=F.y||F.t||F.c||F.r;
+ let h=`<div class=panel><div class=ph><span class="fl flag">${P.c[1]}</span><div><div class=nm>${esc(P.p[0])}</div><div class=ct>${esc(P.c[0])}・所属チーム：${Object.entries(teams).map(([n,k])=>esc(n)+'×'+k).join('、')||'-'}</div></div></div>
+ <div class=big style="margin-top:10px"><div><b>${W}-${L}</b><span>通算 勝-敗</span></div><div><b>${pct(W,L).toFixed(1)}%</b><span>勝率</span></div><div><b>${tit.length}</b><span>優勝</span></div><div><b>${tit.length+fin.length}</b><span>決勝進出</span></div></div>
+ <div class=muted style="margin-top:8px">出場 ${P.t.length}大会（試合あり ${played.size}）・ゲーム ${gW}-${gL}・すべて【仮想】団体戦のシングルス${D.revealed?`（進行中の大会は${md(D.revealed)}公開分まで）`:''}</div></div>`;
+ h+=`<div class=panel><h3>絞り込み</h3>${ych(F.y,'y',ys)}<div class=filters>${tierSel(F.t,'t')}<label>相手の協会<select data-k=c><option value="">すべて</option>${oppNats.map(k=>{const v=D.countries[k]||[k,''];return `<option value="${k}"${F.c===k?' selected':''}>${v[1]} ${esc(v[0])}</option>`}).join('')}</select></label><label>結果<select data-k=r>${[['','勝ち・負け'],['W','勝ちのみ'],['L','負けのみ']].map(([v,l])=>`<option value="${v}"${F.r===v?' selected':''}>${l}</option>`).join('')}</select></label>${filt?`<label>&nbsp;<button class=btn id=pfclr>解除</button></label>`:''}</div>${filt?`<div style="margin-top:8px"><b>絞り込み結果：${fW}-${fL}（${pct(fW,fL).toFixed(1)}%）</b></div>`:''}</div>`;
+ const yr=Object.keys(byY).sort().reverse().map(y=>({l:`${y}年 <span class=muted>${byY[y].e.size}大会</span>`,w:byY[y].w,lo:byY[y].lo}));
+ h+=`<div class=panel><h3>年別</h3>${wlTbl(yr,'年')}</div>`;
+ const tr=TIER.filter(([k])=>k&&byT[k]).map(([k,l])=>({l,w:byT[k].w,lo:byT[k].lo}));
+ h+=`<div class=panel><h3>大会グレード別</h3>${wlTbl(tr,'グレード')}</div>`;
+ const cr=Object.entries(byC).sort((a,b)=>(b[1].w+b[1].lo)-(a[1].w+a[1].lo)||b[1].w-a[1].w).map(([k,z])=>{const v=D.countries[k]||[k,''];return {l:`<span class=flag>${v[1]}</span>${esc(v[0])}`,w:z.w,lo:z.lo,cls:'click'+(k==='CHN'?' me':''),attr:` data-fc="${k}"`}});
+ h+=`<div class=panel><h3>相手の協会別</h3><div class=muted>行をタップでその国との試合だけ表示</div>${wlTbl(cr,'相手')}</div>`;
+ const orows=Object.entries(byO).sort((a,b)=>(b[1].w+b[1].lo)-(a[1].w+a[1].lo)||b[1].w-a[1].w);
+ h+=`<div class=panel><h3>対戦相手別（${orows.length}人）</h3>${wlTbl(orows.slice(0,F.hn).map(([o,z])=>{const q=D.players[o]||['?',''];const v=D.countries[q[1]]||['',''];return {l:`<span class=flag>${v[1]}</span>${pn(q[0],q[1])}`,w:z.w,lo:z.lo}}),'相手')}${orows.length>F.hn?`<button class="btn full" id=hmore>もっと見る（あと${orows.length-F.hn}人）</button>`:''}</div>`;
+ const ft=P.t.filter(t=>t[2]==='優勝'||t[2]==='準優勝').slice().reverse();
+ h+=`<div class=panel><h3>🏆 優勝・準優勝（${tit.length}・${fin.length}）</h3>${ft.map(t=>{const e=ev(t[0]);const n=TM(t[0],t[1]);return `<div class="roster click" data-ev="${e.k}"><span class="chip ${finCls(t[2])}">${t[2]==='優勝'?'🏆 ':''}${t[2]}</span> <b>${e.year} ${esc(e.title)}</b><div class=muted><span class=flag>${n[1]}</span>${esc(n[0])}${e.fs&&t[2]==='優勝'?'・決勝 '+e.fs.join('-')+' '+tn(e.ru):''}${e.fs&&t[2]==='準優勝'?'・決勝 '+e.fs.slice().reverse().join('-')+' '+tn(e.ch):''}</div></div>`}).join('')||'<div class=muted>なし</div>'}</div>`;
+ const ML=M.slice().sort((a,b)=>b[1].localeCompare(a[1])||b[0]-a[0]);
+ h+=`<div class=panel><h3>試合ログ（新しい順・${ML.length}試合）</h3>${ML.slice(0,F.n).map(m=>{const e=ev(m[0]);const op=D.players[m[5]]||['?',''];const ot=TM(m[0],m[4]),mt=TM(m[0],m[3]);const R=m[9]?'W':'L';
+  return `<div class=ml><span class="wl ${R}">${m[9]?'勝':'負'}</span><div class=mx><div class="ev click" data-ev="${e.k}">${md(m[1])}・${e.year} ${esc(e.title)}・${esc(m[2])}${m[10]?'（'+esc(m[10])+'）':''} ›</div><div class=op>vs <span class=flag>${ot[1]}</span>${pn(op[0],op[1])} <span class=muted>${esc(ot[0])}</span></div><div class=gs>${esc(m[8])}・タイ ${esc(mt[0])} ${m[11]}-${m[12]}</div></div><div class="sc ${R}">${m[6]}-${m[7]}</div></div>`}).join('')||'<div class=muted>試合なし</div>'}${ML.length>F.n?`<button class="btn full" id=mmore>もっと見る（あと${ML.length-F.n}試合）</button>`:''}</div>`;
+ h+=`<div class=foot>【仮想】架空のシミュレーションです（実在の試合結果ではありません）</div>`;
+ $('plb').innerHTML=h;
+ const rd=()=>{F.n=50;drawPlBody()};
+ bindIn($('plb'),F,rd);
+ $('plb').querySelectorAll('[data-fc]').forEach(x=>x.onclick=()=>{F.c=F.c===x.dataset.fc?'':x.dataset.fc;rd()});
+ const hm=$('hmore');if(hm)hm.onclick=()=>{F.hn+=30;drawPlBody()};
+ const mm=$('mmore');if(mm)mm.onclick=()=>{F.n+=100;drawPlBody()};
+ const cl=$('pfclr');if(cl)cl.onclick=()=>{F.y=F.t=F.c=F.r='';rd()};
 }
 init();
 </script>
